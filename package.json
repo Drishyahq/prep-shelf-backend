@@ -2,6 +2,9 @@
   "name": "prep-shelf-backend",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "lint": "tsc"
+  },
   "private": true,
   "devDependencies": {
     "@types/bun": "latest"
@@ -10,6 +13,7 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@types/express": "^5.0.6",
     "express": "^5.2.1"
   }
 }
