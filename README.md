@@ -1,15 +1,9 @@
-# prep-shelf-backend
+# Prep Shelf Backend
 
-To install dependencies:
+This repository serves as the backend for Prep Shelf.
 
-```bash
-bun install
-```
 
-To run:
+The Setup Instructions can be found at [`docs/setup.md`](docs/setup.md)
+`
 
-```bash
-bun run index.ts
-```
-
-This project was created using `bun init` in bun v1.3.5. [Bun](https://bun.com) is a fast all-in-one JavaScript runtime.
+---
