@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client"
+  output   = "./generated"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Admin {
+  id        Int       @id @default(autoincrement())
+  email     String    @unique
+  name      String
+  password  String
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  sessions  Session[]
+}
+
+model Session {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  adminId   Int
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+  admin     Admin    @relation(fields: [adminId], references: [id], onDelete: Cascade)
+}
+
+model Degree {
+  id            Int            @id @default(autoincrement())
+  name          String         @unique
+  createdAt     DateTime       @default(now())
+  assignments   Assignment[]
+  contributions Contribution[]
+  notes         Note[]
+  pyqPapers     PYQPaper[]
+}
+
+model Subject {
+  id            Int            @id @default(autoincrement())
+  name          String         @unique
+  createdAt     DateTime       @default(now())
+  assignments   Assignment[]
+  contributions Contribution[]
+  notes         Note[]
+  pyqPapers     PYQPaper[]
+}
+
+model PYQPaper {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  degreeId    Int
+  subjectId   Int
+  year        Int
+  semester    Int
+  fileUrl     String
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  degree      Degree   @relation(fields: [degreeId], references: [id])
+  subject     Subject  @relation(fields: [subjectId], references: [id])
+}
+
+model Note {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  degreeId    Int
+  subjectId   Int
+  year        Int
+  semester    Int
+  fileUrl     String
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  degree      Degree   @relation(fields: [degreeId], references: [id])
+  subject     Subject  @relation(fields: [subjectId], references: [id])
+}
+
+model Assignment {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String?
+  degreeId    Int
+  subjectId   Int
+  year        Int
+  semester    Int
+  fileUrl     String
+  isPublished Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  degree      Degree   @relation(fields: [degreeId], references: [id])
+  subject     Subject  @relation(fields: [subjectId], references: [id])
+}
+
+model Contribution {
+  id               Int                @id @default(autoincrement())
+  type             ContributionType
+  status           ContributionStatus @default(PENDING)
+  contributorName  String?
+  contributorEmail String?
+  title            String
+  description      String?
+  degreeId         Int
+  subjectId        Int
+  year             Int
+  semester         Int
+  fileUrl          String
+  reviewNote       String?
+  reviewedAt       DateTime?
+  createdAt        DateTime           @default(now())
+  updatedAt        DateTime           @updatedAt
+  degree           Degree             @relation(fields: [degreeId], references: [id])
+  subject          Subject            @relation(fields: [subjectId], references: [id])
+}
+
+enum ContributionType {
+  PYQ_PAPER
+  NOTE
+  ASSIGNMENT
+}
+
+enum ContributionStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
