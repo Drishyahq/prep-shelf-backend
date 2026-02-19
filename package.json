@@ -3,7 +3,9 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
-    "lint": "tsc"
+    "lint": "tsc",
+    "dev": "bun --watch src/index.ts",
+    "start": "bun src/index.ts"
   },
   "private": true,
   "devDependencies": {

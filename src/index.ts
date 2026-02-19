@@ -1,11 +1,11 @@
 import express from 'express';
 
 
-const app = express();
-const port = 3000;
+const app: express.Express = express();
+const port: number = 3000;
 
 app.get('/' , (_, res: express.Response) => {
-  res.send('Hello, World!');
+  res.json({ message: 'Hello, World!' });
 });
 
 app.listen(port, (error?: Error) => {
