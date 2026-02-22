@@ -53,6 +53,7 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Admin: 'Admin',
   Session: 'Session',
+  Branch: 'Branch',
   Degree: 'Degree',
   Subject: 'Subject',
   PYQPaper: 'PYQPaper',
@@ -100,6 +101,15 @@ export const SessionScalarFieldEnum = {
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
+export const BranchScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  createdAt: 'createdAt'
+} as const
+
+export type BranchScalarFieldEnum = (typeof BranchScalarFieldEnum)[keyof typeof BranchScalarFieldEnum]
+
+
 export const DegreeScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -129,7 +139,8 @@ export const PYQPaperScalarFieldEnum = {
   fileUrl: 'fileUrl',
   isPublished: 'isPublished',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  branchId: 'branchId'
 } as const
 
 export type PYQPaperScalarFieldEnum = (typeof PYQPaperScalarFieldEnum)[keyof typeof PYQPaperScalarFieldEnum]
@@ -146,7 +157,8 @@ export const NoteScalarFieldEnum = {
   fileUrl: 'fileUrl',
   isPublished: 'isPublished',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  branchId: 'branchId'
 } as const
 
 export type NoteScalarFieldEnum = (typeof NoteScalarFieldEnum)[keyof typeof NoteScalarFieldEnum]
@@ -163,7 +175,8 @@ export const AssignmentScalarFieldEnum = {
   fileUrl: 'fileUrl',
   isPublished: 'isPublished',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  branchId: 'branchId'
 } as const
 
 export type AssignmentScalarFieldEnum = (typeof AssignmentScalarFieldEnum)[keyof typeof AssignmentScalarFieldEnum]
@@ -185,7 +198,8 @@ export const ContributionScalarFieldEnum = {
   reviewNote: 'reviewNote',
   reviewedAt: 'reviewedAt',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt'
+  updatedAt: 'updatedAt',
+  branchId: 'branchId'
 } as const
 
 export type ContributionScalarFieldEnum = (typeof ContributionScalarFieldEnum)[keyof typeof ContributionScalarFieldEnum]

@@ -32,6 +32,7 @@ export type PYQPaperAvgAggregateOutputType = {
   subjectId: number | null
   year: number | null
   semester: number | null
+  branchId: number | null
 }
 
 export type PYQPaperSumAggregateOutputType = {
@@ -40,6 +41,7 @@ export type PYQPaperSumAggregateOutputType = {
   subjectId: number | null
   year: number | null
   semester: number | null
+  branchId: number | null
 }
 
 export type PYQPaperMinAggregateOutputType = {
@@ -54,6 +56,7 @@ export type PYQPaperMinAggregateOutputType = {
   isPublished: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  branchId: number | null
 }
 
 export type PYQPaperMaxAggregateOutputType = {
@@ -68,6 +71,7 @@ export type PYQPaperMaxAggregateOutputType = {
   isPublished: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  branchId: number | null
 }
 
 export type PYQPaperCountAggregateOutputType = {
@@ -82,6 +86,7 @@ export type PYQPaperCountAggregateOutputType = {
   isPublished: number
   createdAt: number
   updatedAt: number
+  branchId: number
   _all: number
 }
 
@@ -92,6 +97,7 @@ export type PYQPaperAvgAggregateInputType = {
   subjectId?: true
   year?: true
   semester?: true
+  branchId?: true
 }
 
 export type PYQPaperSumAggregateInputType = {
@@ -100,6 +106,7 @@ export type PYQPaperSumAggregateInputType = {
   subjectId?: true
   year?: true
   semester?: true
+  branchId?: true
 }
 
 export type PYQPaperMinAggregateInputType = {
@@ -114,6 +121,7 @@ export type PYQPaperMinAggregateInputType = {
   isPublished?: true
   createdAt?: true
   updatedAt?: true
+  branchId?: true
 }
 
 export type PYQPaperMaxAggregateInputType = {
@@ -128,6 +136,7 @@ export type PYQPaperMaxAggregateInputType = {
   isPublished?: true
   createdAt?: true
   updatedAt?: true
+  branchId?: true
 }
 
 export type PYQPaperCountAggregateInputType = {
@@ -142,6 +151,7 @@ export type PYQPaperCountAggregateInputType = {
   isPublished?: true
   createdAt?: true
   updatedAt?: true
+  branchId?: true
   _all?: true
 }
 
@@ -243,6 +253,7 @@ export type PYQPaperGroupByOutputType = {
   isPublished: boolean
   createdAt: Date
   updatedAt: Date
+  branchId: number
   _count: PYQPaperCountAggregateOutputType | null
   _avg: PYQPaperAvgAggregateOutputType | null
   _sum: PYQPaperSumAggregateOutputType | null
@@ -280,6 +291,8 @@ export type PYQPaperWhereInput = {
   isPublished?: Prisma.BoolFilter<"PYQPaper"> | boolean
   createdAt?: Prisma.DateTimeFilter<"PYQPaper"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PYQPaper"> | Date | string
+  branchId?: Prisma.IntFilter<"PYQPaper"> | number
+  branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   degree?: Prisma.XOR<Prisma.DegreeScalarRelationFilter, Prisma.DegreeWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
 }
@@ -296,6 +309,8 @@ export type PYQPaperOrderByWithRelationInput = {
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  branch?: Prisma.BranchOrderByWithRelationInput
   degree?: Prisma.DegreeOrderByWithRelationInput
   subject?: Prisma.SubjectOrderByWithRelationInput
 }
@@ -315,6 +330,8 @@ export type PYQPaperWhereUniqueInput = Prisma.AtLeast<{
   isPublished?: Prisma.BoolFilter<"PYQPaper"> | boolean
   createdAt?: Prisma.DateTimeFilter<"PYQPaper"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"PYQPaper"> | Date | string
+  branchId?: Prisma.IntFilter<"PYQPaper"> | number
+  branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   degree?: Prisma.XOR<Prisma.DegreeScalarRelationFilter, Prisma.DegreeWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
 }, "id">
@@ -331,6 +348,7 @@ export type PYQPaperOrderByWithAggregationInput = {
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
   _count?: Prisma.PYQPaperCountOrderByAggregateInput
   _avg?: Prisma.PYQPaperAvgOrderByAggregateInput
   _max?: Prisma.PYQPaperMaxOrderByAggregateInput
@@ -353,6 +371,7 @@ export type PYQPaperScalarWhereWithAggregatesInput = {
   isPublished?: Prisma.BoolWithAggregatesFilter<"PYQPaper"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"PYQPaper"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"PYQPaper"> | Date | string
+  branchId?: Prisma.IntWithAggregatesFilter<"PYQPaper"> | number
 }
 
 export type PYQPaperCreateInput = {
@@ -364,6 +383,7 @@ export type PYQPaperCreateInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branch: Prisma.BranchCreateNestedOneWithoutPyqPapersInput
   degree: Prisma.DegreeCreateNestedOneWithoutPyqPapersInput
   subject: Prisma.SubjectCreateNestedOneWithoutPyqPapersInput
 }
@@ -380,6 +400,7 @@ export type PYQPaperUncheckedCreateInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type PYQPaperUpdateInput = {
@@ -391,6 +412,7 @@ export type PYQPaperUpdateInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branch?: Prisma.BranchUpdateOneRequiredWithoutPyqPapersNestedInput
   degree?: Prisma.DegreeUpdateOneRequiredWithoutPyqPapersNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutPyqPapersNestedInput
 }
@@ -407,6 +429,7 @@ export type PYQPaperUncheckedUpdateInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PYQPaperCreateManyInput = {
@@ -421,6 +444,7 @@ export type PYQPaperCreateManyInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type PYQPaperUpdateManyMutationInput = {
@@ -446,6 +470,7 @@ export type PYQPaperUncheckedUpdateManyInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PYQPaperListRelationFilter = {
@@ -470,6 +495,7 @@ export type PYQPaperCountOrderByAggregateInput = {
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
 }
 
 export type PYQPaperAvgOrderByAggregateInput = {
@@ -478,6 +504,7 @@ export type PYQPaperAvgOrderByAggregateInput = {
   subjectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
   semester?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
 }
 
 export type PYQPaperMaxOrderByAggregateInput = {
@@ -492,6 +519,7 @@ export type PYQPaperMaxOrderByAggregateInput = {
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
 }
 
 export type PYQPaperMinOrderByAggregateInput = {
@@ -506,6 +534,7 @@ export type PYQPaperMinOrderByAggregateInput = {
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
 }
 
 export type PYQPaperSumOrderByAggregateInput = {
@@ -514,6 +543,49 @@ export type PYQPaperSumOrderByAggregateInput = {
   subjectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
   semester?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+}
+
+export type PYQPaperCreateNestedManyWithoutBranchInput = {
+  create?: Prisma.XOR<Prisma.PYQPaperCreateWithoutBranchInput, Prisma.PYQPaperUncheckedCreateWithoutBranchInput> | Prisma.PYQPaperCreateWithoutBranchInput[] | Prisma.PYQPaperUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.PYQPaperCreateOrConnectWithoutBranchInput | Prisma.PYQPaperCreateOrConnectWithoutBranchInput[]
+  createMany?: Prisma.PYQPaperCreateManyBranchInputEnvelope
+  connect?: Prisma.PYQPaperWhereUniqueInput | Prisma.PYQPaperWhereUniqueInput[]
+}
+
+export type PYQPaperUncheckedCreateNestedManyWithoutBranchInput = {
+  create?: Prisma.XOR<Prisma.PYQPaperCreateWithoutBranchInput, Prisma.PYQPaperUncheckedCreateWithoutBranchInput> | Prisma.PYQPaperCreateWithoutBranchInput[] | Prisma.PYQPaperUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.PYQPaperCreateOrConnectWithoutBranchInput | Prisma.PYQPaperCreateOrConnectWithoutBranchInput[]
+  createMany?: Prisma.PYQPaperCreateManyBranchInputEnvelope
+  connect?: Prisma.PYQPaperWhereUniqueInput | Prisma.PYQPaperWhereUniqueInput[]
+}
+
+export type PYQPaperUpdateManyWithoutBranchNestedInput = {
+  create?: Prisma.XOR<Prisma.PYQPaperCreateWithoutBranchInput, Prisma.PYQPaperUncheckedCreateWithoutBranchInput> | Prisma.PYQPaperCreateWithoutBranchInput[] | Prisma.PYQPaperUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.PYQPaperCreateOrConnectWithoutBranchInput | Prisma.PYQPaperCreateOrConnectWithoutBranchInput[]
+  upsert?: Prisma.PYQPaperUpsertWithWhereUniqueWithoutBranchInput | Prisma.PYQPaperUpsertWithWhereUniqueWithoutBranchInput[]
+  createMany?: Prisma.PYQPaperCreateManyBranchInputEnvelope
+  set?: Prisma.PYQPaperWhereUniqueInput | Prisma.PYQPaperWhereUniqueInput[]
+  disconnect?: Prisma.PYQPaperWhereUniqueInput | Prisma.PYQPaperWhereUniqueInput[]
+  delete?: Prisma.PYQPaperWhereUniqueInput | Prisma.PYQPaperWhereUniqueInput[]
+  connect?: Prisma.PYQPaperWhereUniqueInput | Prisma.PYQPaperWhereUniqueInput[]
+  update?: Prisma.PYQPaperUpdateWithWhereUniqueWithoutBranchInput | Prisma.PYQPaperUpdateWithWhereUniqueWithoutBranchInput[]
+  updateMany?: Prisma.PYQPaperUpdateManyWithWhereWithoutBranchInput | Prisma.PYQPaperUpdateManyWithWhereWithoutBranchInput[]
+  deleteMany?: Prisma.PYQPaperScalarWhereInput | Prisma.PYQPaperScalarWhereInput[]
+}
+
+export type PYQPaperUncheckedUpdateManyWithoutBranchNestedInput = {
+  create?: Prisma.XOR<Prisma.PYQPaperCreateWithoutBranchInput, Prisma.PYQPaperUncheckedCreateWithoutBranchInput> | Prisma.PYQPaperCreateWithoutBranchInput[] | Prisma.PYQPaperUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.PYQPaperCreateOrConnectWithoutBranchInput | Prisma.PYQPaperCreateOrConnectWithoutBranchInput[]
+  upsert?: Prisma.PYQPaperUpsertWithWhereUniqueWithoutBranchInput | Prisma.PYQPaperUpsertWithWhereUniqueWithoutBranchInput[]
+  createMany?: Prisma.PYQPaperCreateManyBranchInputEnvelope
+  set?: Prisma.PYQPaperWhereUniqueInput | Prisma.PYQPaperWhereUniqueInput[]
+  disconnect?: Prisma.PYQPaperWhereUniqueInput | Prisma.PYQPaperWhereUniqueInput[]
+  delete?: Prisma.PYQPaperWhereUniqueInput | Prisma.PYQPaperWhereUniqueInput[]
+  connect?: Prisma.PYQPaperWhereUniqueInput | Prisma.PYQPaperWhereUniqueInput[]
+  update?: Prisma.PYQPaperUpdateWithWhereUniqueWithoutBranchInput | Prisma.PYQPaperUpdateWithWhereUniqueWithoutBranchInput[]
+  updateMany?: Prisma.PYQPaperUpdateManyWithWhereWithoutBranchInput | Prisma.PYQPaperUpdateManyWithWhereWithoutBranchInput[]
+  deleteMany?: Prisma.PYQPaperScalarWhereInput | Prisma.PYQPaperScalarWhereInput[]
 }
 
 export type PYQPaperCreateNestedManyWithoutDegreeInput = {
@@ -608,6 +680,77 @@ export type BoolFieldUpdateOperationsInput = {
   set?: boolean
 }
 
+export type PYQPaperCreateWithoutBranchInput = {
+  title: string
+  description?: string | null
+  year: number
+  semester: number
+  fileUrl: string
+  isPublished?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  degree: Prisma.DegreeCreateNestedOneWithoutPyqPapersInput
+  subject: Prisma.SubjectCreateNestedOneWithoutPyqPapersInput
+}
+
+export type PYQPaperUncheckedCreateWithoutBranchInput = {
+  id?: number
+  title: string
+  description?: string | null
+  degreeId: number
+  subjectId: number
+  year: number
+  semester: number
+  fileUrl: string
+  isPublished?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PYQPaperCreateOrConnectWithoutBranchInput = {
+  where: Prisma.PYQPaperWhereUniqueInput
+  create: Prisma.XOR<Prisma.PYQPaperCreateWithoutBranchInput, Prisma.PYQPaperUncheckedCreateWithoutBranchInput>
+}
+
+export type PYQPaperCreateManyBranchInputEnvelope = {
+  data: Prisma.PYQPaperCreateManyBranchInput | Prisma.PYQPaperCreateManyBranchInput[]
+  skipDuplicates?: boolean
+}
+
+export type PYQPaperUpsertWithWhereUniqueWithoutBranchInput = {
+  where: Prisma.PYQPaperWhereUniqueInput
+  update: Prisma.XOR<Prisma.PYQPaperUpdateWithoutBranchInput, Prisma.PYQPaperUncheckedUpdateWithoutBranchInput>
+  create: Prisma.XOR<Prisma.PYQPaperCreateWithoutBranchInput, Prisma.PYQPaperUncheckedCreateWithoutBranchInput>
+}
+
+export type PYQPaperUpdateWithWhereUniqueWithoutBranchInput = {
+  where: Prisma.PYQPaperWhereUniqueInput
+  data: Prisma.XOR<Prisma.PYQPaperUpdateWithoutBranchInput, Prisma.PYQPaperUncheckedUpdateWithoutBranchInput>
+}
+
+export type PYQPaperUpdateManyWithWhereWithoutBranchInput = {
+  where: Prisma.PYQPaperScalarWhereInput
+  data: Prisma.XOR<Prisma.PYQPaperUpdateManyMutationInput, Prisma.PYQPaperUncheckedUpdateManyWithoutBranchInput>
+}
+
+export type PYQPaperScalarWhereInput = {
+  AND?: Prisma.PYQPaperScalarWhereInput | Prisma.PYQPaperScalarWhereInput[]
+  OR?: Prisma.PYQPaperScalarWhereInput[]
+  NOT?: Prisma.PYQPaperScalarWhereInput | Prisma.PYQPaperScalarWhereInput[]
+  id?: Prisma.IntFilter<"PYQPaper"> | number
+  title?: Prisma.StringFilter<"PYQPaper"> | string
+  description?: Prisma.StringNullableFilter<"PYQPaper"> | string | null
+  degreeId?: Prisma.IntFilter<"PYQPaper"> | number
+  subjectId?: Prisma.IntFilter<"PYQPaper"> | number
+  year?: Prisma.IntFilter<"PYQPaper"> | number
+  semester?: Prisma.IntFilter<"PYQPaper"> | number
+  fileUrl?: Prisma.StringFilter<"PYQPaper"> | string
+  isPublished?: Prisma.BoolFilter<"PYQPaper"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"PYQPaper"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"PYQPaper"> | Date | string
+  branchId?: Prisma.IntFilter<"PYQPaper"> | number
+}
+
 export type PYQPaperCreateWithoutDegreeInput = {
   title: string
   description?: string | null
@@ -617,6 +760,7 @@ export type PYQPaperCreateWithoutDegreeInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branch: Prisma.BranchCreateNestedOneWithoutPyqPapersInput
   subject: Prisma.SubjectCreateNestedOneWithoutPyqPapersInput
 }
 
@@ -631,6 +775,7 @@ export type PYQPaperUncheckedCreateWithoutDegreeInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type PYQPaperCreateOrConnectWithoutDegreeInput = {
@@ -659,23 +804,6 @@ export type PYQPaperUpdateManyWithWhereWithoutDegreeInput = {
   data: Prisma.XOR<Prisma.PYQPaperUpdateManyMutationInput, Prisma.PYQPaperUncheckedUpdateManyWithoutDegreeInput>
 }
 
-export type PYQPaperScalarWhereInput = {
-  AND?: Prisma.PYQPaperScalarWhereInput | Prisma.PYQPaperScalarWhereInput[]
-  OR?: Prisma.PYQPaperScalarWhereInput[]
-  NOT?: Prisma.PYQPaperScalarWhereInput | Prisma.PYQPaperScalarWhereInput[]
-  id?: Prisma.IntFilter<"PYQPaper"> | number
-  title?: Prisma.StringFilter<"PYQPaper"> | string
-  description?: Prisma.StringNullableFilter<"PYQPaper"> | string | null
-  degreeId?: Prisma.IntFilter<"PYQPaper"> | number
-  subjectId?: Prisma.IntFilter<"PYQPaper"> | number
-  year?: Prisma.IntFilter<"PYQPaper"> | number
-  semester?: Prisma.IntFilter<"PYQPaper"> | number
-  fileUrl?: Prisma.StringFilter<"PYQPaper"> | string
-  isPublished?: Prisma.BoolFilter<"PYQPaper"> | boolean
-  createdAt?: Prisma.DateTimeFilter<"PYQPaper"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"PYQPaper"> | Date | string
-}
-
 export type PYQPaperCreateWithoutSubjectInput = {
   title: string
   description?: string | null
@@ -685,6 +813,7 @@ export type PYQPaperCreateWithoutSubjectInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branch: Prisma.BranchCreateNestedOneWithoutPyqPapersInput
   degree: Prisma.DegreeCreateNestedOneWithoutPyqPapersInput
 }
 
@@ -699,6 +828,7 @@ export type PYQPaperUncheckedCreateWithoutSubjectInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type PYQPaperCreateOrConnectWithoutSubjectInput = {
@@ -727,6 +857,61 @@ export type PYQPaperUpdateManyWithWhereWithoutSubjectInput = {
   data: Prisma.XOR<Prisma.PYQPaperUpdateManyMutationInput, Prisma.PYQPaperUncheckedUpdateManyWithoutSubjectInput>
 }
 
+export type PYQPaperCreateManyBranchInput = {
+  id?: number
+  title: string
+  description?: string | null
+  degreeId: number
+  subjectId: number
+  year: number
+  semester: number
+  fileUrl: string
+  isPublished?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type PYQPaperUpdateWithoutBranchInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  degree?: Prisma.DegreeUpdateOneRequiredWithoutPyqPapersNestedInput
+  subject?: Prisma.SubjectUpdateOneRequiredWithoutPyqPapersNestedInput
+}
+
+export type PYQPaperUncheckedUpdateWithoutBranchInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
+  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type PYQPaperUncheckedUpdateManyWithoutBranchInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
+  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type PYQPaperCreateManyDegreeInput = {
   id?: number
   title: string
@@ -738,6 +923,7 @@ export type PYQPaperCreateManyDegreeInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type PYQPaperUpdateWithoutDegreeInput = {
@@ -749,6 +935,7 @@ export type PYQPaperUpdateWithoutDegreeInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branch?: Prisma.BranchUpdateOneRequiredWithoutPyqPapersNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutPyqPapersNestedInput
 }
 
@@ -763,6 +950,7 @@ export type PYQPaperUncheckedUpdateWithoutDegreeInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PYQPaperUncheckedUpdateManyWithoutDegreeInput = {
@@ -776,6 +964,7 @@ export type PYQPaperUncheckedUpdateManyWithoutDegreeInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PYQPaperCreateManySubjectInput = {
@@ -789,6 +978,7 @@ export type PYQPaperCreateManySubjectInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type PYQPaperUpdateWithoutSubjectInput = {
@@ -800,6 +990,7 @@ export type PYQPaperUpdateWithoutSubjectInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branch?: Prisma.BranchUpdateOneRequiredWithoutPyqPapersNestedInput
   degree?: Prisma.DegreeUpdateOneRequiredWithoutPyqPapersNestedInput
 }
 
@@ -814,6 +1005,7 @@ export type PYQPaperUncheckedUpdateWithoutSubjectInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type PYQPaperUncheckedUpdateManyWithoutSubjectInput = {
@@ -827,6 +1019,7 @@ export type PYQPaperUncheckedUpdateManyWithoutSubjectInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -843,6 +1036,8 @@ export type PYQPaperSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs
   isPublished?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  branchId?: boolean
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pYQPaper"]>
@@ -859,6 +1054,8 @@ export type PYQPaperSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Exte
   isPublished?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  branchId?: boolean
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pYQPaper"]>
@@ -875,6 +1072,8 @@ export type PYQPaperSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
   isPublished?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  branchId?: boolean
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["pYQPaper"]>
@@ -891,18 +1090,22 @@ export type PYQPaperSelectScalar = {
   isPublished?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  branchId?: boolean
 }
 
-export type PYQPaperOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "degreeId" | "subjectId" | "year" | "semester" | "fileUrl" | "isPublished" | "createdAt" | "updatedAt", ExtArgs["result"]["pYQPaper"]>
+export type PYQPaperOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "degreeId" | "subjectId" | "year" | "semester" | "fileUrl" | "isPublished" | "createdAt" | "updatedAt" | "branchId", ExtArgs["result"]["pYQPaper"]>
 export type PYQPaperInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }
 export type PYQPaperIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }
 export type PYQPaperIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }
@@ -910,6 +1113,7 @@ export type PYQPaperIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Ext
 export type $PYQPaperPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "PYQPaper"
   objects: {
+    branch: Prisma.$BranchPayload<ExtArgs>
     degree: Prisma.$DegreePayload<ExtArgs>
     subject: Prisma.$SubjectPayload<ExtArgs>
   }
@@ -925,6 +1129,7 @@ export type $PYQPaperPayload<ExtArgs extends runtime.Types.Extensions.InternalAr
     isPublished: boolean
     createdAt: Date
     updatedAt: Date
+    branchId: number
   }, ExtArgs["result"]["pYQPaper"]>
   composites: {}
 }
@@ -1319,6 +1524,7 @@ readonly fields: PYQPaperFieldRefs;
  */
 export interface Prisma__PYQPaperClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  branch<T extends Prisma.BranchDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BranchDefaultArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   degree<T extends Prisma.DegreeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DegreeDefaultArgs<ExtArgs>>): Prisma.Prisma__DegreeClient<runtime.Types.Result.GetResult<Prisma.$DegreePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   subject<T extends Prisma.SubjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubjectDefaultArgs<ExtArgs>>): Prisma.Prisma__SubjectClient<runtime.Types.Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1361,6 +1567,7 @@ export interface PYQPaperFieldRefs {
   readonly isPublished: Prisma.FieldRef<"PYQPaper", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"PYQPaper", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"PYQPaper", 'DateTime'>
+  readonly branchId: Prisma.FieldRef<"PYQPaper", 'Int'>
 }
     
 
