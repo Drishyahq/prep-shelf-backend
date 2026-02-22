@@ -50,20 +50,30 @@ export type Admin = Prisma.AdminModel
  */
 export type Session = Prisma.SessionModel
 /**
- * Model Branch
- * 
- */
-export type Branch = Prisma.BranchModel
-/**
  * Model Degree
  * 
  */
 export type Degree = Prisma.DegreeModel
 /**
+ * Model Branch
+ * 
+ */
+export type Branch = Prisma.BranchModel
+/**
+ * Model DegreeBranch
+ * 
+ */
+export type DegreeBranch = Prisma.DegreeBranchModel
+/**
  * Model Subject
  * 
  */
 export type Subject = Prisma.SubjectModel
+/**
+ * Model DegreeBranchSubject
+ * 
+ */
+export type DegreeBranchSubject = Prisma.DegreeBranchSubjectModel
 /**
  * Model PYQPaper
  * 
@@ -79,6 +89,11 @@ export type Note = Prisma.NoteModel
  * 
  */
 export type Assignment = Prisma.AssignmentModel
+/**
+ * Model Playcircle
+ * 
+ */
+export type Playcircle = Prisma.PlaycircleModel
 /**
  * Model Contribution
  * 

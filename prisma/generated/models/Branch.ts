@@ -200,20 +200,14 @@ export type BranchWhereInput = {
   id?: Prisma.IntFilter<"Branch"> | number
   name?: Prisma.StringFilter<"Branch"> | string
   createdAt?: Prisma.DateTimeFilter<"Branch"> | Date | string
-  assignments?: Prisma.AssignmentListRelationFilter
-  contributions?: Prisma.ContributionListRelationFilter
-  notes?: Prisma.NoteListRelationFilter
-  pyqPapers?: Prisma.PYQPaperListRelationFilter
+  degrees?: Prisma.DegreeBranchListRelationFilter
 }
 
 export type BranchOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  assignments?: Prisma.AssignmentOrderByRelationAggregateInput
-  contributions?: Prisma.ContributionOrderByRelationAggregateInput
-  notes?: Prisma.NoteOrderByRelationAggregateInput
-  pyqPapers?: Prisma.PYQPaperOrderByRelationAggregateInput
+  degrees?: Prisma.DegreeBranchOrderByRelationAggregateInput
 }
 
 export type BranchWhereUniqueInput = Prisma.AtLeast<{
@@ -223,10 +217,7 @@ export type BranchWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.BranchWhereInput[]
   NOT?: Prisma.BranchWhereInput | Prisma.BranchWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"Branch"> | Date | string
-  assignments?: Prisma.AssignmentListRelationFilter
-  contributions?: Prisma.ContributionListRelationFilter
-  notes?: Prisma.NoteListRelationFilter
-  pyqPapers?: Prisma.PYQPaperListRelationFilter
+  degrees?: Prisma.DegreeBranchListRelationFilter
 }, "id" | "name">
 
 export type BranchOrderByWithAggregationInput = {
@@ -252,39 +243,27 @@ export type BranchScalarWhereWithAggregatesInput = {
 export type BranchCreateInput = {
   name: string
   createdAt?: Date | string
-  assignments?: Prisma.AssignmentCreateNestedManyWithoutBranchInput
-  contributions?: Prisma.ContributionCreateNestedManyWithoutBranchInput
-  notes?: Prisma.NoteCreateNestedManyWithoutBranchInput
-  pyqPapers?: Prisma.PYQPaperCreateNestedManyWithoutBranchInput
+  degrees?: Prisma.DegreeBranchCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUncheckedCreateInput = {
   id?: number
   name: string
   createdAt?: Date | string
-  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutBranchInput
-  contributions?: Prisma.ContributionUncheckedCreateNestedManyWithoutBranchInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutBranchInput
-  pyqPapers?: Prisma.PYQPaperUncheckedCreateNestedManyWithoutBranchInput
+  degrees?: Prisma.DegreeBranchUncheckedCreateNestedManyWithoutBranchInput
 }
 
 export type BranchUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUpdateManyWithoutBranchNestedInput
-  contributions?: Prisma.ContributionUpdateManyWithoutBranchNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutBranchNestedInput
-  pyqPapers?: Prisma.PYQPaperUpdateManyWithoutBranchNestedInput
+  degrees?: Prisma.DegreeBranchUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutBranchNestedInput
-  contributions?: Prisma.ContributionUncheckedUpdateManyWithoutBranchNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutBranchNestedInput
-  pyqPapers?: Prisma.PYQPaperUncheckedUpdateManyWithoutBranchNestedInput
+  degrees?: Prisma.DegreeBranchUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 export type BranchCreateManyInput = {
@@ -335,260 +314,56 @@ export type BranchScalarRelationFilter = {
   isNot?: Prisma.BranchWhereInput
 }
 
-export type BranchCreateNestedOneWithoutPyqPapersInput = {
-  create?: Prisma.XOR<Prisma.BranchCreateWithoutPyqPapersInput, Prisma.BranchUncheckedCreateWithoutPyqPapersInput>
-  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutPyqPapersInput
+export type BranchCreateNestedOneWithoutDegreesInput = {
+  create?: Prisma.XOR<Prisma.BranchCreateWithoutDegreesInput, Prisma.BranchUncheckedCreateWithoutDegreesInput>
+  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutDegreesInput
   connect?: Prisma.BranchWhereUniqueInput
 }
 
-export type BranchUpdateOneRequiredWithoutPyqPapersNestedInput = {
-  create?: Prisma.XOR<Prisma.BranchCreateWithoutPyqPapersInput, Prisma.BranchUncheckedCreateWithoutPyqPapersInput>
-  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutPyqPapersInput
-  upsert?: Prisma.BranchUpsertWithoutPyqPapersInput
+export type BranchUpdateOneRequiredWithoutDegreesNestedInput = {
+  create?: Prisma.XOR<Prisma.BranchCreateWithoutDegreesInput, Prisma.BranchUncheckedCreateWithoutDegreesInput>
+  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutDegreesInput
+  upsert?: Prisma.BranchUpsertWithoutDegreesInput
   connect?: Prisma.BranchWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.BranchUpdateToOneWithWhereWithoutPyqPapersInput, Prisma.BranchUpdateWithoutPyqPapersInput>, Prisma.BranchUncheckedUpdateWithoutPyqPapersInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.BranchUpdateToOneWithWhereWithoutDegreesInput, Prisma.BranchUpdateWithoutDegreesInput>, Prisma.BranchUncheckedUpdateWithoutDegreesInput>
 }
 
-export type BranchCreateNestedOneWithoutNotesInput = {
-  create?: Prisma.XOR<Prisma.BranchCreateWithoutNotesInput, Prisma.BranchUncheckedCreateWithoutNotesInput>
-  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutNotesInput
-  connect?: Prisma.BranchWhereUniqueInput
-}
-
-export type BranchUpdateOneRequiredWithoutNotesNestedInput = {
-  create?: Prisma.XOR<Prisma.BranchCreateWithoutNotesInput, Prisma.BranchUncheckedCreateWithoutNotesInput>
-  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutNotesInput
-  upsert?: Prisma.BranchUpsertWithoutNotesInput
-  connect?: Prisma.BranchWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.BranchUpdateToOneWithWhereWithoutNotesInput, Prisma.BranchUpdateWithoutNotesInput>, Prisma.BranchUncheckedUpdateWithoutNotesInput>
-}
-
-export type BranchCreateNestedOneWithoutAssignmentsInput = {
-  create?: Prisma.XOR<Prisma.BranchCreateWithoutAssignmentsInput, Prisma.BranchUncheckedCreateWithoutAssignmentsInput>
-  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutAssignmentsInput
-  connect?: Prisma.BranchWhereUniqueInput
-}
-
-export type BranchUpdateOneRequiredWithoutAssignmentsNestedInput = {
-  create?: Prisma.XOR<Prisma.BranchCreateWithoutAssignmentsInput, Prisma.BranchUncheckedCreateWithoutAssignmentsInput>
-  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutAssignmentsInput
-  upsert?: Prisma.BranchUpsertWithoutAssignmentsInput
-  connect?: Prisma.BranchWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.BranchUpdateToOneWithWhereWithoutAssignmentsInput, Prisma.BranchUpdateWithoutAssignmentsInput>, Prisma.BranchUncheckedUpdateWithoutAssignmentsInput>
-}
-
-export type BranchCreateNestedOneWithoutContributionsInput = {
-  create?: Prisma.XOR<Prisma.BranchCreateWithoutContributionsInput, Prisma.BranchUncheckedCreateWithoutContributionsInput>
-  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutContributionsInput
-  connect?: Prisma.BranchWhereUniqueInput
-}
-
-export type BranchUpdateOneRequiredWithoutContributionsNestedInput = {
-  create?: Prisma.XOR<Prisma.BranchCreateWithoutContributionsInput, Prisma.BranchUncheckedCreateWithoutContributionsInput>
-  connectOrCreate?: Prisma.BranchCreateOrConnectWithoutContributionsInput
-  upsert?: Prisma.BranchUpsertWithoutContributionsInput
-  connect?: Prisma.BranchWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.BranchUpdateToOneWithWhereWithoutContributionsInput, Prisma.BranchUpdateWithoutContributionsInput>, Prisma.BranchUncheckedUpdateWithoutContributionsInput>
-}
-
-export type BranchCreateWithoutPyqPapersInput = {
+export type BranchCreateWithoutDegreesInput = {
   name: string
   createdAt?: Date | string
-  assignments?: Prisma.AssignmentCreateNestedManyWithoutBranchInput
-  contributions?: Prisma.ContributionCreateNestedManyWithoutBranchInput
-  notes?: Prisma.NoteCreateNestedManyWithoutBranchInput
 }
 
-export type BranchUncheckedCreateWithoutPyqPapersInput = {
+export type BranchUncheckedCreateWithoutDegreesInput = {
   id?: number
   name: string
   createdAt?: Date | string
-  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutBranchInput
-  contributions?: Prisma.ContributionUncheckedCreateNestedManyWithoutBranchInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutBranchInput
 }
 
-export type BranchCreateOrConnectWithoutPyqPapersInput = {
+export type BranchCreateOrConnectWithoutDegreesInput = {
   where: Prisma.BranchWhereUniqueInput
-  create: Prisma.XOR<Prisma.BranchCreateWithoutPyqPapersInput, Prisma.BranchUncheckedCreateWithoutPyqPapersInput>
+  create: Prisma.XOR<Prisma.BranchCreateWithoutDegreesInput, Prisma.BranchUncheckedCreateWithoutDegreesInput>
 }
 
-export type BranchUpsertWithoutPyqPapersInput = {
-  update: Prisma.XOR<Prisma.BranchUpdateWithoutPyqPapersInput, Prisma.BranchUncheckedUpdateWithoutPyqPapersInput>
-  create: Prisma.XOR<Prisma.BranchCreateWithoutPyqPapersInput, Prisma.BranchUncheckedCreateWithoutPyqPapersInput>
+export type BranchUpsertWithoutDegreesInput = {
+  update: Prisma.XOR<Prisma.BranchUpdateWithoutDegreesInput, Prisma.BranchUncheckedUpdateWithoutDegreesInput>
+  create: Prisma.XOR<Prisma.BranchCreateWithoutDegreesInput, Prisma.BranchUncheckedCreateWithoutDegreesInput>
   where?: Prisma.BranchWhereInput
 }
 
-export type BranchUpdateToOneWithWhereWithoutPyqPapersInput = {
+export type BranchUpdateToOneWithWhereWithoutDegreesInput = {
   where?: Prisma.BranchWhereInput
-  data: Prisma.XOR<Prisma.BranchUpdateWithoutPyqPapersInput, Prisma.BranchUncheckedUpdateWithoutPyqPapersInput>
+  data: Prisma.XOR<Prisma.BranchUpdateWithoutDegreesInput, Prisma.BranchUncheckedUpdateWithoutDegreesInput>
 }
 
-export type BranchUpdateWithoutPyqPapersInput = {
+export type BranchUpdateWithoutDegreesInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUpdateManyWithoutBranchNestedInput
-  contributions?: Prisma.ContributionUpdateManyWithoutBranchNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutBranchNestedInput
 }
 
-export type BranchUncheckedUpdateWithoutPyqPapersInput = {
+export type BranchUncheckedUpdateWithoutDegreesInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutBranchNestedInput
-  contributions?: Prisma.ContributionUncheckedUpdateManyWithoutBranchNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutBranchNestedInput
-}
-
-export type BranchCreateWithoutNotesInput = {
-  name: string
-  createdAt?: Date | string
-  assignments?: Prisma.AssignmentCreateNestedManyWithoutBranchInput
-  contributions?: Prisma.ContributionCreateNestedManyWithoutBranchInput
-  pyqPapers?: Prisma.PYQPaperCreateNestedManyWithoutBranchInput
-}
-
-export type BranchUncheckedCreateWithoutNotesInput = {
-  id?: number
-  name: string
-  createdAt?: Date | string
-  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutBranchInput
-  contributions?: Prisma.ContributionUncheckedCreateNestedManyWithoutBranchInput
-  pyqPapers?: Prisma.PYQPaperUncheckedCreateNestedManyWithoutBranchInput
-}
-
-export type BranchCreateOrConnectWithoutNotesInput = {
-  where: Prisma.BranchWhereUniqueInput
-  create: Prisma.XOR<Prisma.BranchCreateWithoutNotesInput, Prisma.BranchUncheckedCreateWithoutNotesInput>
-}
-
-export type BranchUpsertWithoutNotesInput = {
-  update: Prisma.XOR<Prisma.BranchUpdateWithoutNotesInput, Prisma.BranchUncheckedUpdateWithoutNotesInput>
-  create: Prisma.XOR<Prisma.BranchCreateWithoutNotesInput, Prisma.BranchUncheckedCreateWithoutNotesInput>
-  where?: Prisma.BranchWhereInput
-}
-
-export type BranchUpdateToOneWithWhereWithoutNotesInput = {
-  where?: Prisma.BranchWhereInput
-  data: Prisma.XOR<Prisma.BranchUpdateWithoutNotesInput, Prisma.BranchUncheckedUpdateWithoutNotesInput>
-}
-
-export type BranchUpdateWithoutNotesInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUpdateManyWithoutBranchNestedInput
-  contributions?: Prisma.ContributionUpdateManyWithoutBranchNestedInput
-  pyqPapers?: Prisma.PYQPaperUpdateManyWithoutBranchNestedInput
-}
-
-export type BranchUncheckedUpdateWithoutNotesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutBranchNestedInput
-  contributions?: Prisma.ContributionUncheckedUpdateManyWithoutBranchNestedInput
-  pyqPapers?: Prisma.PYQPaperUncheckedUpdateManyWithoutBranchNestedInput
-}
-
-export type BranchCreateWithoutAssignmentsInput = {
-  name: string
-  createdAt?: Date | string
-  contributions?: Prisma.ContributionCreateNestedManyWithoutBranchInput
-  notes?: Prisma.NoteCreateNestedManyWithoutBranchInput
-  pyqPapers?: Prisma.PYQPaperCreateNestedManyWithoutBranchInput
-}
-
-export type BranchUncheckedCreateWithoutAssignmentsInput = {
-  id?: number
-  name: string
-  createdAt?: Date | string
-  contributions?: Prisma.ContributionUncheckedCreateNestedManyWithoutBranchInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutBranchInput
-  pyqPapers?: Prisma.PYQPaperUncheckedCreateNestedManyWithoutBranchInput
-}
-
-export type BranchCreateOrConnectWithoutAssignmentsInput = {
-  where: Prisma.BranchWhereUniqueInput
-  create: Prisma.XOR<Prisma.BranchCreateWithoutAssignmentsInput, Prisma.BranchUncheckedCreateWithoutAssignmentsInput>
-}
-
-export type BranchUpsertWithoutAssignmentsInput = {
-  update: Prisma.XOR<Prisma.BranchUpdateWithoutAssignmentsInput, Prisma.BranchUncheckedUpdateWithoutAssignmentsInput>
-  create: Prisma.XOR<Prisma.BranchCreateWithoutAssignmentsInput, Prisma.BranchUncheckedCreateWithoutAssignmentsInput>
-  where?: Prisma.BranchWhereInput
-}
-
-export type BranchUpdateToOneWithWhereWithoutAssignmentsInput = {
-  where?: Prisma.BranchWhereInput
-  data: Prisma.XOR<Prisma.BranchUpdateWithoutAssignmentsInput, Prisma.BranchUncheckedUpdateWithoutAssignmentsInput>
-}
-
-export type BranchUpdateWithoutAssignmentsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  contributions?: Prisma.ContributionUpdateManyWithoutBranchNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutBranchNestedInput
-  pyqPapers?: Prisma.PYQPaperUpdateManyWithoutBranchNestedInput
-}
-
-export type BranchUncheckedUpdateWithoutAssignmentsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  contributions?: Prisma.ContributionUncheckedUpdateManyWithoutBranchNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutBranchNestedInput
-  pyqPapers?: Prisma.PYQPaperUncheckedUpdateManyWithoutBranchNestedInput
-}
-
-export type BranchCreateWithoutContributionsInput = {
-  name: string
-  createdAt?: Date | string
-  assignments?: Prisma.AssignmentCreateNestedManyWithoutBranchInput
-  notes?: Prisma.NoteCreateNestedManyWithoutBranchInput
-  pyqPapers?: Prisma.PYQPaperCreateNestedManyWithoutBranchInput
-}
-
-export type BranchUncheckedCreateWithoutContributionsInput = {
-  id?: number
-  name: string
-  createdAt?: Date | string
-  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutBranchInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutBranchInput
-  pyqPapers?: Prisma.PYQPaperUncheckedCreateNestedManyWithoutBranchInput
-}
-
-export type BranchCreateOrConnectWithoutContributionsInput = {
-  where: Prisma.BranchWhereUniqueInput
-  create: Prisma.XOR<Prisma.BranchCreateWithoutContributionsInput, Prisma.BranchUncheckedCreateWithoutContributionsInput>
-}
-
-export type BranchUpsertWithoutContributionsInput = {
-  update: Prisma.XOR<Prisma.BranchUpdateWithoutContributionsInput, Prisma.BranchUncheckedUpdateWithoutContributionsInput>
-  create: Prisma.XOR<Prisma.BranchCreateWithoutContributionsInput, Prisma.BranchUncheckedCreateWithoutContributionsInput>
-  where?: Prisma.BranchWhereInput
-}
-
-export type BranchUpdateToOneWithWhereWithoutContributionsInput = {
-  where?: Prisma.BranchWhereInput
-  data: Prisma.XOR<Prisma.BranchUpdateWithoutContributionsInput, Prisma.BranchUncheckedUpdateWithoutContributionsInput>
-}
-
-export type BranchUpdateWithoutContributionsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUpdateManyWithoutBranchNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutBranchNestedInput
-  pyqPapers?: Prisma.PYQPaperUpdateManyWithoutBranchNestedInput
-}
-
-export type BranchUncheckedUpdateWithoutContributionsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutBranchNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutBranchNestedInput
-  pyqPapers?: Prisma.PYQPaperUncheckedUpdateManyWithoutBranchNestedInput
 }
 
 
@@ -597,17 +372,11 @@ export type BranchUncheckedUpdateWithoutContributionsInput = {
  */
 
 export type BranchCountOutputType = {
-  assignments: number
-  contributions: number
-  notes: number
-  pyqPapers: number
+  degrees: number
 }
 
 export type BranchCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  assignments?: boolean | BranchCountOutputTypeCountAssignmentsArgs
-  contributions?: boolean | BranchCountOutputTypeCountContributionsArgs
-  notes?: boolean | BranchCountOutputTypeCountNotesArgs
-  pyqPapers?: boolean | BranchCountOutputTypeCountPyqPapersArgs
+  degrees?: boolean | BranchCountOutputTypeCountDegreesArgs
 }
 
 /**
@@ -623,29 +392,8 @@ export type BranchCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exten
 /**
  * BranchCountOutputType without action
  */
-export type BranchCountOutputTypeCountAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AssignmentWhereInput
-}
-
-/**
- * BranchCountOutputType without action
- */
-export type BranchCountOutputTypeCountContributionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ContributionWhereInput
-}
-
-/**
- * BranchCountOutputType without action
- */
-export type BranchCountOutputTypeCountNotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.NoteWhereInput
-}
-
-/**
- * BranchCountOutputType without action
- */
-export type BranchCountOutputTypeCountPyqPapersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PYQPaperWhereInput
+export type BranchCountOutputTypeCountDegreesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DegreeBranchWhereInput
 }
 
 
@@ -653,10 +401,7 @@ export type BranchSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs =
   id?: boolean
   name?: boolean
   createdAt?: boolean
-  assignments?: boolean | Prisma.Branch$assignmentsArgs<ExtArgs>
-  contributions?: boolean | Prisma.Branch$contributionsArgs<ExtArgs>
-  notes?: boolean | Prisma.Branch$notesArgs<ExtArgs>
-  pyqPapers?: boolean | Prisma.Branch$pyqPapersArgs<ExtArgs>
+  degrees?: boolean | Prisma.Branch$degreesArgs<ExtArgs>
   _count?: boolean | Prisma.BranchCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["branch"]>
 
@@ -680,10 +425,7 @@ export type BranchSelectScalar = {
 
 export type BranchOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt", ExtArgs["result"]["branch"]>
 export type BranchInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  assignments?: boolean | Prisma.Branch$assignmentsArgs<ExtArgs>
-  contributions?: boolean | Prisma.Branch$contributionsArgs<ExtArgs>
-  notes?: boolean | Prisma.Branch$notesArgs<ExtArgs>
-  pyqPapers?: boolean | Prisma.Branch$pyqPapersArgs<ExtArgs>
+  degrees?: boolean | Prisma.Branch$degreesArgs<ExtArgs>
   _count?: boolean | Prisma.BranchCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type BranchIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -692,10 +434,7 @@ export type BranchIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exten
 export type $BranchPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Branch"
   objects: {
-    assignments: Prisma.$AssignmentPayload<ExtArgs>[]
-    contributions: Prisma.$ContributionPayload<ExtArgs>[]
-    notes: Prisma.$NotePayload<ExtArgs>[]
-    pyqPapers: Prisma.$PYQPaperPayload<ExtArgs>[]
+    degrees: Prisma.$DegreeBranchPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1095,10 +834,7 @@ readonly fields: BranchFieldRefs;
  */
 export interface Prisma__BranchClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  assignments<T extends Prisma.Branch$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  contributions<T extends Prisma.Branch$contributionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$contributionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContributionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  notes<T extends Prisma.Branch$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  pyqPapers<T extends Prisma.Branch$pyqPapersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$pyqPapersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PYQPaperPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  degrees<T extends Prisma.Branch$degreesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Branch$degreesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DegreeBranchPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1519,99 +1255,27 @@ export type BranchDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Intern
 }
 
 /**
- * Branch.assignments
+ * Branch.degrees
  */
-export type Branch$assignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Branch$degreesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Assignment
+   * Select specific fields to fetch from the DegreeBranch
    */
-  select?: Prisma.AssignmentSelect<ExtArgs> | null
+  select?: Prisma.DegreeBranchSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Assignment
+   * Omit specific fields from the DegreeBranch
    */
-  omit?: Prisma.AssignmentOmit<ExtArgs> | null
+  omit?: Prisma.DegreeBranchOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AssignmentInclude<ExtArgs> | null
-  where?: Prisma.AssignmentWhereInput
-  orderBy?: Prisma.AssignmentOrderByWithRelationInput | Prisma.AssignmentOrderByWithRelationInput[]
-  cursor?: Prisma.AssignmentWhereUniqueInput
+  include?: Prisma.DegreeBranchInclude<ExtArgs> | null
+  where?: Prisma.DegreeBranchWhereInput
+  orderBy?: Prisma.DegreeBranchOrderByWithRelationInput | Prisma.DegreeBranchOrderByWithRelationInput[]
+  cursor?: Prisma.DegreeBranchWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AssignmentScalarFieldEnum | Prisma.AssignmentScalarFieldEnum[]
-}
-
-/**
- * Branch.contributions
- */
-export type Branch$contributionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Contribution
-   */
-  select?: Prisma.ContributionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Contribution
-   */
-  omit?: Prisma.ContributionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ContributionInclude<ExtArgs> | null
-  where?: Prisma.ContributionWhereInput
-  orderBy?: Prisma.ContributionOrderByWithRelationInput | Prisma.ContributionOrderByWithRelationInput[]
-  cursor?: Prisma.ContributionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ContributionScalarFieldEnum | Prisma.ContributionScalarFieldEnum[]
-}
-
-/**
- * Branch.notes
- */
-export type Branch$notesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Note
-   */
-  select?: Prisma.NoteSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Note
-   */
-  omit?: Prisma.NoteOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.NoteInclude<ExtArgs> | null
-  where?: Prisma.NoteWhereInput
-  orderBy?: Prisma.NoteOrderByWithRelationInput | Prisma.NoteOrderByWithRelationInput[]
-  cursor?: Prisma.NoteWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.NoteScalarFieldEnum | Prisma.NoteScalarFieldEnum[]
-}
-
-/**
- * Branch.pyqPapers
- */
-export type Branch$pyqPapersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PYQPaper
-   */
-  select?: Prisma.PYQPaperSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PYQPaper
-   */
-  omit?: Prisma.PYQPaperOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PYQPaperInclude<ExtArgs> | null
-  where?: Prisma.PYQPaperWhereInput
-  orderBy?: Prisma.PYQPaperOrderByWithRelationInput | Prisma.PYQPaperOrderByWithRelationInput[]
-  cursor?: Prisma.PYQPaperWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PYQPaperScalarFieldEnum | Prisma.PYQPaperScalarFieldEnum[]
+  distinct?: Prisma.DegreeBranchScalarFieldEnum | Prisma.DegreeBranchScalarFieldEnum[]
 }
 
 /**

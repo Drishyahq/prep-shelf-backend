@@ -28,130 +28,116 @@ export type AggregateAssignment = {
 
 export type AssignmentAvgAggregateOutputType = {
   id: number | null
-  degreeId: number | null
-  subjectId: number | null
-  year: number | null
+  degreeBranchSubjectId: number | null
   semester: number | null
-  branchId: number | null
+  parentId: number | null
 }
 
 export type AssignmentSumAggregateOutputType = {
   id: number | null
-  degreeId: number | null
-  subjectId: number | null
-  year: number | null
+  degreeBranchSubjectId: number | null
   semester: number | null
-  branchId: number | null
+  parentId: number | null
 }
 
 export type AssignmentMinAggregateOutputType = {
   id: number | null
   title: string | null
   description: string | null
-  degreeId: number | null
-  subjectId: number | null
-  year: number | null
+  degreeBranchSubjectId: number | null
   semester: number | null
   fileUrl: string | null
+  isSolution: boolean | null
+  parentId: number | null
   isPublished: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
-  branchId: number | null
 }
 
 export type AssignmentMaxAggregateOutputType = {
   id: number | null
   title: string | null
   description: string | null
-  degreeId: number | null
-  subjectId: number | null
-  year: number | null
+  degreeBranchSubjectId: number | null
   semester: number | null
   fileUrl: string | null
+  isSolution: boolean | null
+  parentId: number | null
   isPublished: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
-  branchId: number | null
 }
 
 export type AssignmentCountAggregateOutputType = {
   id: number
   title: number
   description: number
-  degreeId: number
-  subjectId: number
-  year: number
+  degreeBranchSubjectId: number
   semester: number
   fileUrl: number
+  isSolution: number
+  parentId: number
   isPublished: number
   createdAt: number
   updatedAt: number
-  branchId: number
   _all: number
 }
 
 
 export type AssignmentAvgAggregateInputType = {
   id?: true
-  degreeId?: true
-  subjectId?: true
-  year?: true
+  degreeBranchSubjectId?: true
   semester?: true
-  branchId?: true
+  parentId?: true
 }
 
 export type AssignmentSumAggregateInputType = {
   id?: true
-  degreeId?: true
-  subjectId?: true
-  year?: true
+  degreeBranchSubjectId?: true
   semester?: true
-  branchId?: true
+  parentId?: true
 }
 
 export type AssignmentMinAggregateInputType = {
   id?: true
   title?: true
   description?: true
-  degreeId?: true
-  subjectId?: true
-  year?: true
+  degreeBranchSubjectId?: true
   semester?: true
   fileUrl?: true
+  isSolution?: true
+  parentId?: true
   isPublished?: true
   createdAt?: true
   updatedAt?: true
-  branchId?: true
 }
 
 export type AssignmentMaxAggregateInputType = {
   id?: true
   title?: true
   description?: true
-  degreeId?: true
-  subjectId?: true
-  year?: true
+  degreeBranchSubjectId?: true
   semester?: true
   fileUrl?: true
+  isSolution?: true
+  parentId?: true
   isPublished?: true
   createdAt?: true
   updatedAt?: true
-  branchId?: true
 }
 
 export type AssignmentCountAggregateInputType = {
   id?: true
   title?: true
   description?: true
-  degreeId?: true
-  subjectId?: true
-  year?: true
+  degreeBranchSubjectId?: true
   semester?: true
   fileUrl?: true
+  isSolution?: true
+  parentId?: true
   isPublished?: true
   createdAt?: true
   updatedAt?: true
-  branchId?: true
   _all?: true
 }
 
@@ -245,15 +231,14 @@ export type AssignmentGroupByOutputType = {
   id: number
   title: string
   description: string | null
-  degreeId: number
-  subjectId: number
-  year: number
+  degreeBranchSubjectId: number
   semester: number
   fileUrl: string
+  isSolution: boolean
+  parentId: number | null
   isPublished: boolean
   createdAt: Date
   updatedAt: Date
-  branchId: number
   _count: AssignmentCountAggregateOutputType | null
   _avg: AssignmentAvgAggregateOutputType | null
   _sum: AssignmentSumAggregateOutputType | null
@@ -283,36 +268,36 @@ export type AssignmentWhereInput = {
   id?: Prisma.IntFilter<"Assignment"> | number
   title?: Prisma.StringFilter<"Assignment"> | string
   description?: Prisma.StringNullableFilter<"Assignment"> | string | null
-  degreeId?: Prisma.IntFilter<"Assignment"> | number
-  subjectId?: Prisma.IntFilter<"Assignment"> | number
-  year?: Prisma.IntFilter<"Assignment"> | number
+  degreeBranchSubjectId?: Prisma.IntFilter<"Assignment"> | number
   semester?: Prisma.IntFilter<"Assignment"> | number
   fileUrl?: Prisma.StringFilter<"Assignment"> | string
+  isSolution?: Prisma.BoolFilter<"Assignment"> | boolean
+  parentId?: Prisma.IntNullableFilter<"Assignment"> | number | null
   isPublished?: Prisma.BoolFilter<"Assignment"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Assignment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Assignment"> | Date | string
-  branchId?: Prisma.IntFilter<"Assignment"> | number
-  branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
-  degree?: Prisma.XOR<Prisma.DegreeScalarRelationFilter, Prisma.DegreeWhereInput>
-  subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
+  degreeBranchSubject?: Prisma.XOR<Prisma.DegreeBranchSubjectScalarRelationFilter, Prisma.DegreeBranchSubjectWhereInput>
+  parent?: Prisma.XOR<Prisma.AssignmentNullableScalarRelationFilter, Prisma.AssignmentWhereInput> | null
+  solutions?: Prisma.AssignmentListRelationFilter
+  contribution?: Prisma.XOR<Prisma.ContributionNullableScalarRelationFilter, Prisma.ContributionWhereInput> | null
 }
 
 export type AssignmentOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
   semester?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  isSolution?: Prisma.SortOrder
+  parentId?: Prisma.SortOrderInput | Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
-  branch?: Prisma.BranchOrderByWithRelationInput
-  degree?: Prisma.DegreeOrderByWithRelationInput
-  subject?: Prisma.SubjectOrderByWithRelationInput
+  degreeBranchSubject?: Prisma.DegreeBranchSubjectOrderByWithRelationInput
+  parent?: Prisma.AssignmentOrderByWithRelationInput
+  solutions?: Prisma.AssignmentOrderByRelationAggregateInput
+  contribution?: Prisma.ContributionOrderByWithRelationInput
 }
 
 export type AssignmentWhereUniqueInput = Prisma.AtLeast<{
@@ -322,33 +307,32 @@ export type AssignmentWhereUniqueInput = Prisma.AtLeast<{
   NOT?: Prisma.AssignmentWhereInput | Prisma.AssignmentWhereInput[]
   title?: Prisma.StringFilter<"Assignment"> | string
   description?: Prisma.StringNullableFilter<"Assignment"> | string | null
-  degreeId?: Prisma.IntFilter<"Assignment"> | number
-  subjectId?: Prisma.IntFilter<"Assignment"> | number
-  year?: Prisma.IntFilter<"Assignment"> | number
+  degreeBranchSubjectId?: Prisma.IntFilter<"Assignment"> | number
   semester?: Prisma.IntFilter<"Assignment"> | number
   fileUrl?: Prisma.StringFilter<"Assignment"> | string
+  isSolution?: Prisma.BoolFilter<"Assignment"> | boolean
+  parentId?: Prisma.IntNullableFilter<"Assignment"> | number | null
   isPublished?: Prisma.BoolFilter<"Assignment"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Assignment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Assignment"> | Date | string
-  branchId?: Prisma.IntFilter<"Assignment"> | number
-  branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
-  degree?: Prisma.XOR<Prisma.DegreeScalarRelationFilter, Prisma.DegreeWhereInput>
-  subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
+  degreeBranchSubject?: Prisma.XOR<Prisma.DegreeBranchSubjectScalarRelationFilter, Prisma.DegreeBranchSubjectWhereInput>
+  parent?: Prisma.XOR<Prisma.AssignmentNullableScalarRelationFilter, Prisma.AssignmentWhereInput> | null
+  solutions?: Prisma.AssignmentListRelationFilter
+  contribution?: Prisma.XOR<Prisma.ContributionNullableScalarRelationFilter, Prisma.ContributionWhereInput> | null
 }, "id">
 
 export type AssignmentOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
   semester?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  isSolution?: Prisma.SortOrder
+  parentId?: Prisma.SortOrderInput | Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
   _count?: Prisma.AssignmentCountOrderByAggregateInput
   _avg?: Prisma.AssignmentAvgOrderByAggregateInput
   _max?: Prisma.AssignmentMaxOrderByAggregateInput
@@ -363,96 +347,98 @@ export type AssignmentScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Assignment"> | number
   title?: Prisma.StringWithAggregatesFilter<"Assignment"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Assignment"> | string | null
-  degreeId?: Prisma.IntWithAggregatesFilter<"Assignment"> | number
-  subjectId?: Prisma.IntWithAggregatesFilter<"Assignment"> | number
-  year?: Prisma.IntWithAggregatesFilter<"Assignment"> | number
+  degreeBranchSubjectId?: Prisma.IntWithAggregatesFilter<"Assignment"> | number
   semester?: Prisma.IntWithAggregatesFilter<"Assignment"> | number
   fileUrl?: Prisma.StringWithAggregatesFilter<"Assignment"> | string
+  isSolution?: Prisma.BoolWithAggregatesFilter<"Assignment"> | boolean
+  parentId?: Prisma.IntNullableWithAggregatesFilter<"Assignment"> | number | null
   isPublished?: Prisma.BoolWithAggregatesFilter<"Assignment"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Assignment"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Assignment"> | Date | string
-  branchId?: Prisma.IntWithAggregatesFilter<"Assignment"> | number
 }
 
 export type AssignmentCreateInput = {
   title: string
   description?: string | null
-  year: number
   semester: number
   fileUrl: string
+  isSolution?: boolean
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  branch: Prisma.BranchCreateNestedOneWithoutAssignmentsInput
-  degree: Prisma.DegreeCreateNestedOneWithoutAssignmentsInput
-  subject: Prisma.SubjectCreateNestedOneWithoutAssignmentsInput
+  degreeBranchSubject: Prisma.DegreeBranchSubjectCreateNestedOneWithoutAssignmentsInput
+  parent?: Prisma.AssignmentCreateNestedOneWithoutSolutionsInput
+  solutions?: Prisma.AssignmentCreateNestedManyWithoutParentInput
+  contribution?: Prisma.ContributionCreateNestedOneWithoutAssignmentInput
 }
 
 export type AssignmentUncheckedCreateInput = {
   id?: number
   title: string
   description?: string | null
-  degreeId: number
-  subjectId: number
-  year: number
+  degreeBranchSubjectId: number
   semester: number
   fileUrl: string
+  isSolution?: boolean
+  parentId?: number | null
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  branchId: number
+  solutions?: Prisma.AssignmentUncheckedCreateNestedManyWithoutParentInput
+  contribution?: Prisma.ContributionUncheckedCreateNestedOneWithoutAssignmentInput
 }
 
 export type AssignmentUpdateInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  year?: Prisma.IntFieldUpdateOperationsInput | number
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branch?: Prisma.BranchUpdateOneRequiredWithoutAssignmentsNestedInput
-  degree?: Prisma.DegreeUpdateOneRequiredWithoutAssignmentsNestedInput
-  subject?: Prisma.SubjectUpdateOneRequiredWithoutAssignmentsNestedInput
+  degreeBranchSubject?: Prisma.DegreeBranchSubjectUpdateOneRequiredWithoutAssignmentsNestedInput
+  parent?: Prisma.AssignmentUpdateOneWithoutSolutionsNestedInput
+  solutions?: Prisma.AssignmentUpdateManyWithoutParentNestedInput
+  contribution?: Prisma.ContributionUpdateOneWithoutAssignmentNestedInput
 }
 
 export type AssignmentUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
-  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  degreeBranchSubjectId?: Prisma.IntFieldUpdateOperationsInput | number
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.IntFieldUpdateOperationsInput | number
+  solutions?: Prisma.AssignmentUncheckedUpdateManyWithoutParentNestedInput
+  contribution?: Prisma.ContributionUncheckedUpdateOneWithoutAssignmentNestedInput
 }
 
 export type AssignmentCreateManyInput = {
   id?: number
   title: string
   description?: string | null
-  degreeId: number
-  subjectId: number
-  year: number
+  degreeBranchSubjectId: number
   semester: number
   fileUrl: string
+  isSolution?: boolean
+  parentId?: number | null
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  branchId: number
 }
 
 export type AssignmentUpdateManyMutationInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  year?: Prisma.IntFieldUpdateOperationsInput | number
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
@@ -462,15 +448,14 @@ export type AssignmentUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
-  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  degreeBranchSubjectId?: Prisma.IntFieldUpdateOperationsInput | number
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type AssignmentListRelationFilter = {
@@ -483,246 +468,236 @@ export type AssignmentOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type AssignmentNullableScalarRelationFilter = {
+  is?: Prisma.AssignmentWhereInput | null
+  isNot?: Prisma.AssignmentWhereInput | null
+}
+
 export type AssignmentCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
   semester?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  isSolution?: Prisma.SortOrder
+  parentId?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
 }
 
 export type AssignmentAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
   semester?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
+  parentId?: Prisma.SortOrder
 }
 
 export type AssignmentMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
   semester?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  isSolution?: Prisma.SortOrder
+  parentId?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
 }
 
 export type AssignmentMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
   semester?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
+  isSolution?: Prisma.SortOrder
+  parentId?: Prisma.SortOrder
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
 }
 
 export type AssignmentSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
   semester?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
+  parentId?: Prisma.SortOrder
 }
 
-export type AssignmentCreateNestedManyWithoutBranchInput = {
-  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutBranchInput, Prisma.AssignmentUncheckedCreateWithoutBranchInput> | Prisma.AssignmentCreateWithoutBranchInput[] | Prisma.AssignmentUncheckedCreateWithoutBranchInput[]
-  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutBranchInput | Prisma.AssignmentCreateOrConnectWithoutBranchInput[]
-  createMany?: Prisma.AssignmentCreateManyBranchInputEnvelope
+export type AssignmentCreateNestedManyWithoutDegreeBranchSubjectInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutDegreeBranchSubjectInput, Prisma.AssignmentUncheckedCreateWithoutDegreeBranchSubjectInput> | Prisma.AssignmentCreateWithoutDegreeBranchSubjectInput[] | Prisma.AssignmentUncheckedCreateWithoutDegreeBranchSubjectInput[]
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutDegreeBranchSubjectInput | Prisma.AssignmentCreateOrConnectWithoutDegreeBranchSubjectInput[]
+  createMany?: Prisma.AssignmentCreateManyDegreeBranchSubjectInputEnvelope
   connect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
 }
 
-export type AssignmentUncheckedCreateNestedManyWithoutBranchInput = {
-  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutBranchInput, Prisma.AssignmentUncheckedCreateWithoutBranchInput> | Prisma.AssignmentCreateWithoutBranchInput[] | Prisma.AssignmentUncheckedCreateWithoutBranchInput[]
-  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutBranchInput | Prisma.AssignmentCreateOrConnectWithoutBranchInput[]
-  createMany?: Prisma.AssignmentCreateManyBranchInputEnvelope
+export type AssignmentUncheckedCreateNestedManyWithoutDegreeBranchSubjectInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutDegreeBranchSubjectInput, Prisma.AssignmentUncheckedCreateWithoutDegreeBranchSubjectInput> | Prisma.AssignmentCreateWithoutDegreeBranchSubjectInput[] | Prisma.AssignmentUncheckedCreateWithoutDegreeBranchSubjectInput[]
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutDegreeBranchSubjectInput | Prisma.AssignmentCreateOrConnectWithoutDegreeBranchSubjectInput[]
+  createMany?: Prisma.AssignmentCreateManyDegreeBranchSubjectInputEnvelope
   connect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
 }
 
-export type AssignmentUpdateManyWithoutBranchNestedInput = {
-  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutBranchInput, Prisma.AssignmentUncheckedCreateWithoutBranchInput> | Prisma.AssignmentCreateWithoutBranchInput[] | Prisma.AssignmentUncheckedCreateWithoutBranchInput[]
-  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutBranchInput | Prisma.AssignmentCreateOrConnectWithoutBranchInput[]
-  upsert?: Prisma.AssignmentUpsertWithWhereUniqueWithoutBranchInput | Prisma.AssignmentUpsertWithWhereUniqueWithoutBranchInput[]
-  createMany?: Prisma.AssignmentCreateManyBranchInputEnvelope
+export type AssignmentUpdateManyWithoutDegreeBranchSubjectNestedInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutDegreeBranchSubjectInput, Prisma.AssignmentUncheckedCreateWithoutDegreeBranchSubjectInput> | Prisma.AssignmentCreateWithoutDegreeBranchSubjectInput[] | Prisma.AssignmentUncheckedCreateWithoutDegreeBranchSubjectInput[]
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutDegreeBranchSubjectInput | Prisma.AssignmentCreateOrConnectWithoutDegreeBranchSubjectInput[]
+  upsert?: Prisma.AssignmentUpsertWithWhereUniqueWithoutDegreeBranchSubjectInput | Prisma.AssignmentUpsertWithWhereUniqueWithoutDegreeBranchSubjectInput[]
+  createMany?: Prisma.AssignmentCreateManyDegreeBranchSubjectInputEnvelope
   set?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
   disconnect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
   delete?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
   connect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
-  update?: Prisma.AssignmentUpdateWithWhereUniqueWithoutBranchInput | Prisma.AssignmentUpdateWithWhereUniqueWithoutBranchInput[]
-  updateMany?: Prisma.AssignmentUpdateManyWithWhereWithoutBranchInput | Prisma.AssignmentUpdateManyWithWhereWithoutBranchInput[]
+  update?: Prisma.AssignmentUpdateWithWhereUniqueWithoutDegreeBranchSubjectInput | Prisma.AssignmentUpdateWithWhereUniqueWithoutDegreeBranchSubjectInput[]
+  updateMany?: Prisma.AssignmentUpdateManyWithWhereWithoutDegreeBranchSubjectInput | Prisma.AssignmentUpdateManyWithWhereWithoutDegreeBranchSubjectInput[]
   deleteMany?: Prisma.AssignmentScalarWhereInput | Prisma.AssignmentScalarWhereInput[]
 }
 
-export type AssignmentUncheckedUpdateManyWithoutBranchNestedInput = {
-  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutBranchInput, Prisma.AssignmentUncheckedCreateWithoutBranchInput> | Prisma.AssignmentCreateWithoutBranchInput[] | Prisma.AssignmentUncheckedCreateWithoutBranchInput[]
-  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutBranchInput | Prisma.AssignmentCreateOrConnectWithoutBranchInput[]
-  upsert?: Prisma.AssignmentUpsertWithWhereUniqueWithoutBranchInput | Prisma.AssignmentUpsertWithWhereUniqueWithoutBranchInput[]
-  createMany?: Prisma.AssignmentCreateManyBranchInputEnvelope
+export type AssignmentUncheckedUpdateManyWithoutDegreeBranchSubjectNestedInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutDegreeBranchSubjectInput, Prisma.AssignmentUncheckedCreateWithoutDegreeBranchSubjectInput> | Prisma.AssignmentCreateWithoutDegreeBranchSubjectInput[] | Prisma.AssignmentUncheckedCreateWithoutDegreeBranchSubjectInput[]
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutDegreeBranchSubjectInput | Prisma.AssignmentCreateOrConnectWithoutDegreeBranchSubjectInput[]
+  upsert?: Prisma.AssignmentUpsertWithWhereUniqueWithoutDegreeBranchSubjectInput | Prisma.AssignmentUpsertWithWhereUniqueWithoutDegreeBranchSubjectInput[]
+  createMany?: Prisma.AssignmentCreateManyDegreeBranchSubjectInputEnvelope
   set?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
   disconnect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
   delete?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
   connect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
-  update?: Prisma.AssignmentUpdateWithWhereUniqueWithoutBranchInput | Prisma.AssignmentUpdateWithWhereUniqueWithoutBranchInput[]
-  updateMany?: Prisma.AssignmentUpdateManyWithWhereWithoutBranchInput | Prisma.AssignmentUpdateManyWithWhereWithoutBranchInput[]
+  update?: Prisma.AssignmentUpdateWithWhereUniqueWithoutDegreeBranchSubjectInput | Prisma.AssignmentUpdateWithWhereUniqueWithoutDegreeBranchSubjectInput[]
+  updateMany?: Prisma.AssignmentUpdateManyWithWhereWithoutDegreeBranchSubjectInput | Prisma.AssignmentUpdateManyWithWhereWithoutDegreeBranchSubjectInput[]
   deleteMany?: Prisma.AssignmentScalarWhereInput | Prisma.AssignmentScalarWhereInput[]
 }
 
-export type AssignmentCreateNestedManyWithoutDegreeInput = {
-  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutDegreeInput, Prisma.AssignmentUncheckedCreateWithoutDegreeInput> | Prisma.AssignmentCreateWithoutDegreeInput[] | Prisma.AssignmentUncheckedCreateWithoutDegreeInput[]
-  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutDegreeInput | Prisma.AssignmentCreateOrConnectWithoutDegreeInput[]
-  createMany?: Prisma.AssignmentCreateManyDegreeInputEnvelope
+export type AssignmentCreateNestedOneWithoutSolutionsInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutSolutionsInput, Prisma.AssignmentUncheckedCreateWithoutSolutionsInput>
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutSolutionsInput
+  connect?: Prisma.AssignmentWhereUniqueInput
+}
+
+export type AssignmentCreateNestedManyWithoutParentInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutParentInput, Prisma.AssignmentUncheckedCreateWithoutParentInput> | Prisma.AssignmentCreateWithoutParentInput[] | Prisma.AssignmentUncheckedCreateWithoutParentInput[]
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutParentInput | Prisma.AssignmentCreateOrConnectWithoutParentInput[]
+  createMany?: Prisma.AssignmentCreateManyParentInputEnvelope
   connect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
 }
 
-export type AssignmentUncheckedCreateNestedManyWithoutDegreeInput = {
-  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutDegreeInput, Prisma.AssignmentUncheckedCreateWithoutDegreeInput> | Prisma.AssignmentCreateWithoutDegreeInput[] | Prisma.AssignmentUncheckedCreateWithoutDegreeInput[]
-  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutDegreeInput | Prisma.AssignmentCreateOrConnectWithoutDegreeInput[]
-  createMany?: Prisma.AssignmentCreateManyDegreeInputEnvelope
+export type AssignmentUncheckedCreateNestedManyWithoutParentInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutParentInput, Prisma.AssignmentUncheckedCreateWithoutParentInput> | Prisma.AssignmentCreateWithoutParentInput[] | Prisma.AssignmentUncheckedCreateWithoutParentInput[]
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutParentInput | Prisma.AssignmentCreateOrConnectWithoutParentInput[]
+  createMany?: Prisma.AssignmentCreateManyParentInputEnvelope
   connect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
 }
 
-export type AssignmentUpdateManyWithoutDegreeNestedInput = {
-  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutDegreeInput, Prisma.AssignmentUncheckedCreateWithoutDegreeInput> | Prisma.AssignmentCreateWithoutDegreeInput[] | Prisma.AssignmentUncheckedCreateWithoutDegreeInput[]
-  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutDegreeInput | Prisma.AssignmentCreateOrConnectWithoutDegreeInput[]
-  upsert?: Prisma.AssignmentUpsertWithWhereUniqueWithoutDegreeInput | Prisma.AssignmentUpsertWithWhereUniqueWithoutDegreeInput[]
-  createMany?: Prisma.AssignmentCreateManyDegreeInputEnvelope
+export type AssignmentUpdateOneWithoutSolutionsNestedInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutSolutionsInput, Prisma.AssignmentUncheckedCreateWithoutSolutionsInput>
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutSolutionsInput
+  upsert?: Prisma.AssignmentUpsertWithoutSolutionsInput
+  disconnect?: Prisma.AssignmentWhereInput | boolean
+  delete?: Prisma.AssignmentWhereInput | boolean
+  connect?: Prisma.AssignmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AssignmentUpdateToOneWithWhereWithoutSolutionsInput, Prisma.AssignmentUpdateWithoutSolutionsInput>, Prisma.AssignmentUncheckedUpdateWithoutSolutionsInput>
+}
+
+export type AssignmentUpdateManyWithoutParentNestedInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutParentInput, Prisma.AssignmentUncheckedCreateWithoutParentInput> | Prisma.AssignmentCreateWithoutParentInput[] | Prisma.AssignmentUncheckedCreateWithoutParentInput[]
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutParentInput | Prisma.AssignmentCreateOrConnectWithoutParentInput[]
+  upsert?: Prisma.AssignmentUpsertWithWhereUniqueWithoutParentInput | Prisma.AssignmentUpsertWithWhereUniqueWithoutParentInput[]
+  createMany?: Prisma.AssignmentCreateManyParentInputEnvelope
   set?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
   disconnect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
   delete?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
   connect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
-  update?: Prisma.AssignmentUpdateWithWhereUniqueWithoutDegreeInput | Prisma.AssignmentUpdateWithWhereUniqueWithoutDegreeInput[]
-  updateMany?: Prisma.AssignmentUpdateManyWithWhereWithoutDegreeInput | Prisma.AssignmentUpdateManyWithWhereWithoutDegreeInput[]
+  update?: Prisma.AssignmentUpdateWithWhereUniqueWithoutParentInput | Prisma.AssignmentUpdateWithWhereUniqueWithoutParentInput[]
+  updateMany?: Prisma.AssignmentUpdateManyWithWhereWithoutParentInput | Prisma.AssignmentUpdateManyWithWhereWithoutParentInput[]
   deleteMany?: Prisma.AssignmentScalarWhereInput | Prisma.AssignmentScalarWhereInput[]
 }
 
-export type AssignmentUncheckedUpdateManyWithoutDegreeNestedInput = {
-  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutDegreeInput, Prisma.AssignmentUncheckedCreateWithoutDegreeInput> | Prisma.AssignmentCreateWithoutDegreeInput[] | Prisma.AssignmentUncheckedCreateWithoutDegreeInput[]
-  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutDegreeInput | Prisma.AssignmentCreateOrConnectWithoutDegreeInput[]
-  upsert?: Prisma.AssignmentUpsertWithWhereUniqueWithoutDegreeInput | Prisma.AssignmentUpsertWithWhereUniqueWithoutDegreeInput[]
-  createMany?: Prisma.AssignmentCreateManyDegreeInputEnvelope
+export type AssignmentUncheckedUpdateManyWithoutParentNestedInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutParentInput, Prisma.AssignmentUncheckedCreateWithoutParentInput> | Prisma.AssignmentCreateWithoutParentInput[] | Prisma.AssignmentUncheckedCreateWithoutParentInput[]
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutParentInput | Prisma.AssignmentCreateOrConnectWithoutParentInput[]
+  upsert?: Prisma.AssignmentUpsertWithWhereUniqueWithoutParentInput | Prisma.AssignmentUpsertWithWhereUniqueWithoutParentInput[]
+  createMany?: Prisma.AssignmentCreateManyParentInputEnvelope
   set?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
   disconnect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
   delete?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
   connect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
-  update?: Prisma.AssignmentUpdateWithWhereUniqueWithoutDegreeInput | Prisma.AssignmentUpdateWithWhereUniqueWithoutDegreeInput[]
-  updateMany?: Prisma.AssignmentUpdateManyWithWhereWithoutDegreeInput | Prisma.AssignmentUpdateManyWithWhereWithoutDegreeInput[]
+  update?: Prisma.AssignmentUpdateWithWhereUniqueWithoutParentInput | Prisma.AssignmentUpdateWithWhereUniqueWithoutParentInput[]
+  updateMany?: Prisma.AssignmentUpdateManyWithWhereWithoutParentInput | Prisma.AssignmentUpdateManyWithWhereWithoutParentInput[]
   deleteMany?: Prisma.AssignmentScalarWhereInput | Prisma.AssignmentScalarWhereInput[]
 }
 
-export type AssignmentCreateNestedManyWithoutSubjectInput = {
-  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutSubjectInput, Prisma.AssignmentUncheckedCreateWithoutSubjectInput> | Prisma.AssignmentCreateWithoutSubjectInput[] | Prisma.AssignmentUncheckedCreateWithoutSubjectInput[]
-  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutSubjectInput | Prisma.AssignmentCreateOrConnectWithoutSubjectInput[]
-  createMany?: Prisma.AssignmentCreateManySubjectInputEnvelope
-  connect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
+export type AssignmentCreateNestedOneWithoutContributionInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutContributionInput, Prisma.AssignmentUncheckedCreateWithoutContributionInput>
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutContributionInput
+  connect?: Prisma.AssignmentWhereUniqueInput
 }
 
-export type AssignmentUncheckedCreateNestedManyWithoutSubjectInput = {
-  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutSubjectInput, Prisma.AssignmentUncheckedCreateWithoutSubjectInput> | Prisma.AssignmentCreateWithoutSubjectInput[] | Prisma.AssignmentUncheckedCreateWithoutSubjectInput[]
-  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutSubjectInput | Prisma.AssignmentCreateOrConnectWithoutSubjectInput[]
-  createMany?: Prisma.AssignmentCreateManySubjectInputEnvelope
-  connect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
+export type AssignmentUpdateOneWithoutContributionNestedInput = {
+  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutContributionInput, Prisma.AssignmentUncheckedCreateWithoutContributionInput>
+  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutContributionInput
+  upsert?: Prisma.AssignmentUpsertWithoutContributionInput
+  disconnect?: Prisma.AssignmentWhereInput | boolean
+  delete?: Prisma.AssignmentWhereInput | boolean
+  connect?: Prisma.AssignmentWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.AssignmentUpdateToOneWithWhereWithoutContributionInput, Prisma.AssignmentUpdateWithoutContributionInput>, Prisma.AssignmentUncheckedUpdateWithoutContributionInput>
 }
 
-export type AssignmentUpdateManyWithoutSubjectNestedInput = {
-  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutSubjectInput, Prisma.AssignmentUncheckedCreateWithoutSubjectInput> | Prisma.AssignmentCreateWithoutSubjectInput[] | Prisma.AssignmentUncheckedCreateWithoutSubjectInput[]
-  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutSubjectInput | Prisma.AssignmentCreateOrConnectWithoutSubjectInput[]
-  upsert?: Prisma.AssignmentUpsertWithWhereUniqueWithoutSubjectInput | Prisma.AssignmentUpsertWithWhereUniqueWithoutSubjectInput[]
-  createMany?: Prisma.AssignmentCreateManySubjectInputEnvelope
-  set?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
-  disconnect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
-  delete?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
-  connect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
-  update?: Prisma.AssignmentUpdateWithWhereUniqueWithoutSubjectInput | Prisma.AssignmentUpdateWithWhereUniqueWithoutSubjectInput[]
-  updateMany?: Prisma.AssignmentUpdateManyWithWhereWithoutSubjectInput | Prisma.AssignmentUpdateManyWithWhereWithoutSubjectInput[]
-  deleteMany?: Prisma.AssignmentScalarWhereInput | Prisma.AssignmentScalarWhereInput[]
-}
-
-export type AssignmentUncheckedUpdateManyWithoutSubjectNestedInput = {
-  create?: Prisma.XOR<Prisma.AssignmentCreateWithoutSubjectInput, Prisma.AssignmentUncheckedCreateWithoutSubjectInput> | Prisma.AssignmentCreateWithoutSubjectInput[] | Prisma.AssignmentUncheckedCreateWithoutSubjectInput[]
-  connectOrCreate?: Prisma.AssignmentCreateOrConnectWithoutSubjectInput | Prisma.AssignmentCreateOrConnectWithoutSubjectInput[]
-  upsert?: Prisma.AssignmentUpsertWithWhereUniqueWithoutSubjectInput | Prisma.AssignmentUpsertWithWhereUniqueWithoutSubjectInput[]
-  createMany?: Prisma.AssignmentCreateManySubjectInputEnvelope
-  set?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
-  disconnect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
-  delete?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
-  connect?: Prisma.AssignmentWhereUniqueInput | Prisma.AssignmentWhereUniqueInput[]
-  update?: Prisma.AssignmentUpdateWithWhereUniqueWithoutSubjectInput | Prisma.AssignmentUpdateWithWhereUniqueWithoutSubjectInput[]
-  updateMany?: Prisma.AssignmentUpdateManyWithWhereWithoutSubjectInput | Prisma.AssignmentUpdateManyWithWhereWithoutSubjectInput[]
-  deleteMany?: Prisma.AssignmentScalarWhereInput | Prisma.AssignmentScalarWhereInput[]
-}
-
-export type AssignmentCreateWithoutBranchInput = {
+export type AssignmentCreateWithoutDegreeBranchSubjectInput = {
   title: string
   description?: string | null
-  year: number
   semester: number
   fileUrl: string
+  isSolution?: boolean
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  degree: Prisma.DegreeCreateNestedOneWithoutAssignmentsInput
-  subject: Prisma.SubjectCreateNestedOneWithoutAssignmentsInput
+  parent?: Prisma.AssignmentCreateNestedOneWithoutSolutionsInput
+  solutions?: Prisma.AssignmentCreateNestedManyWithoutParentInput
+  contribution?: Prisma.ContributionCreateNestedOneWithoutAssignmentInput
 }
 
-export type AssignmentUncheckedCreateWithoutBranchInput = {
+export type AssignmentUncheckedCreateWithoutDegreeBranchSubjectInput = {
   id?: number
   title: string
   description?: string | null
-  degreeId: number
-  subjectId: number
-  year: number
   semester: number
   fileUrl: string
+  isSolution?: boolean
+  parentId?: number | null
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  solutions?: Prisma.AssignmentUncheckedCreateNestedManyWithoutParentInput
+  contribution?: Prisma.ContributionUncheckedCreateNestedOneWithoutAssignmentInput
 }
 
-export type AssignmentCreateOrConnectWithoutBranchInput = {
+export type AssignmentCreateOrConnectWithoutDegreeBranchSubjectInput = {
   where: Prisma.AssignmentWhereUniqueInput
-  create: Prisma.XOR<Prisma.AssignmentCreateWithoutBranchInput, Prisma.AssignmentUncheckedCreateWithoutBranchInput>
+  create: Prisma.XOR<Prisma.AssignmentCreateWithoutDegreeBranchSubjectInput, Prisma.AssignmentUncheckedCreateWithoutDegreeBranchSubjectInput>
 }
 
-export type AssignmentCreateManyBranchInputEnvelope = {
-  data: Prisma.AssignmentCreateManyBranchInput | Prisma.AssignmentCreateManyBranchInput[]
+export type AssignmentCreateManyDegreeBranchSubjectInputEnvelope = {
+  data: Prisma.AssignmentCreateManyDegreeBranchSubjectInput | Prisma.AssignmentCreateManyDegreeBranchSubjectInput[]
   skipDuplicates?: boolean
 }
 
-export type AssignmentUpsertWithWhereUniqueWithoutBranchInput = {
+export type AssignmentUpsertWithWhereUniqueWithoutDegreeBranchSubjectInput = {
   where: Prisma.AssignmentWhereUniqueInput
-  update: Prisma.XOR<Prisma.AssignmentUpdateWithoutBranchInput, Prisma.AssignmentUncheckedUpdateWithoutBranchInput>
-  create: Prisma.XOR<Prisma.AssignmentCreateWithoutBranchInput, Prisma.AssignmentUncheckedCreateWithoutBranchInput>
+  update: Prisma.XOR<Prisma.AssignmentUpdateWithoutDegreeBranchSubjectInput, Prisma.AssignmentUncheckedUpdateWithoutDegreeBranchSubjectInput>
+  create: Prisma.XOR<Prisma.AssignmentCreateWithoutDegreeBranchSubjectInput, Prisma.AssignmentUncheckedCreateWithoutDegreeBranchSubjectInput>
 }
 
-export type AssignmentUpdateWithWhereUniqueWithoutBranchInput = {
+export type AssignmentUpdateWithWhereUniqueWithoutDegreeBranchSubjectInput = {
   where: Prisma.AssignmentWhereUniqueInput
-  data: Prisma.XOR<Prisma.AssignmentUpdateWithoutBranchInput, Prisma.AssignmentUncheckedUpdateWithoutBranchInput>
+  data: Prisma.XOR<Prisma.AssignmentUpdateWithoutDegreeBranchSubjectInput, Prisma.AssignmentUncheckedUpdateWithoutDegreeBranchSubjectInput>
 }
 
-export type AssignmentUpdateManyWithWhereWithoutBranchInput = {
+export type AssignmentUpdateManyWithWhereWithoutDegreeBranchSubjectInput = {
   where: Prisma.AssignmentScalarWhereInput
-  data: Prisma.XOR<Prisma.AssignmentUpdateManyMutationInput, Prisma.AssignmentUncheckedUpdateManyWithoutBranchInput>
+  data: Prisma.XOR<Prisma.AssignmentUpdateManyMutationInput, Prisma.AssignmentUncheckedUpdateManyWithoutDegreeBranchSubjectInput>
 }
 
 export type AssignmentScalarWhereInput = {
@@ -732,396 +707,462 @@ export type AssignmentScalarWhereInput = {
   id?: Prisma.IntFilter<"Assignment"> | number
   title?: Prisma.StringFilter<"Assignment"> | string
   description?: Prisma.StringNullableFilter<"Assignment"> | string | null
-  degreeId?: Prisma.IntFilter<"Assignment"> | number
-  subjectId?: Prisma.IntFilter<"Assignment"> | number
-  year?: Prisma.IntFilter<"Assignment"> | number
+  degreeBranchSubjectId?: Prisma.IntFilter<"Assignment"> | number
   semester?: Prisma.IntFilter<"Assignment"> | number
   fileUrl?: Prisma.StringFilter<"Assignment"> | string
+  isSolution?: Prisma.BoolFilter<"Assignment"> | boolean
+  parentId?: Prisma.IntNullableFilter<"Assignment"> | number | null
   isPublished?: Prisma.BoolFilter<"Assignment"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Assignment"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Assignment"> | Date | string
-  branchId?: Prisma.IntFilter<"Assignment"> | number
 }
 
-export type AssignmentCreateWithoutDegreeInput = {
+export type AssignmentCreateWithoutSolutionsInput = {
   title: string
   description?: string | null
-  year: number
   semester: number
   fileUrl: string
+  isSolution?: boolean
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  branch: Prisma.BranchCreateNestedOneWithoutAssignmentsInput
-  subject: Prisma.SubjectCreateNestedOneWithoutAssignmentsInput
+  degreeBranchSubject: Prisma.DegreeBranchSubjectCreateNestedOneWithoutAssignmentsInput
+  parent?: Prisma.AssignmentCreateNestedOneWithoutSolutionsInput
+  contribution?: Prisma.ContributionCreateNestedOneWithoutAssignmentInput
 }
 
-export type AssignmentUncheckedCreateWithoutDegreeInput = {
+export type AssignmentUncheckedCreateWithoutSolutionsInput = {
   id?: number
   title: string
   description?: string | null
-  subjectId: number
-  year: number
+  degreeBranchSubjectId: number
   semester: number
   fileUrl: string
+  isSolution?: boolean
+  parentId?: number | null
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  branchId: number
+  contribution?: Prisma.ContributionUncheckedCreateNestedOneWithoutAssignmentInput
 }
 
-export type AssignmentCreateOrConnectWithoutDegreeInput = {
+export type AssignmentCreateOrConnectWithoutSolutionsInput = {
   where: Prisma.AssignmentWhereUniqueInput
-  create: Prisma.XOR<Prisma.AssignmentCreateWithoutDegreeInput, Prisma.AssignmentUncheckedCreateWithoutDegreeInput>
+  create: Prisma.XOR<Prisma.AssignmentCreateWithoutSolutionsInput, Prisma.AssignmentUncheckedCreateWithoutSolutionsInput>
 }
 
-export type AssignmentCreateManyDegreeInputEnvelope = {
-  data: Prisma.AssignmentCreateManyDegreeInput | Prisma.AssignmentCreateManyDegreeInput[]
+export type AssignmentCreateWithoutParentInput = {
+  title: string
+  description?: string | null
+  semester: number
+  fileUrl: string
+  isSolution?: boolean
+  isPublished?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  degreeBranchSubject: Prisma.DegreeBranchSubjectCreateNestedOneWithoutAssignmentsInput
+  solutions?: Prisma.AssignmentCreateNestedManyWithoutParentInput
+  contribution?: Prisma.ContributionCreateNestedOneWithoutAssignmentInput
+}
+
+export type AssignmentUncheckedCreateWithoutParentInput = {
+  id?: number
+  title: string
+  description?: string | null
+  degreeBranchSubjectId: number
+  semester: number
+  fileUrl: string
+  isSolution?: boolean
+  isPublished?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  solutions?: Prisma.AssignmentUncheckedCreateNestedManyWithoutParentInput
+  contribution?: Prisma.ContributionUncheckedCreateNestedOneWithoutAssignmentInput
+}
+
+export type AssignmentCreateOrConnectWithoutParentInput = {
+  where: Prisma.AssignmentWhereUniqueInput
+  create: Prisma.XOR<Prisma.AssignmentCreateWithoutParentInput, Prisma.AssignmentUncheckedCreateWithoutParentInput>
+}
+
+export type AssignmentCreateManyParentInputEnvelope = {
+  data: Prisma.AssignmentCreateManyParentInput | Prisma.AssignmentCreateManyParentInput[]
   skipDuplicates?: boolean
 }
 
-export type AssignmentUpsertWithWhereUniqueWithoutDegreeInput = {
-  where: Prisma.AssignmentWhereUniqueInput
-  update: Prisma.XOR<Prisma.AssignmentUpdateWithoutDegreeInput, Prisma.AssignmentUncheckedUpdateWithoutDegreeInput>
-  create: Prisma.XOR<Prisma.AssignmentCreateWithoutDegreeInput, Prisma.AssignmentUncheckedCreateWithoutDegreeInput>
+export type AssignmentUpsertWithoutSolutionsInput = {
+  update: Prisma.XOR<Prisma.AssignmentUpdateWithoutSolutionsInput, Prisma.AssignmentUncheckedUpdateWithoutSolutionsInput>
+  create: Prisma.XOR<Prisma.AssignmentCreateWithoutSolutionsInput, Prisma.AssignmentUncheckedCreateWithoutSolutionsInput>
+  where?: Prisma.AssignmentWhereInput
 }
 
-export type AssignmentUpdateWithWhereUniqueWithoutDegreeInput = {
-  where: Prisma.AssignmentWhereUniqueInput
-  data: Prisma.XOR<Prisma.AssignmentUpdateWithoutDegreeInput, Prisma.AssignmentUncheckedUpdateWithoutDegreeInput>
+export type AssignmentUpdateToOneWithWhereWithoutSolutionsInput = {
+  where?: Prisma.AssignmentWhereInput
+  data: Prisma.XOR<Prisma.AssignmentUpdateWithoutSolutionsInput, Prisma.AssignmentUncheckedUpdateWithoutSolutionsInput>
 }
 
-export type AssignmentUpdateManyWithWhereWithoutDegreeInput = {
+export type AssignmentUpdateWithoutSolutionsInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  degreeBranchSubject?: Prisma.DegreeBranchSubjectUpdateOneRequiredWithoutAssignmentsNestedInput
+  parent?: Prisma.AssignmentUpdateOneWithoutSolutionsNestedInput
+  contribution?: Prisma.ContributionUpdateOneWithoutAssignmentNestedInput
+}
+
+export type AssignmentUncheckedUpdateWithoutSolutionsInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degreeBranchSubjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  contribution?: Prisma.ContributionUncheckedUpdateOneWithoutAssignmentNestedInput
+}
+
+export type AssignmentUpsertWithWhereUniqueWithoutParentInput = {
+  where: Prisma.AssignmentWhereUniqueInput
+  update: Prisma.XOR<Prisma.AssignmentUpdateWithoutParentInput, Prisma.AssignmentUncheckedUpdateWithoutParentInput>
+  create: Prisma.XOR<Prisma.AssignmentCreateWithoutParentInput, Prisma.AssignmentUncheckedCreateWithoutParentInput>
+}
+
+export type AssignmentUpdateWithWhereUniqueWithoutParentInput = {
+  where: Prisma.AssignmentWhereUniqueInput
+  data: Prisma.XOR<Prisma.AssignmentUpdateWithoutParentInput, Prisma.AssignmentUncheckedUpdateWithoutParentInput>
+}
+
+export type AssignmentUpdateManyWithWhereWithoutParentInput = {
   where: Prisma.AssignmentScalarWhereInput
-  data: Prisma.XOR<Prisma.AssignmentUpdateManyMutationInput, Prisma.AssignmentUncheckedUpdateManyWithoutDegreeInput>
+  data: Prisma.XOR<Prisma.AssignmentUpdateManyMutationInput, Prisma.AssignmentUncheckedUpdateManyWithoutParentInput>
 }
 
-export type AssignmentCreateWithoutSubjectInput = {
+export type AssignmentCreateWithoutContributionInput = {
   title: string
   description?: string | null
-  year: number
   semester: number
   fileUrl: string
+  isSolution?: boolean
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  branch: Prisma.BranchCreateNestedOneWithoutAssignmentsInput
-  degree: Prisma.DegreeCreateNestedOneWithoutAssignmentsInput
+  degreeBranchSubject: Prisma.DegreeBranchSubjectCreateNestedOneWithoutAssignmentsInput
+  parent?: Prisma.AssignmentCreateNestedOneWithoutSolutionsInput
+  solutions?: Prisma.AssignmentCreateNestedManyWithoutParentInput
 }
 
-export type AssignmentUncheckedCreateWithoutSubjectInput = {
+export type AssignmentUncheckedCreateWithoutContributionInput = {
   id?: number
   title: string
   description?: string | null
-  degreeId: number
-  year: number
+  degreeBranchSubjectId: number
   semester: number
   fileUrl: string
+  isSolution?: boolean
+  parentId?: number | null
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  branchId: number
+  solutions?: Prisma.AssignmentUncheckedCreateNestedManyWithoutParentInput
 }
 
-export type AssignmentCreateOrConnectWithoutSubjectInput = {
+export type AssignmentCreateOrConnectWithoutContributionInput = {
   where: Prisma.AssignmentWhereUniqueInput
-  create: Prisma.XOR<Prisma.AssignmentCreateWithoutSubjectInput, Prisma.AssignmentUncheckedCreateWithoutSubjectInput>
+  create: Prisma.XOR<Prisma.AssignmentCreateWithoutContributionInput, Prisma.AssignmentUncheckedCreateWithoutContributionInput>
 }
 
-export type AssignmentCreateManySubjectInputEnvelope = {
-  data: Prisma.AssignmentCreateManySubjectInput | Prisma.AssignmentCreateManySubjectInput[]
-  skipDuplicates?: boolean
+export type AssignmentUpsertWithoutContributionInput = {
+  update: Prisma.XOR<Prisma.AssignmentUpdateWithoutContributionInput, Prisma.AssignmentUncheckedUpdateWithoutContributionInput>
+  create: Prisma.XOR<Prisma.AssignmentCreateWithoutContributionInput, Prisma.AssignmentUncheckedCreateWithoutContributionInput>
+  where?: Prisma.AssignmentWhereInput
 }
 
-export type AssignmentUpsertWithWhereUniqueWithoutSubjectInput = {
-  where: Prisma.AssignmentWhereUniqueInput
-  update: Prisma.XOR<Prisma.AssignmentUpdateWithoutSubjectInput, Prisma.AssignmentUncheckedUpdateWithoutSubjectInput>
-  create: Prisma.XOR<Prisma.AssignmentCreateWithoutSubjectInput, Prisma.AssignmentUncheckedCreateWithoutSubjectInput>
+export type AssignmentUpdateToOneWithWhereWithoutContributionInput = {
+  where?: Prisma.AssignmentWhereInput
+  data: Prisma.XOR<Prisma.AssignmentUpdateWithoutContributionInput, Prisma.AssignmentUncheckedUpdateWithoutContributionInput>
 }
 
-export type AssignmentUpdateWithWhereUniqueWithoutSubjectInput = {
-  where: Prisma.AssignmentWhereUniqueInput
-  data: Prisma.XOR<Prisma.AssignmentUpdateWithoutSubjectInput, Prisma.AssignmentUncheckedUpdateWithoutSubjectInput>
+export type AssignmentUpdateWithoutContributionInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  degreeBranchSubject?: Prisma.DegreeBranchSubjectUpdateOneRequiredWithoutAssignmentsNestedInput
+  parent?: Prisma.AssignmentUpdateOneWithoutSolutionsNestedInput
+  solutions?: Prisma.AssignmentUpdateManyWithoutParentNestedInput
 }
 
-export type AssignmentUpdateManyWithWhereWithoutSubjectInput = {
-  where: Prisma.AssignmentScalarWhereInput
-  data: Prisma.XOR<Prisma.AssignmentUpdateManyMutationInput, Prisma.AssignmentUncheckedUpdateManyWithoutSubjectInput>
+export type AssignmentUncheckedUpdateWithoutContributionInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degreeBranchSubjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  solutions?: Prisma.AssignmentUncheckedUpdateManyWithoutParentNestedInput
 }
 
-export type AssignmentCreateManyBranchInput = {
+export type AssignmentCreateManyDegreeBranchSubjectInput = {
   id?: number
   title: string
   description?: string | null
-  degreeId: number
-  subjectId: number
-  year: number
   semester: number
   fileUrl: string
+  isSolution?: boolean
+  parentId?: number | null
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
 }
 
-export type AssignmentUpdateWithoutBranchInput = {
+export type AssignmentUpdateWithoutDegreeBranchSubjectInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  year?: Prisma.IntFieldUpdateOperationsInput | number
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  degree?: Prisma.DegreeUpdateOneRequiredWithoutAssignmentsNestedInput
-  subject?: Prisma.SubjectUpdateOneRequiredWithoutAssignmentsNestedInput
+  parent?: Prisma.AssignmentUpdateOneWithoutSolutionsNestedInput
+  solutions?: Prisma.AssignmentUpdateManyWithoutParentNestedInput
+  contribution?: Prisma.ContributionUpdateOneWithoutAssignmentNestedInput
 }
 
-export type AssignmentUncheckedUpdateWithoutBranchInput = {
+export type AssignmentUncheckedUpdateWithoutDegreeBranchSubjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
-  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  solutions?: Prisma.AssignmentUncheckedUpdateManyWithoutParentNestedInput
+  contribution?: Prisma.ContributionUncheckedUpdateOneWithoutAssignmentNestedInput
 }
 
-export type AssignmentUncheckedUpdateManyWithoutBranchInput = {
+export type AssignmentUncheckedUpdateManyWithoutDegreeBranchSubjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
-  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  parentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
 }
 
-export type AssignmentCreateManyDegreeInput = {
+export type AssignmentCreateManyParentInput = {
   id?: number
   title: string
   description?: string | null
-  subjectId: number
-  year: number
+  degreeBranchSubjectId: number
   semester: number
   fileUrl: string
+  isSolution?: boolean
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
-  branchId: number
 }
 
-export type AssignmentUpdateWithoutDegreeInput = {
+export type AssignmentUpdateWithoutParentInput = {
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  year?: Prisma.IntFieldUpdateOperationsInput | number
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branch?: Prisma.BranchUpdateOneRequiredWithoutAssignmentsNestedInput
-  subject?: Prisma.SubjectUpdateOneRequiredWithoutAssignmentsNestedInput
+  degreeBranchSubject?: Prisma.DegreeBranchSubjectUpdateOneRequiredWithoutAssignmentsNestedInput
+  solutions?: Prisma.AssignmentUpdateManyWithoutParentNestedInput
+  contribution?: Prisma.ContributionUpdateOneWithoutAssignmentNestedInput
 }
 
-export type AssignmentUncheckedUpdateWithoutDegreeInput = {
+export type AssignmentUncheckedUpdateWithoutParentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  degreeBranchSubjectId?: Prisma.IntFieldUpdateOperationsInput | number
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.IntFieldUpdateOperationsInput | number
+  solutions?: Prisma.AssignmentUncheckedUpdateManyWithoutParentNestedInput
+  contribution?: Prisma.ContributionUncheckedUpdateOneWithoutAssignmentNestedInput
 }
 
-export type AssignmentUncheckedUpdateManyWithoutDegreeInput = {
+export type AssignmentUncheckedUpdateManyWithoutParentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  degreeBranchSubjectId?: Prisma.IntFieldUpdateOperationsInput | number
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
-export type AssignmentCreateManySubjectInput = {
-  id?: number
-  title: string
-  description?: string | null
-  degreeId: number
-  year: number
-  semester: number
-  fileUrl: string
-  isPublished?: boolean
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  branchId: number
+
+/**
+ * Count Type AssignmentCountOutputType
+ */
+
+export type AssignmentCountOutputType = {
+  solutions: number
 }
 
-export type AssignmentUpdateWithoutSubjectInput = {
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  year?: Prisma.IntFieldUpdateOperationsInput | number
-  semester?: Prisma.IntFieldUpdateOperationsInput | number
-  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branch?: Prisma.BranchUpdateOneRequiredWithoutAssignmentsNestedInput
-  degree?: Prisma.DegreeUpdateOneRequiredWithoutAssignmentsNestedInput
+export type AssignmentCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  solutions?: boolean | AssignmentCountOutputTypeCountSolutionsArgs
 }
 
-export type AssignmentUncheckedUpdateWithoutSubjectInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
-  semester?: Prisma.IntFieldUpdateOperationsInput | number
-  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.IntFieldUpdateOperationsInput | number
+/**
+ * AssignmentCountOutputType without action
+ */
+export type AssignmentCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the AssignmentCountOutputType
+   */
+  select?: Prisma.AssignmentCountOutputTypeSelect<ExtArgs> | null
 }
 
-export type AssignmentUncheckedUpdateManyWithoutSubjectInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
-  semester?: Prisma.IntFieldUpdateOperationsInput | number
-  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.IntFieldUpdateOperationsInput | number
+/**
+ * AssignmentCountOutputType without action
+ */
+export type AssignmentCountOutputTypeCountSolutionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.AssignmentWhereInput
 }
-
 
 
 export type AssignmentSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
   description?: boolean
-  degreeId?: boolean
-  subjectId?: boolean
-  year?: boolean
+  degreeBranchSubjectId?: boolean
   semester?: boolean
   fileUrl?: boolean
+  isSolution?: boolean
+  parentId?: boolean
   isPublished?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  branchId?: boolean
-  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
-  degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
-  subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  degreeBranchSubject?: boolean | Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>
+  parent?: boolean | Prisma.Assignment$parentArgs<ExtArgs>
+  solutions?: boolean | Prisma.Assignment$solutionsArgs<ExtArgs>
+  contribution?: boolean | Prisma.Assignment$contributionArgs<ExtArgs>
+  _count?: boolean | Prisma.AssignmentCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["assignment"]>
 
 export type AssignmentSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
   description?: boolean
-  degreeId?: boolean
-  subjectId?: boolean
-  year?: boolean
+  degreeBranchSubjectId?: boolean
   semester?: boolean
   fileUrl?: boolean
+  isSolution?: boolean
+  parentId?: boolean
   isPublished?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  branchId?: boolean
-  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
-  degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
-  subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  degreeBranchSubject?: boolean | Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>
+  parent?: boolean | Prisma.Assignment$parentArgs<ExtArgs>
 }, ExtArgs["result"]["assignment"]>
 
 export type AssignmentSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   title?: boolean
   description?: boolean
-  degreeId?: boolean
-  subjectId?: boolean
-  year?: boolean
+  degreeBranchSubjectId?: boolean
   semester?: boolean
   fileUrl?: boolean
+  isSolution?: boolean
+  parentId?: boolean
   isPublished?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  branchId?: boolean
-  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
-  degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
-  subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  degreeBranchSubject?: boolean | Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>
+  parent?: boolean | Prisma.Assignment$parentArgs<ExtArgs>
 }, ExtArgs["result"]["assignment"]>
 
 export type AssignmentSelectScalar = {
   id?: boolean
   title?: boolean
   description?: boolean
-  degreeId?: boolean
-  subjectId?: boolean
-  year?: boolean
+  degreeBranchSubjectId?: boolean
   semester?: boolean
   fileUrl?: boolean
+  isSolution?: boolean
+  parentId?: boolean
   isPublished?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  branchId?: boolean
 }
 
-export type AssignmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "degreeId" | "subjectId" | "year" | "semester" | "fileUrl" | "isPublished" | "createdAt" | "updatedAt" | "branchId", ExtArgs["result"]["assignment"]>
+export type AssignmentOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "degreeBranchSubjectId" | "semester" | "fileUrl" | "isSolution" | "parentId" | "isPublished" | "createdAt" | "updatedAt", ExtArgs["result"]["assignment"]>
 export type AssignmentInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
-  degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
-  subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  degreeBranchSubject?: boolean | Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>
+  parent?: boolean | Prisma.Assignment$parentArgs<ExtArgs>
+  solutions?: boolean | Prisma.Assignment$solutionsArgs<ExtArgs>
+  contribution?: boolean | Prisma.Assignment$contributionArgs<ExtArgs>
+  _count?: boolean | Prisma.AssignmentCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type AssignmentIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
-  degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
-  subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  degreeBranchSubject?: boolean | Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>
+  parent?: boolean | Prisma.Assignment$parentArgs<ExtArgs>
 }
 export type AssignmentIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
-  degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
-  subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  degreeBranchSubject?: boolean | Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>
+  parent?: boolean | Prisma.Assignment$parentArgs<ExtArgs>
 }
 
 export type $AssignmentPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Assignment"
   objects: {
-    branch: Prisma.$BranchPayload<ExtArgs>
-    degree: Prisma.$DegreePayload<ExtArgs>
-    subject: Prisma.$SubjectPayload<ExtArgs>
+    degreeBranchSubject: Prisma.$DegreeBranchSubjectPayload<ExtArgs>
+    parent: Prisma.$AssignmentPayload<ExtArgs> | null
+    solutions: Prisma.$AssignmentPayload<ExtArgs>[]
+    contribution: Prisma.$ContributionPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
     title: string
     description: string | null
-    degreeId: number
-    subjectId: number
-    year: number
+    degreeBranchSubjectId: number
     semester: number
     fileUrl: string
+    isSolution: boolean
+    parentId: number | null
     isPublished: boolean
     createdAt: Date
     updatedAt: Date
-    branchId: number
   }, ExtArgs["result"]["assignment"]>
   composites: {}
 }
@@ -1516,9 +1557,10 @@ readonly fields: AssignmentFieldRefs;
  */
 export interface Prisma__AssignmentClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  branch<T extends Prisma.BranchDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BranchDefaultArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  degree<T extends Prisma.DegreeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DegreeDefaultArgs<ExtArgs>>): Prisma.Prisma__DegreeClient<runtime.Types.Result.GetResult<Prisma.$DegreePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  subject<T extends Prisma.SubjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubjectDefaultArgs<ExtArgs>>): Prisma.Prisma__SubjectClient<runtime.Types.Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  degreeBranchSubject<T extends Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>>): Prisma.Prisma__DegreeBranchSubjectClient<runtime.Types.Result.GetResult<Prisma.$DegreeBranchSubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  parent<T extends Prisma.Assignment$parentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Assignment$parentArgs<ExtArgs>>): Prisma.Prisma__AssignmentClient<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  solutions<T extends Prisma.Assignment$solutionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Assignment$solutionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  contribution<T extends Prisma.Assignment$contributionArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Assignment$contributionArgs<ExtArgs>>): Prisma.Prisma__ContributionClient<runtime.Types.Result.GetResult<Prisma.$ContributionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1551,15 +1593,14 @@ export interface AssignmentFieldRefs {
   readonly id: Prisma.FieldRef<"Assignment", 'Int'>
   readonly title: Prisma.FieldRef<"Assignment", 'String'>
   readonly description: Prisma.FieldRef<"Assignment", 'String'>
-  readonly degreeId: Prisma.FieldRef<"Assignment", 'Int'>
-  readonly subjectId: Prisma.FieldRef<"Assignment", 'Int'>
-  readonly year: Prisma.FieldRef<"Assignment", 'Int'>
+  readonly degreeBranchSubjectId: Prisma.FieldRef<"Assignment", 'Int'>
   readonly semester: Prisma.FieldRef<"Assignment", 'Int'>
   readonly fileUrl: Prisma.FieldRef<"Assignment", 'String'>
+  readonly isSolution: Prisma.FieldRef<"Assignment", 'Boolean'>
+  readonly parentId: Prisma.FieldRef<"Assignment", 'Int'>
   readonly isPublished: Prisma.FieldRef<"Assignment", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Assignment", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Assignment", 'DateTime'>
-  readonly branchId: Prisma.FieldRef<"Assignment", 'Int'>
 }
     
 
@@ -1953,6 +1994,68 @@ export type AssignmentDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.In
    * Limit how many Assignments to delete.
    */
   limit?: number
+}
+
+/**
+ * Assignment.parent
+ */
+export type Assignment$parentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Assignment
+   */
+  select?: Prisma.AssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Assignment
+   */
+  omit?: Prisma.AssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssignmentInclude<ExtArgs> | null
+  where?: Prisma.AssignmentWhereInput
+}
+
+/**
+ * Assignment.solutions
+ */
+export type Assignment$solutionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Assignment
+   */
+  select?: Prisma.AssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Assignment
+   */
+  omit?: Prisma.AssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssignmentInclude<ExtArgs> | null
+  where?: Prisma.AssignmentWhereInput
+  orderBy?: Prisma.AssignmentOrderByWithRelationInput | Prisma.AssignmentOrderByWithRelationInput[]
+  cursor?: Prisma.AssignmentWhereUniqueInput
+  take?: number
+  skip?: number
+  distinct?: Prisma.AssignmentScalarFieldEnum | Prisma.AssignmentScalarFieldEnum[]
+}
+
+/**
+ * Assignment.contribution
+ */
+export type Assignment$contributionArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Contribution
+   */
+  select?: Prisma.ContributionSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Contribution
+   */
+  omit?: Prisma.ContributionOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.ContributionInclude<ExtArgs> | null
+  where?: Prisma.ContributionWhereInput
 }
 
 /**

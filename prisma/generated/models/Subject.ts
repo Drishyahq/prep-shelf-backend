@@ -200,20 +200,14 @@ export type SubjectWhereInput = {
   id?: Prisma.IntFilter<"Subject"> | number
   name?: Prisma.StringFilter<"Subject"> | string
   createdAt?: Prisma.DateTimeFilter<"Subject"> | Date | string
-  assignments?: Prisma.AssignmentListRelationFilter
-  contributions?: Prisma.ContributionListRelationFilter
-  notes?: Prisma.NoteListRelationFilter
-  pyqPapers?: Prisma.PYQPaperListRelationFilter
+  programs?: Prisma.DegreeBranchSubjectListRelationFilter
 }
 
 export type SubjectOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   name?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
-  assignments?: Prisma.AssignmentOrderByRelationAggregateInput
-  contributions?: Prisma.ContributionOrderByRelationAggregateInput
-  notes?: Prisma.NoteOrderByRelationAggregateInput
-  pyqPapers?: Prisma.PYQPaperOrderByRelationAggregateInput
+  programs?: Prisma.DegreeBranchSubjectOrderByRelationAggregateInput
 }
 
 export type SubjectWhereUniqueInput = Prisma.AtLeast<{
@@ -223,10 +217,7 @@ export type SubjectWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.SubjectWhereInput[]
   NOT?: Prisma.SubjectWhereInput | Prisma.SubjectWhereInput[]
   createdAt?: Prisma.DateTimeFilter<"Subject"> | Date | string
-  assignments?: Prisma.AssignmentListRelationFilter
-  contributions?: Prisma.ContributionListRelationFilter
-  notes?: Prisma.NoteListRelationFilter
-  pyqPapers?: Prisma.PYQPaperListRelationFilter
+  programs?: Prisma.DegreeBranchSubjectListRelationFilter
 }, "id" | "name">
 
 export type SubjectOrderByWithAggregationInput = {
@@ -252,39 +243,27 @@ export type SubjectScalarWhereWithAggregatesInput = {
 export type SubjectCreateInput = {
   name: string
   createdAt?: Date | string
-  assignments?: Prisma.AssignmentCreateNestedManyWithoutSubjectInput
-  contributions?: Prisma.ContributionCreateNestedManyWithoutSubjectInput
-  notes?: Prisma.NoteCreateNestedManyWithoutSubjectInput
-  pyqPapers?: Prisma.PYQPaperCreateNestedManyWithoutSubjectInput
+  programs?: Prisma.DegreeBranchSubjectCreateNestedManyWithoutSubjectInput
 }
 
 export type SubjectUncheckedCreateInput = {
   id?: number
   name: string
   createdAt?: Date | string
-  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutSubjectInput
-  contributions?: Prisma.ContributionUncheckedCreateNestedManyWithoutSubjectInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutSubjectInput
-  pyqPapers?: Prisma.PYQPaperUncheckedCreateNestedManyWithoutSubjectInput
+  programs?: Prisma.DegreeBranchSubjectUncheckedCreateNestedManyWithoutSubjectInput
 }
 
 export type SubjectUpdateInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUpdateManyWithoutSubjectNestedInput
-  contributions?: Prisma.ContributionUpdateManyWithoutSubjectNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutSubjectNestedInput
-  pyqPapers?: Prisma.PYQPaperUpdateManyWithoutSubjectNestedInput
+  programs?: Prisma.DegreeBranchSubjectUpdateManyWithoutSubjectNestedInput
 }
 
 export type SubjectUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutSubjectNestedInput
-  contributions?: Prisma.ContributionUncheckedUpdateManyWithoutSubjectNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutSubjectNestedInput
-  pyqPapers?: Prisma.PYQPaperUncheckedUpdateManyWithoutSubjectNestedInput
+  programs?: Prisma.DegreeBranchSubjectUncheckedUpdateManyWithoutSubjectNestedInput
 }
 
 export type SubjectCreateManyInput = {
@@ -335,260 +314,56 @@ export type SubjectScalarRelationFilter = {
   isNot?: Prisma.SubjectWhereInput
 }
 
-export type SubjectCreateNestedOneWithoutPyqPapersInput = {
-  create?: Prisma.XOR<Prisma.SubjectCreateWithoutPyqPapersInput, Prisma.SubjectUncheckedCreateWithoutPyqPapersInput>
-  connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutPyqPapersInput
+export type SubjectCreateNestedOneWithoutProgramsInput = {
+  create?: Prisma.XOR<Prisma.SubjectCreateWithoutProgramsInput, Prisma.SubjectUncheckedCreateWithoutProgramsInput>
+  connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutProgramsInput
   connect?: Prisma.SubjectWhereUniqueInput
 }
 
-export type SubjectUpdateOneRequiredWithoutPyqPapersNestedInput = {
-  create?: Prisma.XOR<Prisma.SubjectCreateWithoutPyqPapersInput, Prisma.SubjectUncheckedCreateWithoutPyqPapersInput>
-  connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutPyqPapersInput
-  upsert?: Prisma.SubjectUpsertWithoutPyqPapersInput
+export type SubjectUpdateOneRequiredWithoutProgramsNestedInput = {
+  create?: Prisma.XOR<Prisma.SubjectCreateWithoutProgramsInput, Prisma.SubjectUncheckedCreateWithoutProgramsInput>
+  connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutProgramsInput
+  upsert?: Prisma.SubjectUpsertWithoutProgramsInput
   connect?: Prisma.SubjectWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SubjectUpdateToOneWithWhereWithoutPyqPapersInput, Prisma.SubjectUpdateWithoutPyqPapersInput>, Prisma.SubjectUncheckedUpdateWithoutPyqPapersInput>
+  update?: Prisma.XOR<Prisma.XOR<Prisma.SubjectUpdateToOneWithWhereWithoutProgramsInput, Prisma.SubjectUpdateWithoutProgramsInput>, Prisma.SubjectUncheckedUpdateWithoutProgramsInput>
 }
 
-export type SubjectCreateNestedOneWithoutNotesInput = {
-  create?: Prisma.XOR<Prisma.SubjectCreateWithoutNotesInput, Prisma.SubjectUncheckedCreateWithoutNotesInput>
-  connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutNotesInput
-  connect?: Prisma.SubjectWhereUniqueInput
-}
-
-export type SubjectUpdateOneRequiredWithoutNotesNestedInput = {
-  create?: Prisma.XOR<Prisma.SubjectCreateWithoutNotesInput, Prisma.SubjectUncheckedCreateWithoutNotesInput>
-  connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutNotesInput
-  upsert?: Prisma.SubjectUpsertWithoutNotesInput
-  connect?: Prisma.SubjectWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SubjectUpdateToOneWithWhereWithoutNotesInput, Prisma.SubjectUpdateWithoutNotesInput>, Prisma.SubjectUncheckedUpdateWithoutNotesInput>
-}
-
-export type SubjectCreateNestedOneWithoutAssignmentsInput = {
-  create?: Prisma.XOR<Prisma.SubjectCreateWithoutAssignmentsInput, Prisma.SubjectUncheckedCreateWithoutAssignmentsInput>
-  connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutAssignmentsInput
-  connect?: Prisma.SubjectWhereUniqueInput
-}
-
-export type SubjectUpdateOneRequiredWithoutAssignmentsNestedInput = {
-  create?: Prisma.XOR<Prisma.SubjectCreateWithoutAssignmentsInput, Prisma.SubjectUncheckedCreateWithoutAssignmentsInput>
-  connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutAssignmentsInput
-  upsert?: Prisma.SubjectUpsertWithoutAssignmentsInput
-  connect?: Prisma.SubjectWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SubjectUpdateToOneWithWhereWithoutAssignmentsInput, Prisma.SubjectUpdateWithoutAssignmentsInput>, Prisma.SubjectUncheckedUpdateWithoutAssignmentsInput>
-}
-
-export type SubjectCreateNestedOneWithoutContributionsInput = {
-  create?: Prisma.XOR<Prisma.SubjectCreateWithoutContributionsInput, Prisma.SubjectUncheckedCreateWithoutContributionsInput>
-  connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutContributionsInput
-  connect?: Prisma.SubjectWhereUniqueInput
-}
-
-export type SubjectUpdateOneRequiredWithoutContributionsNestedInput = {
-  create?: Prisma.XOR<Prisma.SubjectCreateWithoutContributionsInput, Prisma.SubjectUncheckedCreateWithoutContributionsInput>
-  connectOrCreate?: Prisma.SubjectCreateOrConnectWithoutContributionsInput
-  upsert?: Prisma.SubjectUpsertWithoutContributionsInput
-  connect?: Prisma.SubjectWhereUniqueInput
-  update?: Prisma.XOR<Prisma.XOR<Prisma.SubjectUpdateToOneWithWhereWithoutContributionsInput, Prisma.SubjectUpdateWithoutContributionsInput>, Prisma.SubjectUncheckedUpdateWithoutContributionsInput>
-}
-
-export type SubjectCreateWithoutPyqPapersInput = {
+export type SubjectCreateWithoutProgramsInput = {
   name: string
   createdAt?: Date | string
-  assignments?: Prisma.AssignmentCreateNestedManyWithoutSubjectInput
-  contributions?: Prisma.ContributionCreateNestedManyWithoutSubjectInput
-  notes?: Prisma.NoteCreateNestedManyWithoutSubjectInput
 }
 
-export type SubjectUncheckedCreateWithoutPyqPapersInput = {
+export type SubjectUncheckedCreateWithoutProgramsInput = {
   id?: number
   name: string
   createdAt?: Date | string
-  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutSubjectInput
-  contributions?: Prisma.ContributionUncheckedCreateNestedManyWithoutSubjectInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutSubjectInput
 }
 
-export type SubjectCreateOrConnectWithoutPyqPapersInput = {
+export type SubjectCreateOrConnectWithoutProgramsInput = {
   where: Prisma.SubjectWhereUniqueInput
-  create: Prisma.XOR<Prisma.SubjectCreateWithoutPyqPapersInput, Prisma.SubjectUncheckedCreateWithoutPyqPapersInput>
+  create: Prisma.XOR<Prisma.SubjectCreateWithoutProgramsInput, Prisma.SubjectUncheckedCreateWithoutProgramsInput>
 }
 
-export type SubjectUpsertWithoutPyqPapersInput = {
-  update: Prisma.XOR<Prisma.SubjectUpdateWithoutPyqPapersInput, Prisma.SubjectUncheckedUpdateWithoutPyqPapersInput>
-  create: Prisma.XOR<Prisma.SubjectCreateWithoutPyqPapersInput, Prisma.SubjectUncheckedCreateWithoutPyqPapersInput>
+export type SubjectUpsertWithoutProgramsInput = {
+  update: Prisma.XOR<Prisma.SubjectUpdateWithoutProgramsInput, Prisma.SubjectUncheckedUpdateWithoutProgramsInput>
+  create: Prisma.XOR<Prisma.SubjectCreateWithoutProgramsInput, Prisma.SubjectUncheckedCreateWithoutProgramsInput>
   where?: Prisma.SubjectWhereInput
 }
 
-export type SubjectUpdateToOneWithWhereWithoutPyqPapersInput = {
+export type SubjectUpdateToOneWithWhereWithoutProgramsInput = {
   where?: Prisma.SubjectWhereInput
-  data: Prisma.XOR<Prisma.SubjectUpdateWithoutPyqPapersInput, Prisma.SubjectUncheckedUpdateWithoutPyqPapersInput>
+  data: Prisma.XOR<Prisma.SubjectUpdateWithoutProgramsInput, Prisma.SubjectUncheckedUpdateWithoutProgramsInput>
 }
 
-export type SubjectUpdateWithoutPyqPapersInput = {
+export type SubjectUpdateWithoutProgramsInput = {
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUpdateManyWithoutSubjectNestedInput
-  contributions?: Prisma.ContributionUpdateManyWithoutSubjectNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutSubjectNestedInput
 }
 
-export type SubjectUncheckedUpdateWithoutPyqPapersInput = {
+export type SubjectUncheckedUpdateWithoutProgramsInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutSubjectNestedInput
-  contributions?: Prisma.ContributionUncheckedUpdateManyWithoutSubjectNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutSubjectNestedInput
-}
-
-export type SubjectCreateWithoutNotesInput = {
-  name: string
-  createdAt?: Date | string
-  assignments?: Prisma.AssignmentCreateNestedManyWithoutSubjectInput
-  contributions?: Prisma.ContributionCreateNestedManyWithoutSubjectInput
-  pyqPapers?: Prisma.PYQPaperCreateNestedManyWithoutSubjectInput
-}
-
-export type SubjectUncheckedCreateWithoutNotesInput = {
-  id?: number
-  name: string
-  createdAt?: Date | string
-  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutSubjectInput
-  contributions?: Prisma.ContributionUncheckedCreateNestedManyWithoutSubjectInput
-  pyqPapers?: Prisma.PYQPaperUncheckedCreateNestedManyWithoutSubjectInput
-}
-
-export type SubjectCreateOrConnectWithoutNotesInput = {
-  where: Prisma.SubjectWhereUniqueInput
-  create: Prisma.XOR<Prisma.SubjectCreateWithoutNotesInput, Prisma.SubjectUncheckedCreateWithoutNotesInput>
-}
-
-export type SubjectUpsertWithoutNotesInput = {
-  update: Prisma.XOR<Prisma.SubjectUpdateWithoutNotesInput, Prisma.SubjectUncheckedUpdateWithoutNotesInput>
-  create: Prisma.XOR<Prisma.SubjectCreateWithoutNotesInput, Prisma.SubjectUncheckedCreateWithoutNotesInput>
-  where?: Prisma.SubjectWhereInput
-}
-
-export type SubjectUpdateToOneWithWhereWithoutNotesInput = {
-  where?: Prisma.SubjectWhereInput
-  data: Prisma.XOR<Prisma.SubjectUpdateWithoutNotesInput, Prisma.SubjectUncheckedUpdateWithoutNotesInput>
-}
-
-export type SubjectUpdateWithoutNotesInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUpdateManyWithoutSubjectNestedInput
-  contributions?: Prisma.ContributionUpdateManyWithoutSubjectNestedInput
-  pyqPapers?: Prisma.PYQPaperUpdateManyWithoutSubjectNestedInput
-}
-
-export type SubjectUncheckedUpdateWithoutNotesInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutSubjectNestedInput
-  contributions?: Prisma.ContributionUncheckedUpdateManyWithoutSubjectNestedInput
-  pyqPapers?: Prisma.PYQPaperUncheckedUpdateManyWithoutSubjectNestedInput
-}
-
-export type SubjectCreateWithoutAssignmentsInput = {
-  name: string
-  createdAt?: Date | string
-  contributions?: Prisma.ContributionCreateNestedManyWithoutSubjectInput
-  notes?: Prisma.NoteCreateNestedManyWithoutSubjectInput
-  pyqPapers?: Prisma.PYQPaperCreateNestedManyWithoutSubjectInput
-}
-
-export type SubjectUncheckedCreateWithoutAssignmentsInput = {
-  id?: number
-  name: string
-  createdAt?: Date | string
-  contributions?: Prisma.ContributionUncheckedCreateNestedManyWithoutSubjectInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutSubjectInput
-  pyqPapers?: Prisma.PYQPaperUncheckedCreateNestedManyWithoutSubjectInput
-}
-
-export type SubjectCreateOrConnectWithoutAssignmentsInput = {
-  where: Prisma.SubjectWhereUniqueInput
-  create: Prisma.XOR<Prisma.SubjectCreateWithoutAssignmentsInput, Prisma.SubjectUncheckedCreateWithoutAssignmentsInput>
-}
-
-export type SubjectUpsertWithoutAssignmentsInput = {
-  update: Prisma.XOR<Prisma.SubjectUpdateWithoutAssignmentsInput, Prisma.SubjectUncheckedUpdateWithoutAssignmentsInput>
-  create: Prisma.XOR<Prisma.SubjectCreateWithoutAssignmentsInput, Prisma.SubjectUncheckedCreateWithoutAssignmentsInput>
-  where?: Prisma.SubjectWhereInput
-}
-
-export type SubjectUpdateToOneWithWhereWithoutAssignmentsInput = {
-  where?: Prisma.SubjectWhereInput
-  data: Prisma.XOR<Prisma.SubjectUpdateWithoutAssignmentsInput, Prisma.SubjectUncheckedUpdateWithoutAssignmentsInput>
-}
-
-export type SubjectUpdateWithoutAssignmentsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  contributions?: Prisma.ContributionUpdateManyWithoutSubjectNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutSubjectNestedInput
-  pyqPapers?: Prisma.PYQPaperUpdateManyWithoutSubjectNestedInput
-}
-
-export type SubjectUncheckedUpdateWithoutAssignmentsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  contributions?: Prisma.ContributionUncheckedUpdateManyWithoutSubjectNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutSubjectNestedInput
-  pyqPapers?: Prisma.PYQPaperUncheckedUpdateManyWithoutSubjectNestedInput
-}
-
-export type SubjectCreateWithoutContributionsInput = {
-  name: string
-  createdAt?: Date | string
-  assignments?: Prisma.AssignmentCreateNestedManyWithoutSubjectInput
-  notes?: Prisma.NoteCreateNestedManyWithoutSubjectInput
-  pyqPapers?: Prisma.PYQPaperCreateNestedManyWithoutSubjectInput
-}
-
-export type SubjectUncheckedCreateWithoutContributionsInput = {
-  id?: number
-  name: string
-  createdAt?: Date | string
-  assignments?: Prisma.AssignmentUncheckedCreateNestedManyWithoutSubjectInput
-  notes?: Prisma.NoteUncheckedCreateNestedManyWithoutSubjectInput
-  pyqPapers?: Prisma.PYQPaperUncheckedCreateNestedManyWithoutSubjectInput
-}
-
-export type SubjectCreateOrConnectWithoutContributionsInput = {
-  where: Prisma.SubjectWhereUniqueInput
-  create: Prisma.XOR<Prisma.SubjectCreateWithoutContributionsInput, Prisma.SubjectUncheckedCreateWithoutContributionsInput>
-}
-
-export type SubjectUpsertWithoutContributionsInput = {
-  update: Prisma.XOR<Prisma.SubjectUpdateWithoutContributionsInput, Prisma.SubjectUncheckedUpdateWithoutContributionsInput>
-  create: Prisma.XOR<Prisma.SubjectCreateWithoutContributionsInput, Prisma.SubjectUncheckedCreateWithoutContributionsInput>
-  where?: Prisma.SubjectWhereInput
-}
-
-export type SubjectUpdateToOneWithWhereWithoutContributionsInput = {
-  where?: Prisma.SubjectWhereInput
-  data: Prisma.XOR<Prisma.SubjectUpdateWithoutContributionsInput, Prisma.SubjectUncheckedUpdateWithoutContributionsInput>
-}
-
-export type SubjectUpdateWithoutContributionsInput = {
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUpdateManyWithoutSubjectNestedInput
-  notes?: Prisma.NoteUpdateManyWithoutSubjectNestedInput
-  pyqPapers?: Prisma.PYQPaperUpdateManyWithoutSubjectNestedInput
-}
-
-export type SubjectUncheckedUpdateWithoutContributionsInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  name?: Prisma.StringFieldUpdateOperationsInput | string
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  assignments?: Prisma.AssignmentUncheckedUpdateManyWithoutSubjectNestedInput
-  notes?: Prisma.NoteUncheckedUpdateManyWithoutSubjectNestedInput
-  pyqPapers?: Prisma.PYQPaperUncheckedUpdateManyWithoutSubjectNestedInput
 }
 
 
@@ -597,17 +372,11 @@ export type SubjectUncheckedUpdateWithoutContributionsInput = {
  */
 
 export type SubjectCountOutputType = {
-  assignments: number
-  contributions: number
-  notes: number
-  pyqPapers: number
+  programs: number
 }
 
 export type SubjectCountOutputTypeSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  assignments?: boolean | SubjectCountOutputTypeCountAssignmentsArgs
-  contributions?: boolean | SubjectCountOutputTypeCountContributionsArgs
-  notes?: boolean | SubjectCountOutputTypeCountNotesArgs
-  pyqPapers?: boolean | SubjectCountOutputTypeCountPyqPapersArgs
+  programs?: boolean | SubjectCountOutputTypeCountProgramsArgs
 }
 
 /**
@@ -623,29 +392,8 @@ export type SubjectCountOutputTypeDefaultArgs<ExtArgs extends runtime.Types.Exte
 /**
  * SubjectCountOutputType without action
  */
-export type SubjectCountOutputTypeCountAssignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.AssignmentWhereInput
-}
-
-/**
- * SubjectCountOutputType without action
- */
-export type SubjectCountOutputTypeCountContributionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.ContributionWhereInput
-}
-
-/**
- * SubjectCountOutputType without action
- */
-export type SubjectCountOutputTypeCountNotesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.NoteWhereInput
-}
-
-/**
- * SubjectCountOutputType without action
- */
-export type SubjectCountOutputTypeCountPyqPapersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  where?: Prisma.PYQPaperWhereInput
+export type SubjectCountOutputTypeCountProgramsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  where?: Prisma.DegreeBranchSubjectWhereInput
 }
 
 
@@ -653,10 +401,7 @@ export type SubjectSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs 
   id?: boolean
   name?: boolean
   createdAt?: boolean
-  assignments?: boolean | Prisma.Subject$assignmentsArgs<ExtArgs>
-  contributions?: boolean | Prisma.Subject$contributionsArgs<ExtArgs>
-  notes?: boolean | Prisma.Subject$notesArgs<ExtArgs>
-  pyqPapers?: boolean | Prisma.Subject$pyqPapersArgs<ExtArgs>
+  programs?: boolean | Prisma.Subject$programsArgs<ExtArgs>
   _count?: boolean | Prisma.SubjectCountOutputTypeDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["subject"]>
 
@@ -680,10 +425,7 @@ export type SubjectSelectScalar = {
 
 export type SubjectOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "name" | "createdAt", ExtArgs["result"]["subject"]>
 export type SubjectInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  assignments?: boolean | Prisma.Subject$assignmentsArgs<ExtArgs>
-  contributions?: boolean | Prisma.Subject$contributionsArgs<ExtArgs>
-  notes?: boolean | Prisma.Subject$notesArgs<ExtArgs>
-  pyqPapers?: boolean | Prisma.Subject$pyqPapersArgs<ExtArgs>
+  programs?: boolean | Prisma.Subject$programsArgs<ExtArgs>
   _count?: boolean | Prisma.SubjectCountOutputTypeDefaultArgs<ExtArgs>
 }
 export type SubjectIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {}
@@ -692,10 +434,7 @@ export type SubjectIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Exte
 export type $SubjectPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Subject"
   objects: {
-    assignments: Prisma.$AssignmentPayload<ExtArgs>[]
-    contributions: Prisma.$ContributionPayload<ExtArgs>[]
-    notes: Prisma.$NotePayload<ExtArgs>[]
-    pyqPapers: Prisma.$PYQPaperPayload<ExtArgs>[]
+    programs: Prisma.$DegreeBranchSubjectPayload<ExtArgs>[]
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1095,10 +834,7 @@ readonly fields: SubjectFieldRefs;
  */
 export interface Prisma__SubjectClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  assignments<T extends Prisma.Subject$assignmentsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subject$assignmentsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  contributions<T extends Prisma.Subject$contributionsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subject$contributionsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$ContributionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  notes<T extends Prisma.Subject$notesArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subject$notesArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-  pyqPapers<T extends Prisma.Subject$pyqPapersArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subject$pyqPapersArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$PYQPaperPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+  programs<T extends Prisma.Subject$programsArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Subject$programsArgs<ExtArgs>>): Prisma.PrismaPromise<runtime.Types.Result.GetResult<Prisma.$DegreeBranchSubjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1519,99 +1255,27 @@ export type SubjectDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.Inter
 }
 
 /**
- * Subject.assignments
+ * Subject.programs
  */
-export type Subject$assignmentsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+export type Subject$programsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   /**
-   * Select specific fields to fetch from the Assignment
+   * Select specific fields to fetch from the DegreeBranchSubject
    */
-  select?: Prisma.AssignmentSelect<ExtArgs> | null
+  select?: Prisma.DegreeBranchSubjectSelect<ExtArgs> | null
   /**
-   * Omit specific fields from the Assignment
+   * Omit specific fields from the DegreeBranchSubject
    */
-  omit?: Prisma.AssignmentOmit<ExtArgs> | null
+  omit?: Prisma.DegreeBranchSubjectOmit<ExtArgs> | null
   /**
    * Choose, which related nodes to fetch as well
    */
-  include?: Prisma.AssignmentInclude<ExtArgs> | null
-  where?: Prisma.AssignmentWhereInput
-  orderBy?: Prisma.AssignmentOrderByWithRelationInput | Prisma.AssignmentOrderByWithRelationInput[]
-  cursor?: Prisma.AssignmentWhereUniqueInput
+  include?: Prisma.DegreeBranchSubjectInclude<ExtArgs> | null
+  where?: Prisma.DegreeBranchSubjectWhereInput
+  orderBy?: Prisma.DegreeBranchSubjectOrderByWithRelationInput | Prisma.DegreeBranchSubjectOrderByWithRelationInput[]
+  cursor?: Prisma.DegreeBranchSubjectWhereUniqueInput
   take?: number
   skip?: number
-  distinct?: Prisma.AssignmentScalarFieldEnum | Prisma.AssignmentScalarFieldEnum[]
-}
-
-/**
- * Subject.contributions
- */
-export type Subject$contributionsArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Contribution
-   */
-  select?: Prisma.ContributionSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Contribution
-   */
-  omit?: Prisma.ContributionOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.ContributionInclude<ExtArgs> | null
-  where?: Prisma.ContributionWhereInput
-  orderBy?: Prisma.ContributionOrderByWithRelationInput | Prisma.ContributionOrderByWithRelationInput[]
-  cursor?: Prisma.ContributionWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.ContributionScalarFieldEnum | Prisma.ContributionScalarFieldEnum[]
-}
-
-/**
- * Subject.notes
- */
-export type Subject$notesArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the Note
-   */
-  select?: Prisma.NoteSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the Note
-   */
-  omit?: Prisma.NoteOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.NoteInclude<ExtArgs> | null
-  where?: Prisma.NoteWhereInput
-  orderBy?: Prisma.NoteOrderByWithRelationInput | Prisma.NoteOrderByWithRelationInput[]
-  cursor?: Prisma.NoteWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.NoteScalarFieldEnum | Prisma.NoteScalarFieldEnum[]
-}
-
-/**
- * Subject.pyqPapers
- */
-export type Subject$pyqPapersArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  /**
-   * Select specific fields to fetch from the PYQPaper
-   */
-  select?: Prisma.PYQPaperSelect<ExtArgs> | null
-  /**
-   * Omit specific fields from the PYQPaper
-   */
-  omit?: Prisma.PYQPaperOmit<ExtArgs> | null
-  /**
-   * Choose, which related nodes to fetch as well
-   */
-  include?: Prisma.PYQPaperInclude<ExtArgs> | null
-  where?: Prisma.PYQPaperWhereInput
-  orderBy?: Prisma.PYQPaperOrderByWithRelationInput | Prisma.PYQPaperOrderByWithRelationInput[]
-  cursor?: Prisma.PYQPaperWhereUniqueInput
-  take?: number
-  skip?: number
-  distinct?: Prisma.PYQPaperScalarFieldEnum | Prisma.PYQPaperScalarFieldEnum[]
+  distinct?: Prisma.DegreeBranchSubjectScalarFieldEnum | Prisma.DegreeBranchSubjectScalarFieldEnum[]
 }
 
 /**
