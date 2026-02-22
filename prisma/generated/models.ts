@@ -10,6 +10,7 @@
  */
 export type * from './models/Admin.ts'
 export type * from './models/Session.ts'
+export type * from './models/Branch.ts'
 export type * from './models/Degree.ts'
 export type * from './models/Subject.ts'
 export type * from './models/PYQPaper.ts'

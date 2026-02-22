@@ -32,6 +32,7 @@ export type NoteAvgAggregateOutputType = {
   subjectId: number | null
   year: number | null
   semester: number | null
+  branchId: number | null
 }
 
 export type NoteSumAggregateOutputType = {
@@ -40,6 +41,7 @@ export type NoteSumAggregateOutputType = {
   subjectId: number | null
   year: number | null
   semester: number | null
+  branchId: number | null
 }
 
 export type NoteMinAggregateOutputType = {
@@ -54,6 +56,7 @@ export type NoteMinAggregateOutputType = {
   isPublished: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  branchId: number | null
 }
 
 export type NoteMaxAggregateOutputType = {
@@ -68,6 +71,7 @@ export type NoteMaxAggregateOutputType = {
   isPublished: boolean | null
   createdAt: Date | null
   updatedAt: Date | null
+  branchId: number | null
 }
 
 export type NoteCountAggregateOutputType = {
@@ -82,6 +86,7 @@ export type NoteCountAggregateOutputType = {
   isPublished: number
   createdAt: number
   updatedAt: number
+  branchId: number
   _all: number
 }
 
@@ -92,6 +97,7 @@ export type NoteAvgAggregateInputType = {
   subjectId?: true
   year?: true
   semester?: true
+  branchId?: true
 }
 
 export type NoteSumAggregateInputType = {
@@ -100,6 +106,7 @@ export type NoteSumAggregateInputType = {
   subjectId?: true
   year?: true
   semester?: true
+  branchId?: true
 }
 
 export type NoteMinAggregateInputType = {
@@ -114,6 +121,7 @@ export type NoteMinAggregateInputType = {
   isPublished?: true
   createdAt?: true
   updatedAt?: true
+  branchId?: true
 }
 
 export type NoteMaxAggregateInputType = {
@@ -128,6 +136,7 @@ export type NoteMaxAggregateInputType = {
   isPublished?: true
   createdAt?: true
   updatedAt?: true
+  branchId?: true
 }
 
 export type NoteCountAggregateInputType = {
@@ -142,6 +151,7 @@ export type NoteCountAggregateInputType = {
   isPublished?: true
   createdAt?: true
   updatedAt?: true
+  branchId?: true
   _all?: true
 }
 
@@ -243,6 +253,7 @@ export type NoteGroupByOutputType = {
   isPublished: boolean
   createdAt: Date
   updatedAt: Date
+  branchId: number
   _count: NoteCountAggregateOutputType | null
   _avg: NoteAvgAggregateOutputType | null
   _sum: NoteSumAggregateOutputType | null
@@ -280,6 +291,8 @@ export type NoteWhereInput = {
   isPublished?: Prisma.BoolFilter<"Note"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Note"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Note"> | Date | string
+  branchId?: Prisma.IntFilter<"Note"> | number
+  branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   degree?: Prisma.XOR<Prisma.DegreeScalarRelationFilter, Prisma.DegreeWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
 }
@@ -296,6 +309,8 @@ export type NoteOrderByWithRelationInput = {
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  branch?: Prisma.BranchOrderByWithRelationInput
   degree?: Prisma.DegreeOrderByWithRelationInput
   subject?: Prisma.SubjectOrderByWithRelationInput
 }
@@ -315,6 +330,8 @@ export type NoteWhereUniqueInput = Prisma.AtLeast<{
   isPublished?: Prisma.BoolFilter<"Note"> | boolean
   createdAt?: Prisma.DateTimeFilter<"Note"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Note"> | Date | string
+  branchId?: Prisma.IntFilter<"Note"> | number
+  branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   degree?: Prisma.XOR<Prisma.DegreeScalarRelationFilter, Prisma.DegreeWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
 }, "id">
@@ -331,6 +348,7 @@ export type NoteOrderByWithAggregationInput = {
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
   _count?: Prisma.NoteCountOrderByAggregateInput
   _avg?: Prisma.NoteAvgOrderByAggregateInput
   _max?: Prisma.NoteMaxOrderByAggregateInput
@@ -353,6 +371,7 @@ export type NoteScalarWhereWithAggregatesInput = {
   isPublished?: Prisma.BoolWithAggregatesFilter<"Note"> | boolean
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Note"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Note"> | Date | string
+  branchId?: Prisma.IntWithAggregatesFilter<"Note"> | number
 }
 
 export type NoteCreateInput = {
@@ -364,6 +383,7 @@ export type NoteCreateInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branch: Prisma.BranchCreateNestedOneWithoutNotesInput
   degree: Prisma.DegreeCreateNestedOneWithoutNotesInput
   subject: Prisma.SubjectCreateNestedOneWithoutNotesInput
 }
@@ -380,6 +400,7 @@ export type NoteUncheckedCreateInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type NoteUpdateInput = {
@@ -391,6 +412,7 @@ export type NoteUpdateInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branch?: Prisma.BranchUpdateOneRequiredWithoutNotesNestedInput
   degree?: Prisma.DegreeUpdateOneRequiredWithoutNotesNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutNotesNestedInput
 }
@@ -407,6 +429,7 @@ export type NoteUncheckedUpdateInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type NoteCreateManyInput = {
@@ -421,6 +444,7 @@ export type NoteCreateManyInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type NoteUpdateManyMutationInput = {
@@ -446,6 +470,7 @@ export type NoteUncheckedUpdateManyInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type NoteListRelationFilter = {
@@ -470,6 +495,7 @@ export type NoteCountOrderByAggregateInput = {
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
 }
 
 export type NoteAvgOrderByAggregateInput = {
@@ -478,6 +504,7 @@ export type NoteAvgOrderByAggregateInput = {
   subjectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
   semester?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
 }
 
 export type NoteMaxOrderByAggregateInput = {
@@ -492,6 +519,7 @@ export type NoteMaxOrderByAggregateInput = {
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
 }
 
 export type NoteMinOrderByAggregateInput = {
@@ -506,6 +534,7 @@ export type NoteMinOrderByAggregateInput = {
   isPublished?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
 }
 
 export type NoteSumOrderByAggregateInput = {
@@ -514,6 +543,49 @@ export type NoteSumOrderByAggregateInput = {
   subjectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
   semester?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+}
+
+export type NoteCreateNestedManyWithoutBranchInput = {
+  create?: Prisma.XOR<Prisma.NoteCreateWithoutBranchInput, Prisma.NoteUncheckedCreateWithoutBranchInput> | Prisma.NoteCreateWithoutBranchInput[] | Prisma.NoteUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.NoteCreateOrConnectWithoutBranchInput | Prisma.NoteCreateOrConnectWithoutBranchInput[]
+  createMany?: Prisma.NoteCreateManyBranchInputEnvelope
+  connect?: Prisma.NoteWhereUniqueInput | Prisma.NoteWhereUniqueInput[]
+}
+
+export type NoteUncheckedCreateNestedManyWithoutBranchInput = {
+  create?: Prisma.XOR<Prisma.NoteCreateWithoutBranchInput, Prisma.NoteUncheckedCreateWithoutBranchInput> | Prisma.NoteCreateWithoutBranchInput[] | Prisma.NoteUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.NoteCreateOrConnectWithoutBranchInput | Prisma.NoteCreateOrConnectWithoutBranchInput[]
+  createMany?: Prisma.NoteCreateManyBranchInputEnvelope
+  connect?: Prisma.NoteWhereUniqueInput | Prisma.NoteWhereUniqueInput[]
+}
+
+export type NoteUpdateManyWithoutBranchNestedInput = {
+  create?: Prisma.XOR<Prisma.NoteCreateWithoutBranchInput, Prisma.NoteUncheckedCreateWithoutBranchInput> | Prisma.NoteCreateWithoutBranchInput[] | Prisma.NoteUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.NoteCreateOrConnectWithoutBranchInput | Prisma.NoteCreateOrConnectWithoutBranchInput[]
+  upsert?: Prisma.NoteUpsertWithWhereUniqueWithoutBranchInput | Prisma.NoteUpsertWithWhereUniqueWithoutBranchInput[]
+  createMany?: Prisma.NoteCreateManyBranchInputEnvelope
+  set?: Prisma.NoteWhereUniqueInput | Prisma.NoteWhereUniqueInput[]
+  disconnect?: Prisma.NoteWhereUniqueInput | Prisma.NoteWhereUniqueInput[]
+  delete?: Prisma.NoteWhereUniqueInput | Prisma.NoteWhereUniqueInput[]
+  connect?: Prisma.NoteWhereUniqueInput | Prisma.NoteWhereUniqueInput[]
+  update?: Prisma.NoteUpdateWithWhereUniqueWithoutBranchInput | Prisma.NoteUpdateWithWhereUniqueWithoutBranchInput[]
+  updateMany?: Prisma.NoteUpdateManyWithWhereWithoutBranchInput | Prisma.NoteUpdateManyWithWhereWithoutBranchInput[]
+  deleteMany?: Prisma.NoteScalarWhereInput | Prisma.NoteScalarWhereInput[]
+}
+
+export type NoteUncheckedUpdateManyWithoutBranchNestedInput = {
+  create?: Prisma.XOR<Prisma.NoteCreateWithoutBranchInput, Prisma.NoteUncheckedCreateWithoutBranchInput> | Prisma.NoteCreateWithoutBranchInput[] | Prisma.NoteUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.NoteCreateOrConnectWithoutBranchInput | Prisma.NoteCreateOrConnectWithoutBranchInput[]
+  upsert?: Prisma.NoteUpsertWithWhereUniqueWithoutBranchInput | Prisma.NoteUpsertWithWhereUniqueWithoutBranchInput[]
+  createMany?: Prisma.NoteCreateManyBranchInputEnvelope
+  set?: Prisma.NoteWhereUniqueInput | Prisma.NoteWhereUniqueInput[]
+  disconnect?: Prisma.NoteWhereUniqueInput | Prisma.NoteWhereUniqueInput[]
+  delete?: Prisma.NoteWhereUniqueInput | Prisma.NoteWhereUniqueInput[]
+  connect?: Prisma.NoteWhereUniqueInput | Prisma.NoteWhereUniqueInput[]
+  update?: Prisma.NoteUpdateWithWhereUniqueWithoutBranchInput | Prisma.NoteUpdateWithWhereUniqueWithoutBranchInput[]
+  updateMany?: Prisma.NoteUpdateManyWithWhereWithoutBranchInput | Prisma.NoteUpdateManyWithWhereWithoutBranchInput[]
+  deleteMany?: Prisma.NoteScalarWhereInput | Prisma.NoteScalarWhereInput[]
 }
 
 export type NoteCreateNestedManyWithoutDegreeInput = {
@@ -600,6 +672,77 @@ export type NoteUncheckedUpdateManyWithoutSubjectNestedInput = {
   deleteMany?: Prisma.NoteScalarWhereInput | Prisma.NoteScalarWhereInput[]
 }
 
+export type NoteCreateWithoutBranchInput = {
+  title: string
+  description?: string | null
+  year: number
+  semester: number
+  fileUrl: string
+  isPublished?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  degree: Prisma.DegreeCreateNestedOneWithoutNotesInput
+  subject: Prisma.SubjectCreateNestedOneWithoutNotesInput
+}
+
+export type NoteUncheckedCreateWithoutBranchInput = {
+  id?: number
+  title: string
+  description?: string | null
+  degreeId: number
+  subjectId: number
+  year: number
+  semester: number
+  fileUrl: string
+  isPublished?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type NoteCreateOrConnectWithoutBranchInput = {
+  where: Prisma.NoteWhereUniqueInput
+  create: Prisma.XOR<Prisma.NoteCreateWithoutBranchInput, Prisma.NoteUncheckedCreateWithoutBranchInput>
+}
+
+export type NoteCreateManyBranchInputEnvelope = {
+  data: Prisma.NoteCreateManyBranchInput | Prisma.NoteCreateManyBranchInput[]
+  skipDuplicates?: boolean
+}
+
+export type NoteUpsertWithWhereUniqueWithoutBranchInput = {
+  where: Prisma.NoteWhereUniqueInput
+  update: Prisma.XOR<Prisma.NoteUpdateWithoutBranchInput, Prisma.NoteUncheckedUpdateWithoutBranchInput>
+  create: Prisma.XOR<Prisma.NoteCreateWithoutBranchInput, Prisma.NoteUncheckedCreateWithoutBranchInput>
+}
+
+export type NoteUpdateWithWhereUniqueWithoutBranchInput = {
+  where: Prisma.NoteWhereUniqueInput
+  data: Prisma.XOR<Prisma.NoteUpdateWithoutBranchInput, Prisma.NoteUncheckedUpdateWithoutBranchInput>
+}
+
+export type NoteUpdateManyWithWhereWithoutBranchInput = {
+  where: Prisma.NoteScalarWhereInput
+  data: Prisma.XOR<Prisma.NoteUpdateManyMutationInput, Prisma.NoteUncheckedUpdateManyWithoutBranchInput>
+}
+
+export type NoteScalarWhereInput = {
+  AND?: Prisma.NoteScalarWhereInput | Prisma.NoteScalarWhereInput[]
+  OR?: Prisma.NoteScalarWhereInput[]
+  NOT?: Prisma.NoteScalarWhereInput | Prisma.NoteScalarWhereInput[]
+  id?: Prisma.IntFilter<"Note"> | number
+  title?: Prisma.StringFilter<"Note"> | string
+  description?: Prisma.StringNullableFilter<"Note"> | string | null
+  degreeId?: Prisma.IntFilter<"Note"> | number
+  subjectId?: Prisma.IntFilter<"Note"> | number
+  year?: Prisma.IntFilter<"Note"> | number
+  semester?: Prisma.IntFilter<"Note"> | number
+  fileUrl?: Prisma.StringFilter<"Note"> | string
+  isPublished?: Prisma.BoolFilter<"Note"> | boolean
+  createdAt?: Prisma.DateTimeFilter<"Note"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Note"> | Date | string
+  branchId?: Prisma.IntFilter<"Note"> | number
+}
+
 export type NoteCreateWithoutDegreeInput = {
   title: string
   description?: string | null
@@ -609,6 +752,7 @@ export type NoteCreateWithoutDegreeInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branch: Prisma.BranchCreateNestedOneWithoutNotesInput
   subject: Prisma.SubjectCreateNestedOneWithoutNotesInput
 }
 
@@ -623,6 +767,7 @@ export type NoteUncheckedCreateWithoutDegreeInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type NoteCreateOrConnectWithoutDegreeInput = {
@@ -651,23 +796,6 @@ export type NoteUpdateManyWithWhereWithoutDegreeInput = {
   data: Prisma.XOR<Prisma.NoteUpdateManyMutationInput, Prisma.NoteUncheckedUpdateManyWithoutDegreeInput>
 }
 
-export type NoteScalarWhereInput = {
-  AND?: Prisma.NoteScalarWhereInput | Prisma.NoteScalarWhereInput[]
-  OR?: Prisma.NoteScalarWhereInput[]
-  NOT?: Prisma.NoteScalarWhereInput | Prisma.NoteScalarWhereInput[]
-  id?: Prisma.IntFilter<"Note"> | number
-  title?: Prisma.StringFilter<"Note"> | string
-  description?: Prisma.StringNullableFilter<"Note"> | string | null
-  degreeId?: Prisma.IntFilter<"Note"> | number
-  subjectId?: Prisma.IntFilter<"Note"> | number
-  year?: Prisma.IntFilter<"Note"> | number
-  semester?: Prisma.IntFilter<"Note"> | number
-  fileUrl?: Prisma.StringFilter<"Note"> | string
-  isPublished?: Prisma.BoolFilter<"Note"> | boolean
-  createdAt?: Prisma.DateTimeFilter<"Note"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Note"> | Date | string
-}
-
 export type NoteCreateWithoutSubjectInput = {
   title: string
   description?: string | null
@@ -677,6 +805,7 @@ export type NoteCreateWithoutSubjectInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branch: Prisma.BranchCreateNestedOneWithoutNotesInput
   degree: Prisma.DegreeCreateNestedOneWithoutNotesInput
 }
 
@@ -691,6 +820,7 @@ export type NoteUncheckedCreateWithoutSubjectInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type NoteCreateOrConnectWithoutSubjectInput = {
@@ -719,6 +849,61 @@ export type NoteUpdateManyWithWhereWithoutSubjectInput = {
   data: Prisma.XOR<Prisma.NoteUpdateManyMutationInput, Prisma.NoteUncheckedUpdateManyWithoutSubjectInput>
 }
 
+export type NoteCreateManyBranchInput = {
+  id?: number
+  title: string
+  description?: string | null
+  degreeId: number
+  subjectId: number
+  year: number
+  semester: number
+  fileUrl: string
+  isPublished?: boolean
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type NoteUpdateWithoutBranchInput = {
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  degree?: Prisma.DegreeUpdateOneRequiredWithoutNotesNestedInput
+  subject?: Prisma.SubjectUpdateOneRequiredWithoutNotesNestedInput
+}
+
+export type NoteUncheckedUpdateWithoutBranchInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
+  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type NoteUncheckedUpdateManyWithoutBranchInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
+  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type NoteCreateManyDegreeInput = {
   id?: number
   title: string
@@ -730,6 +915,7 @@ export type NoteCreateManyDegreeInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type NoteUpdateWithoutDegreeInput = {
@@ -741,6 +927,7 @@ export type NoteUpdateWithoutDegreeInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branch?: Prisma.BranchUpdateOneRequiredWithoutNotesNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutNotesNestedInput
 }
 
@@ -755,6 +942,7 @@ export type NoteUncheckedUpdateWithoutDegreeInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type NoteUncheckedUpdateManyWithoutDegreeInput = {
@@ -768,6 +956,7 @@ export type NoteUncheckedUpdateManyWithoutDegreeInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type NoteCreateManySubjectInput = {
@@ -781,6 +970,7 @@ export type NoteCreateManySubjectInput = {
   isPublished?: boolean
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type NoteUpdateWithoutSubjectInput = {
@@ -792,6 +982,7 @@ export type NoteUpdateWithoutSubjectInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branch?: Prisma.BranchUpdateOneRequiredWithoutNotesNestedInput
   degree?: Prisma.DegreeUpdateOneRequiredWithoutNotesNestedInput
 }
 
@@ -806,6 +997,7 @@ export type NoteUncheckedUpdateWithoutSubjectInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type NoteUncheckedUpdateManyWithoutSubjectInput = {
@@ -819,6 +1011,7 @@ export type NoteUncheckedUpdateManyWithoutSubjectInput = {
   isPublished?: Prisma.BoolFieldUpdateOperationsInput | boolean
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -835,6 +1028,8 @@ export type NoteSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = r
   isPublished?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  branchId?: boolean
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["note"]>
@@ -851,6 +1046,8 @@ export type NoteSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   isPublished?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  branchId?: boolean
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["note"]>
@@ -867,6 +1064,8 @@ export type NoteSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensio
   isPublished?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  branchId?: boolean
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["note"]>
@@ -883,18 +1082,22 @@ export type NoteSelectScalar = {
   isPublished?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  branchId?: boolean
 }
 
-export type NoteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "degreeId" | "subjectId" | "year" | "semester" | "fileUrl" | "isPublished" | "createdAt" | "updatedAt", ExtArgs["result"]["note"]>
+export type NoteOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "title" | "description" | "degreeId" | "subjectId" | "year" | "semester" | "fileUrl" | "isPublished" | "createdAt" | "updatedAt" | "branchId", ExtArgs["result"]["note"]>
 export type NoteInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }
 export type NoteIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }
 export type NoteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }
@@ -902,6 +1105,7 @@ export type NoteIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensi
 export type $NotePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Note"
   objects: {
+    branch: Prisma.$BranchPayload<ExtArgs>
     degree: Prisma.$DegreePayload<ExtArgs>
     subject: Prisma.$SubjectPayload<ExtArgs>
   }
@@ -917,6 +1121,7 @@ export type $NotePayload<ExtArgs extends runtime.Types.Extensions.InternalArgs =
     isPublished: boolean
     createdAt: Date
     updatedAt: Date
+    branchId: number
   }, ExtArgs["result"]["note"]>
   composites: {}
 }
@@ -1311,6 +1516,7 @@ readonly fields: NoteFieldRefs;
  */
 export interface Prisma__NoteClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  branch<T extends Prisma.BranchDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BranchDefaultArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   degree<T extends Prisma.DegreeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DegreeDefaultArgs<ExtArgs>>): Prisma.Prisma__DegreeClient<runtime.Types.Result.GetResult<Prisma.$DegreePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   subject<T extends Prisma.SubjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubjectDefaultArgs<ExtArgs>>): Prisma.Prisma__SubjectClient<runtime.Types.Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1353,6 +1559,7 @@ export interface NoteFieldRefs {
   readonly isPublished: Prisma.FieldRef<"Note", 'Boolean'>
   readonly createdAt: Prisma.FieldRef<"Note", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Note", 'DateTime'>
+  readonly branchId: Prisma.FieldRef<"Note", 'Int'>
 }
     
 

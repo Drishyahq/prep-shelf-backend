@@ -32,6 +32,7 @@ export type ContributionAvgAggregateOutputType = {
   subjectId: number | null
   year: number | null
   semester: number | null
+  branchId: number | null
 }
 
 export type ContributionSumAggregateOutputType = {
@@ -40,6 +41,7 @@ export type ContributionSumAggregateOutputType = {
   subjectId: number | null
   year: number | null
   semester: number | null
+  branchId: number | null
 }
 
 export type ContributionMinAggregateOutputType = {
@@ -59,6 +61,7 @@ export type ContributionMinAggregateOutputType = {
   reviewedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  branchId: number | null
 }
 
 export type ContributionMaxAggregateOutputType = {
@@ -78,6 +81,7 @@ export type ContributionMaxAggregateOutputType = {
   reviewedAt: Date | null
   createdAt: Date | null
   updatedAt: Date | null
+  branchId: number | null
 }
 
 export type ContributionCountAggregateOutputType = {
@@ -97,6 +101,7 @@ export type ContributionCountAggregateOutputType = {
   reviewedAt: number
   createdAt: number
   updatedAt: number
+  branchId: number
   _all: number
 }
 
@@ -107,6 +112,7 @@ export type ContributionAvgAggregateInputType = {
   subjectId?: true
   year?: true
   semester?: true
+  branchId?: true
 }
 
 export type ContributionSumAggregateInputType = {
@@ -115,6 +121,7 @@ export type ContributionSumAggregateInputType = {
   subjectId?: true
   year?: true
   semester?: true
+  branchId?: true
 }
 
 export type ContributionMinAggregateInputType = {
@@ -134,6 +141,7 @@ export type ContributionMinAggregateInputType = {
   reviewedAt?: true
   createdAt?: true
   updatedAt?: true
+  branchId?: true
 }
 
 export type ContributionMaxAggregateInputType = {
@@ -153,6 +161,7 @@ export type ContributionMaxAggregateInputType = {
   reviewedAt?: true
   createdAt?: true
   updatedAt?: true
+  branchId?: true
 }
 
 export type ContributionCountAggregateInputType = {
@@ -172,6 +181,7 @@ export type ContributionCountAggregateInputType = {
   reviewedAt?: true
   createdAt?: true
   updatedAt?: true
+  branchId?: true
   _all?: true
 }
 
@@ -278,6 +288,7 @@ export type ContributionGroupByOutputType = {
   reviewedAt: Date | null
   createdAt: Date
   updatedAt: Date
+  branchId: number
   _count: ContributionCountAggregateOutputType | null
   _avg: ContributionAvgAggregateOutputType | null
   _sum: ContributionSumAggregateOutputType | null
@@ -320,6 +331,8 @@ export type ContributionWhereInput = {
   reviewedAt?: Prisma.DateTimeNullableFilter<"Contribution"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
+  branchId?: Prisma.IntFilter<"Contribution"> | number
+  branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   degree?: Prisma.XOR<Prisma.DegreeScalarRelationFilter, Prisma.DegreeWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
 }
@@ -341,6 +354,8 @@ export type ContributionOrderByWithRelationInput = {
   reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+  branch?: Prisma.BranchOrderByWithRelationInput
   degree?: Prisma.DegreeOrderByWithRelationInput
   subject?: Prisma.SubjectOrderByWithRelationInput
 }
@@ -365,6 +380,8 @@ export type ContributionWhereUniqueInput = Prisma.AtLeast<{
   reviewedAt?: Prisma.DateTimeNullableFilter<"Contribution"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
+  branchId?: Prisma.IntFilter<"Contribution"> | number
+  branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
   degree?: Prisma.XOR<Prisma.DegreeScalarRelationFilter, Prisma.DegreeWhereInput>
   subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
 }, "id">
@@ -386,6 +403,7 @@ export type ContributionOrderByWithAggregationInput = {
   reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
   _count?: Prisma.ContributionCountOrderByAggregateInput
   _avg?: Prisma.ContributionAvgOrderByAggregateInput
   _max?: Prisma.ContributionMaxOrderByAggregateInput
@@ -413,6 +431,7 @@ export type ContributionScalarWhereWithAggregatesInput = {
   reviewedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Contribution"> | Date | string | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Contribution"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Contribution"> | Date | string
+  branchId?: Prisma.IntWithAggregatesFilter<"Contribution"> | number
 }
 
 export type ContributionCreateInput = {
@@ -429,6 +448,7 @@ export type ContributionCreateInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  branch: Prisma.BranchCreateNestedOneWithoutContributionsInput
   degree: Prisma.DegreeCreateNestedOneWithoutContributionsInput
   subject: Prisma.SubjectCreateNestedOneWithoutContributionsInput
 }
@@ -450,6 +470,7 @@ export type ContributionUncheckedCreateInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type ContributionUpdateInput = {
@@ -466,6 +487,7 @@ export type ContributionUpdateInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branch?: Prisma.BranchUpdateOneRequiredWithoutContributionsNestedInput
   degree?: Prisma.DegreeUpdateOneRequiredWithoutContributionsNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutContributionsNestedInput
 }
@@ -487,6 +509,7 @@ export type ContributionUncheckedUpdateInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ContributionCreateManyInput = {
@@ -506,6 +529,7 @@ export type ContributionCreateManyInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type ContributionUpdateManyMutationInput = {
@@ -541,6 +565,7 @@ export type ContributionUncheckedUpdateManyInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ContributionListRelationFilter = {
@@ -570,6 +595,7 @@ export type ContributionCountOrderByAggregateInput = {
   reviewedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
 }
 
 export type ContributionAvgOrderByAggregateInput = {
@@ -578,6 +604,7 @@ export type ContributionAvgOrderByAggregateInput = {
   subjectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
   semester?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
 }
 
 export type ContributionMaxOrderByAggregateInput = {
@@ -597,6 +624,7 @@ export type ContributionMaxOrderByAggregateInput = {
   reviewedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
 }
 
 export type ContributionMinOrderByAggregateInput = {
@@ -616,6 +644,7 @@ export type ContributionMinOrderByAggregateInput = {
   reviewedAt?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
 }
 
 export type ContributionSumOrderByAggregateInput = {
@@ -624,6 +653,49 @@ export type ContributionSumOrderByAggregateInput = {
   subjectId?: Prisma.SortOrder
   year?: Prisma.SortOrder
   semester?: Prisma.SortOrder
+  branchId?: Prisma.SortOrder
+}
+
+export type ContributionCreateNestedManyWithoutBranchInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutBranchInput, Prisma.ContributionUncheckedCreateWithoutBranchInput> | Prisma.ContributionCreateWithoutBranchInput[] | Prisma.ContributionUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutBranchInput | Prisma.ContributionCreateOrConnectWithoutBranchInput[]
+  createMany?: Prisma.ContributionCreateManyBranchInputEnvelope
+  connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+}
+
+export type ContributionUncheckedCreateNestedManyWithoutBranchInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutBranchInput, Prisma.ContributionUncheckedCreateWithoutBranchInput> | Prisma.ContributionCreateWithoutBranchInput[] | Prisma.ContributionUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutBranchInput | Prisma.ContributionCreateOrConnectWithoutBranchInput[]
+  createMany?: Prisma.ContributionCreateManyBranchInputEnvelope
+  connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+}
+
+export type ContributionUpdateManyWithoutBranchNestedInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutBranchInput, Prisma.ContributionUncheckedCreateWithoutBranchInput> | Prisma.ContributionCreateWithoutBranchInput[] | Prisma.ContributionUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutBranchInput | Prisma.ContributionCreateOrConnectWithoutBranchInput[]
+  upsert?: Prisma.ContributionUpsertWithWhereUniqueWithoutBranchInput | Prisma.ContributionUpsertWithWhereUniqueWithoutBranchInput[]
+  createMany?: Prisma.ContributionCreateManyBranchInputEnvelope
+  set?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+  disconnect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+  delete?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+  connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+  update?: Prisma.ContributionUpdateWithWhereUniqueWithoutBranchInput | Prisma.ContributionUpdateWithWhereUniqueWithoutBranchInput[]
+  updateMany?: Prisma.ContributionUpdateManyWithWhereWithoutBranchInput | Prisma.ContributionUpdateManyWithWhereWithoutBranchInput[]
+  deleteMany?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
+}
+
+export type ContributionUncheckedUpdateManyWithoutBranchNestedInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutBranchInput, Prisma.ContributionUncheckedCreateWithoutBranchInput> | Prisma.ContributionCreateWithoutBranchInput[] | Prisma.ContributionUncheckedCreateWithoutBranchInput[]
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutBranchInput | Prisma.ContributionCreateOrConnectWithoutBranchInput[]
+  upsert?: Prisma.ContributionUpsertWithWhereUniqueWithoutBranchInput | Prisma.ContributionUpsertWithWhereUniqueWithoutBranchInput[]
+  createMany?: Prisma.ContributionCreateManyBranchInputEnvelope
+  set?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+  disconnect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+  delete?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+  connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+  update?: Prisma.ContributionUpdateWithWhereUniqueWithoutBranchInput | Prisma.ContributionUpdateWithWhereUniqueWithoutBranchInput[]
+  updateMany?: Prisma.ContributionUpdateManyWithWhereWithoutBranchInput | Prisma.ContributionUpdateManyWithWhereWithoutBranchInput[]
+  deleteMany?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
 }
 
 export type ContributionCreateNestedManyWithoutDegreeInput = {
@@ -722,6 +794,92 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
+export type ContributionCreateWithoutBranchInput = {
+  type: $Enums.ContributionType
+  status?: $Enums.ContributionStatus
+  contributorName?: string | null
+  contributorEmail?: string | null
+  title: string
+  description?: string | null
+  year: number
+  semester: number
+  fileUrl: string
+  reviewNote?: string | null
+  reviewedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  degree: Prisma.DegreeCreateNestedOneWithoutContributionsInput
+  subject: Prisma.SubjectCreateNestedOneWithoutContributionsInput
+}
+
+export type ContributionUncheckedCreateWithoutBranchInput = {
+  id?: number
+  type: $Enums.ContributionType
+  status?: $Enums.ContributionStatus
+  contributorName?: string | null
+  contributorEmail?: string | null
+  title: string
+  description?: string | null
+  degreeId: number
+  subjectId: number
+  year: number
+  semester: number
+  fileUrl: string
+  reviewNote?: string | null
+  reviewedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ContributionCreateOrConnectWithoutBranchInput = {
+  where: Prisma.ContributionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ContributionCreateWithoutBranchInput, Prisma.ContributionUncheckedCreateWithoutBranchInput>
+}
+
+export type ContributionCreateManyBranchInputEnvelope = {
+  data: Prisma.ContributionCreateManyBranchInput | Prisma.ContributionCreateManyBranchInput[]
+  skipDuplicates?: boolean
+}
+
+export type ContributionUpsertWithWhereUniqueWithoutBranchInput = {
+  where: Prisma.ContributionWhereUniqueInput
+  update: Prisma.XOR<Prisma.ContributionUpdateWithoutBranchInput, Prisma.ContributionUncheckedUpdateWithoutBranchInput>
+  create: Prisma.XOR<Prisma.ContributionCreateWithoutBranchInput, Prisma.ContributionUncheckedCreateWithoutBranchInput>
+}
+
+export type ContributionUpdateWithWhereUniqueWithoutBranchInput = {
+  where: Prisma.ContributionWhereUniqueInput
+  data: Prisma.XOR<Prisma.ContributionUpdateWithoutBranchInput, Prisma.ContributionUncheckedUpdateWithoutBranchInput>
+}
+
+export type ContributionUpdateManyWithWhereWithoutBranchInput = {
+  where: Prisma.ContributionScalarWhereInput
+  data: Prisma.XOR<Prisma.ContributionUpdateManyMutationInput, Prisma.ContributionUncheckedUpdateManyWithoutBranchInput>
+}
+
+export type ContributionScalarWhereInput = {
+  AND?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
+  OR?: Prisma.ContributionScalarWhereInput[]
+  NOT?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
+  id?: Prisma.IntFilter<"Contribution"> | number
+  type?: Prisma.EnumContributionTypeFilter<"Contribution"> | $Enums.ContributionType
+  status?: Prisma.EnumContributionStatusFilter<"Contribution"> | $Enums.ContributionStatus
+  contributorName?: Prisma.StringNullableFilter<"Contribution"> | string | null
+  contributorEmail?: Prisma.StringNullableFilter<"Contribution"> | string | null
+  title?: Prisma.StringFilter<"Contribution"> | string
+  description?: Prisma.StringNullableFilter<"Contribution"> | string | null
+  degreeId?: Prisma.IntFilter<"Contribution"> | number
+  subjectId?: Prisma.IntFilter<"Contribution"> | number
+  year?: Prisma.IntFilter<"Contribution"> | number
+  semester?: Prisma.IntFilter<"Contribution"> | number
+  fileUrl?: Prisma.StringFilter<"Contribution"> | string
+  reviewNote?: Prisma.StringNullableFilter<"Contribution"> | string | null
+  reviewedAt?: Prisma.DateTimeNullableFilter<"Contribution"> | Date | string | null
+  createdAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
+  updatedAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
+  branchId?: Prisma.IntFilter<"Contribution"> | number
+}
+
 export type ContributionCreateWithoutDegreeInput = {
   type: $Enums.ContributionType
   status?: $Enums.ContributionStatus
@@ -736,6 +894,7 @@ export type ContributionCreateWithoutDegreeInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  branch: Prisma.BranchCreateNestedOneWithoutContributionsInput
   subject: Prisma.SubjectCreateNestedOneWithoutContributionsInput
 }
 
@@ -755,6 +914,7 @@ export type ContributionUncheckedCreateWithoutDegreeInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type ContributionCreateOrConnectWithoutDegreeInput = {
@@ -783,28 +943,6 @@ export type ContributionUpdateManyWithWhereWithoutDegreeInput = {
   data: Prisma.XOR<Prisma.ContributionUpdateManyMutationInput, Prisma.ContributionUncheckedUpdateManyWithoutDegreeInput>
 }
 
-export type ContributionScalarWhereInput = {
-  AND?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
-  OR?: Prisma.ContributionScalarWhereInput[]
-  NOT?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
-  id?: Prisma.IntFilter<"Contribution"> | number
-  type?: Prisma.EnumContributionTypeFilter<"Contribution"> | $Enums.ContributionType
-  status?: Prisma.EnumContributionStatusFilter<"Contribution"> | $Enums.ContributionStatus
-  contributorName?: Prisma.StringNullableFilter<"Contribution"> | string | null
-  contributorEmail?: Prisma.StringNullableFilter<"Contribution"> | string | null
-  title?: Prisma.StringFilter<"Contribution"> | string
-  description?: Prisma.StringNullableFilter<"Contribution"> | string | null
-  degreeId?: Prisma.IntFilter<"Contribution"> | number
-  subjectId?: Prisma.IntFilter<"Contribution"> | number
-  year?: Prisma.IntFilter<"Contribution"> | number
-  semester?: Prisma.IntFilter<"Contribution"> | number
-  fileUrl?: Prisma.StringFilter<"Contribution"> | string
-  reviewNote?: Prisma.StringNullableFilter<"Contribution"> | string | null
-  reviewedAt?: Prisma.DateTimeNullableFilter<"Contribution"> | Date | string | null
-  createdAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
-  updatedAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
-}
-
 export type ContributionCreateWithoutSubjectInput = {
   type: $Enums.ContributionType
   status?: $Enums.ContributionStatus
@@ -819,6 +957,7 @@ export type ContributionCreateWithoutSubjectInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  branch: Prisma.BranchCreateNestedOneWithoutContributionsInput
   degree: Prisma.DegreeCreateNestedOneWithoutContributionsInput
 }
 
@@ -838,6 +977,7 @@ export type ContributionUncheckedCreateWithoutSubjectInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type ContributionCreateOrConnectWithoutSubjectInput = {
@@ -866,6 +1006,81 @@ export type ContributionUpdateManyWithWhereWithoutSubjectInput = {
   data: Prisma.XOR<Prisma.ContributionUpdateManyMutationInput, Prisma.ContributionUncheckedUpdateManyWithoutSubjectInput>
 }
 
+export type ContributionCreateManyBranchInput = {
+  id?: number
+  type: $Enums.ContributionType
+  status?: $Enums.ContributionStatus
+  contributorName?: string | null
+  contributorEmail?: string | null
+  title: string
+  description?: string | null
+  degreeId: number
+  subjectId: number
+  year: number
+  semester: number
+  fileUrl: string
+  reviewNote?: string | null
+  reviewedAt?: Date | string | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+}
+
+export type ContributionUpdateWithoutBranchInput = {
+  type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
+  status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
+  contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  degree?: Prisma.DegreeUpdateOneRequiredWithoutContributionsNestedInput
+  subject?: Prisma.SubjectUpdateOneRequiredWithoutContributionsNestedInput
+}
+
+export type ContributionUncheckedUpdateWithoutBranchInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
+  status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
+  contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
+  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
+export type ContributionUncheckedUpdateManyWithoutBranchInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
+  status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
+  contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
+  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  year?: Prisma.IntFieldUpdateOperationsInput | number
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+}
+
 export type ContributionCreateManyDegreeInput = {
   id?: number
   type: $Enums.ContributionType
@@ -882,6 +1097,7 @@ export type ContributionCreateManyDegreeInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type ContributionUpdateWithoutDegreeInput = {
@@ -898,6 +1114,7 @@ export type ContributionUpdateWithoutDegreeInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branch?: Prisma.BranchUpdateOneRequiredWithoutContributionsNestedInput
   subject?: Prisma.SubjectUpdateOneRequiredWithoutContributionsNestedInput
 }
 
@@ -917,6 +1134,7 @@ export type ContributionUncheckedUpdateWithoutDegreeInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ContributionUncheckedUpdateManyWithoutDegreeInput = {
@@ -935,6 +1153,7 @@ export type ContributionUncheckedUpdateManyWithoutDegreeInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ContributionCreateManySubjectInput = {
@@ -953,6 +1172,7 @@ export type ContributionCreateManySubjectInput = {
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  branchId: number
 }
 
 export type ContributionUpdateWithoutSubjectInput = {
@@ -969,6 +1189,7 @@ export type ContributionUpdateWithoutSubjectInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branch?: Prisma.BranchUpdateOneRequiredWithoutContributionsNestedInput
   degree?: Prisma.DegreeUpdateOneRequiredWithoutContributionsNestedInput
 }
 
@@ -988,6 +1209,7 @@ export type ContributionUncheckedUpdateWithoutSubjectInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 export type ContributionUncheckedUpdateManyWithoutSubjectInput = {
@@ -1006,6 +1228,7 @@ export type ContributionUncheckedUpdateManyWithoutSubjectInput = {
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  branchId?: Prisma.IntFieldUpdateOperationsInput | number
 }
 
 
@@ -1027,6 +1250,8 @@ export type ContributionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   reviewedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  branchId?: boolean
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contribution"]>
@@ -1048,6 +1273,8 @@ export type ContributionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   reviewedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  branchId?: boolean
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contribution"]>
@@ -1069,6 +1296,8 @@ export type ContributionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   reviewedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  branchId?: boolean
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }, ExtArgs["result"]["contribution"]>
@@ -1090,18 +1319,22 @@ export type ContributionSelectScalar = {
   reviewedAt?: boolean
   createdAt?: boolean
   updatedAt?: boolean
+  branchId?: boolean
 }
 
-export type ContributionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "status" | "contributorName" | "contributorEmail" | "title" | "description" | "degreeId" | "subjectId" | "year" | "semester" | "fileUrl" | "reviewNote" | "reviewedAt" | "createdAt" | "updatedAt", ExtArgs["result"]["contribution"]>
+export type ContributionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "status" | "contributorName" | "contributorEmail" | "title" | "description" | "degreeId" | "subjectId" | "year" | "semester" | "fileUrl" | "reviewNote" | "reviewedAt" | "createdAt" | "updatedAt" | "branchId", ExtArgs["result"]["contribution"]>
 export type ContributionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }
 export type ContributionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }
 export type ContributionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
   degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
   subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
 }
@@ -1109,6 +1342,7 @@ export type ContributionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types
 export type $ContributionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Contribution"
   objects: {
+    branch: Prisma.$BranchPayload<ExtArgs>
     degree: Prisma.$DegreePayload<ExtArgs>
     subject: Prisma.$SubjectPayload<ExtArgs>
   }
@@ -1129,6 +1363,7 @@ export type $ContributionPayload<ExtArgs extends runtime.Types.Extensions.Intern
     reviewedAt: Date | null
     createdAt: Date
     updatedAt: Date
+    branchId: number
   }, ExtArgs["result"]["contribution"]>
   composites: {}
 }
@@ -1523,6 +1758,7 @@ readonly fields: ContributionFieldRefs;
  */
 export interface Prisma__ContributionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
+  branch<T extends Prisma.BranchDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BranchDefaultArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   degree<T extends Prisma.DegreeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DegreeDefaultArgs<ExtArgs>>): Prisma.Prisma__DegreeClient<runtime.Types.Result.GetResult<Prisma.$DegreePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   subject<T extends Prisma.SubjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubjectDefaultArgs<ExtArgs>>): Prisma.Prisma__SubjectClient<runtime.Types.Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
   /**
@@ -1570,6 +1806,7 @@ export interface ContributionFieldRefs {
   readonly reviewedAt: Prisma.FieldRef<"Contribution", 'DateTime'>
   readonly createdAt: Prisma.FieldRef<"Contribution", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Contribution", 'DateTime'>
+  readonly branchId: Prisma.FieldRef<"Contribution", 'Int'>
 }
     
 

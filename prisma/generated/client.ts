@@ -50,6 +50,11 @@ export type Admin = Prisma.AdminModel
  */
 export type Session = Prisma.SessionModel
 /**
+ * Model Branch
+ * 
+ */
+export type Branch = Prisma.BranchModel
+/**
  * Model Degree
  * 
  */
