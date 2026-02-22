@@ -26,111 +26,144 @@ model Session {
   admin     Admin    @relation(fields: [adminId], references: [id], onDelete: Cascade)
 }
 
-model Branch {
-  id            Int            @id @default(autoincrement())
-  name          String         @unique
-  createdAt     DateTime       @default(now())
-  assignments   Assignment[]
-  contributions Contribution[]
-  notes         Note[]
-  pyqPapers     PYQPaper[]
+model Degree {
+  id        Int            @id @default(autoincrement())
+  name      String         @unique
+  semesters Int
+  createdAt DateTime       @default(now())
+  branches  DegreeBranch[]
 }
 
-model Degree {
-  id            Int            @id @default(autoincrement())
-  name          String         @unique
-  createdAt     DateTime       @default(now())
-  assignments   Assignment[]
-  contributions Contribution[]
-  notes         Note[]
-  pyqPapers     PYQPaper[]
+model Branch {
+  id        Int            @id @default(autoincrement())
+  name      String         @unique
+  createdAt DateTime       @default(now())
+  degrees   DegreeBranch[]
+}
+
+model DegreeBranch {
+  id        Int                   @id @default(autoincrement())
+  degreeId  Int
+  branchId  Int
+  createdAt DateTime              @default(now())
+  branch    Branch                @relation(fields: [branchId], references: [id], onDelete: Cascade)
+  degree    Degree                @relation(fields: [degreeId], references: [id], onDelete: Cascade)
+  subjects  DegreeBranchSubject[]
+
+  @@unique([degreeId, branchId])
 }
 
 model Subject {
-  id            Int            @id @default(autoincrement())
-  name          String         @unique
-  createdAt     DateTime       @default(now())
-  assignments   Assignment[]
-  contributions Contribution[]
-  notes         Note[]
-  pyqPapers     PYQPaper[]
+  id        Int                   @id @default(autoincrement())
+  name      String                @unique
+  createdAt DateTime              @default(now())
+  programs  DegreeBranchSubject[]
+}
+
+model DegreeBranchSubject {
+  id             Int            @id @default(autoincrement())
+  degreeBranchId Int
+  subjectId      Int
+  createdAt      DateTime       @default(now())
+  assignments    Assignment[]
+  contributions  Contribution[]
+  degreeBranch   DegreeBranch   @relation(fields: [degreeBranchId], references: [id], onDelete: Cascade)
+  subject        Subject        @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  notes          Note[]
+  pyqPapers      PYQPaper[]
+  playcircles    Playcircle[]
+
+  @@unique([degreeBranchId, subjectId])
 }
 
 model PYQPaper {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  degreeId    Int
-  subjectId   Int
-  year        Int
-  semester    Int
-  fileUrl     String
-  isPublished Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  branchId    Int
-  branch      Branch   @relation(fields: [branchId], references: [id])
-  degree      Degree   @relation(fields: [degreeId], references: [id])
-  subject     Subject  @relation(fields: [subjectId], references: [id])
+  id                    Int                 @id @default(autoincrement())
+  title                 String
+  description           String?
+  degreeBranchSubjectId Int
+  examYear              Int
+  semester              Int
+  fileUrl               String
+  isSolution            Boolean             @default(false)
+  parentId              Int?
+  isPublished           Boolean             @default(true)
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+  contribution          Contribution?
+  degreeBranchSubject   DegreeBranchSubject @relation(fields: [degreeBranchSubjectId], references: [id], onDelete: Cascade)
+  parent                PYQPaper?           @relation("PYQSolution", fields: [parentId], references: [id], onDelete: Cascade)
+  solutions             PYQPaper[]          @relation("PYQSolution")
 }
 
 model Note {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  degreeId    Int
-  subjectId   Int
-  year        Int
-  semester    Int
-  fileUrl     String
-  isPublished Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  branchId    Int
-  branch      Branch   @relation(fields: [branchId], references: [id])
-  degree      Degree   @relation(fields: [degreeId], references: [id])
-  subject     Subject  @relation(fields: [subjectId], references: [id])
+  id                    Int                 @id @default(autoincrement())
+  title                 String
+  description           String?
+  degreeBranchSubjectId Int
+  semester              Int
+  fileUrl               String
+  isPublished           Boolean             @default(true)
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+  contribution          Contribution?
+  degreeBranchSubject   DegreeBranchSubject @relation(fields: [degreeBranchSubjectId], references: [id], onDelete: Cascade)
 }
 
 model Assignment {
-  id          Int      @id @default(autoincrement())
-  title       String
-  description String?
-  degreeId    Int
-  subjectId   Int
-  year        Int
-  semester    Int
-  fileUrl     String
-  isPublished Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  branchId    Int
-  branch      Branch   @relation(fields: [branchId], references: [id])
-  degree      Degree   @relation(fields: [degreeId], references: [id])
-  subject     Subject  @relation(fields: [subjectId], references: [id])
+  id                    Int                 @id @default(autoincrement())
+  title                 String
+  description           String?
+  degreeBranchSubjectId Int
+  semester              Int
+  fileUrl               String
+  isSolution            Boolean             @default(false)
+  parentId              Int?
+  isPublished           Boolean             @default(true)
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+  degreeBranchSubject   DegreeBranchSubject @relation(fields: [degreeBranchSubjectId], references: [id], onDelete: Cascade)
+  parent                Assignment?         @relation("AssignmentSolution", fields: [parentId], references: [id], onDelete: Cascade)
+  solutions             Assignment[]        @relation("AssignmentSolution")
+  contribution          Contribution?
+}
+
+model Playcircle {
+  id                    Int                 @id @default(autoincrement())
+  title                 String
+  description           String?
+  playlistUrl           String
+  degreeBranchSubjectId Int
+  semester              Int
+  isPublished           Boolean             @default(true)
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+  degreeBranchSubject   DegreeBranchSubject @relation(fields: [degreeBranchSubjectId], references: [id], onDelete: Cascade)
 }
 
 model Contribution {
-  id               Int                @id @default(autoincrement())
-  type             ContributionType
-  status           ContributionStatus @default(PENDING)
-  contributorName  String?
-  contributorEmail String?
-  title            String
-  description      String?
-  degreeId         Int
-  subjectId        Int
-  year             Int
-  semester         Int
-  fileUrl          String
-  reviewNote       String?
-  reviewedAt       DateTime?
-  createdAt        DateTime           @default(now())
-  updatedAt        DateTime           @updatedAt
-  branchId         Int
-  branch           Branch             @relation(fields: [branchId], references: [id])
-  degree           Degree             @relation(fields: [degreeId], references: [id])
-  subject          Subject            @relation(fields: [subjectId], references: [id])
+  id                    Int                 @id @default(autoincrement())
+  type                  ContributionType
+  status                ContributionStatus  @default(PENDING)
+  contributorName       String?
+  contributorEmail      String?
+  title                 String
+  description           String?
+  degreeBranchSubjectId Int
+  examYear              Int?
+  semester              Int
+  fileUrl               String
+  reviewNote            String?
+  reviewedAt            DateTime?
+  noteId                Int?                @unique
+  pyqPaperId            Int?                @unique
+  assignmentId          Int?                @unique
+  createdAt             DateTime            @default(now())
+  updatedAt             DateTime            @updatedAt
+  isSolution            Boolean             @default(false)
+  assignment            Assignment?         @relation(fields: [assignmentId], references: [id])
+  degreeBranchSubject   DegreeBranchSubject @relation(fields: [degreeBranchSubjectId], references: [id], onDelete: Cascade)
+  note                  Note?               @relation(fields: [noteId], references: [id])
+  pyqPaper              PYQPaper?           @relation(fields: [pyqPaperId], references: [id])
 }
 
 enum ContributionType {

@@ -386,12 +386,15 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 export const ModelName = {
   Admin: 'Admin',
   Session: 'Session',
-  Branch: 'Branch',
   Degree: 'Degree',
+  Branch: 'Branch',
+  DegreeBranch: 'DegreeBranch',
   Subject: 'Subject',
+  DegreeBranchSubject: 'DegreeBranchSubject',
   PYQPaper: 'PYQPaper',
   Note: 'Note',
   Assignment: 'Assignment',
+  Playcircle: 'Playcircle',
   Contribution: 'Contribution'
 } as const
 
@@ -408,7 +411,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "admin" | "session" | "branch" | "degree" | "subject" | "pYQPaper" | "note" | "assignment" | "contribution"
+    modelProps: "admin" | "session" | "degree" | "branch" | "degreeBranch" | "subject" | "degreeBranchSubject" | "pYQPaper" | "note" | "assignment" | "playcircle" | "contribution"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -560,80 +563,6 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
-    Branch: {
-      payload: Prisma.$BranchPayload<ExtArgs>
-      fields: Prisma.BranchFieldRefs
-      operations: {
-        findUnique: {
-          args: Prisma.BranchFindUniqueArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload> | null
-        }
-        findUniqueOrThrow: {
-          args: Prisma.BranchFindUniqueOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>
-        }
-        findFirst: {
-          args: Prisma.BranchFindFirstArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload> | null
-        }
-        findFirstOrThrow: {
-          args: Prisma.BranchFindFirstOrThrowArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>
-        }
-        findMany: {
-          args: Prisma.BranchFindManyArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>[]
-        }
-        create: {
-          args: Prisma.BranchCreateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>
-        }
-        createMany: {
-          args: Prisma.BranchCreateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        createManyAndReturn: {
-          args: Prisma.BranchCreateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>[]
-        }
-        delete: {
-          args: Prisma.BranchDeleteArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>
-        }
-        update: {
-          args: Prisma.BranchUpdateArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>
-        }
-        deleteMany: {
-          args: Prisma.BranchDeleteManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateMany: {
-          args: Prisma.BranchUpdateManyArgs<ExtArgs>
-          result: BatchPayload
-        }
-        updateManyAndReturn: {
-          args: Prisma.BranchUpdateManyAndReturnArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>[]
-        }
-        upsert: {
-          args: Prisma.BranchUpsertArgs<ExtArgs>
-          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>
-        }
-        aggregate: {
-          args: Prisma.BranchAggregateArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.AggregateBranch>
-        }
-        groupBy: {
-          args: Prisma.BranchGroupByArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BranchGroupByOutputType>[]
-        }
-        count: {
-          args: Prisma.BranchCountArgs<ExtArgs>
-          result: runtime.Types.Utils.Optional<Prisma.BranchCountAggregateOutputType> | number
-        }
-      }
-    }
     Degree: {
       payload: Prisma.$DegreePayload<ExtArgs>
       fields: Prisma.DegreeFieldRefs
@@ -708,6 +637,154 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Branch: {
+      payload: Prisma.$BranchPayload<ExtArgs>
+      fields: Prisma.BranchFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.BranchFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.BranchFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>
+        }
+        findFirst: {
+          args: Prisma.BranchFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.BranchFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>
+        }
+        findMany: {
+          args: Prisma.BranchFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>[]
+        }
+        create: {
+          args: Prisma.BranchCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>
+        }
+        createMany: {
+          args: Prisma.BranchCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.BranchCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>[]
+        }
+        delete: {
+          args: Prisma.BranchDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>
+        }
+        update: {
+          args: Prisma.BranchUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>
+        }
+        deleteMany: {
+          args: Prisma.BranchDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.BranchUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.BranchUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>[]
+        }
+        upsert: {
+          args: Prisma.BranchUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$BranchPayload>
+        }
+        aggregate: {
+          args: Prisma.BranchAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateBranch>
+        }
+        groupBy: {
+          args: Prisma.BranchGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BranchGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.BranchCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.BranchCountAggregateOutputType> | number
+        }
+      }
+    }
+    DegreeBranch: {
+      payload: Prisma.$DegreeBranchPayload<ExtArgs>
+      fields: Prisma.DegreeBranchFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DegreeBranchFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DegreeBranchFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchPayload>
+        }
+        findFirst: {
+          args: Prisma.DegreeBranchFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DegreeBranchFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchPayload>
+        }
+        findMany: {
+          args: Prisma.DegreeBranchFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchPayload>[]
+        }
+        create: {
+          args: Prisma.DegreeBranchCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchPayload>
+        }
+        createMany: {
+          args: Prisma.DegreeBranchCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DegreeBranchCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchPayload>[]
+        }
+        delete: {
+          args: Prisma.DegreeBranchDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchPayload>
+        }
+        update: {
+          args: Prisma.DegreeBranchUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchPayload>
+        }
+        deleteMany: {
+          args: Prisma.DegreeBranchDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DegreeBranchUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DegreeBranchUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchPayload>[]
+        }
+        upsert: {
+          args: Prisma.DegreeBranchUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchPayload>
+        }
+        aggregate: {
+          args: Prisma.DegreeBranchAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDegreeBranch>
+        }
+        groupBy: {
+          args: Prisma.DegreeBranchGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DegreeBranchGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DegreeBranchCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DegreeBranchCountAggregateOutputType> | number
+        }
+      }
+    }
     Subject: {
       payload: Prisma.$SubjectPayload<ExtArgs>
       fields: Prisma.SubjectFieldRefs
@@ -779,6 +856,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         count: {
           args: Prisma.SubjectCountArgs<ExtArgs>
           result: runtime.Types.Utils.Optional<Prisma.SubjectCountAggregateOutputType> | number
+        }
+      }
+    }
+    DegreeBranchSubject: {
+      payload: Prisma.$DegreeBranchSubjectPayload<ExtArgs>
+      fields: Prisma.DegreeBranchSubjectFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.DegreeBranchSubjectFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchSubjectPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.DegreeBranchSubjectFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchSubjectPayload>
+        }
+        findFirst: {
+          args: Prisma.DegreeBranchSubjectFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchSubjectPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.DegreeBranchSubjectFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchSubjectPayload>
+        }
+        findMany: {
+          args: Prisma.DegreeBranchSubjectFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchSubjectPayload>[]
+        }
+        create: {
+          args: Prisma.DegreeBranchSubjectCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchSubjectPayload>
+        }
+        createMany: {
+          args: Prisma.DegreeBranchSubjectCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.DegreeBranchSubjectCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchSubjectPayload>[]
+        }
+        delete: {
+          args: Prisma.DegreeBranchSubjectDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchSubjectPayload>
+        }
+        update: {
+          args: Prisma.DegreeBranchSubjectUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchSubjectPayload>
+        }
+        deleteMany: {
+          args: Prisma.DegreeBranchSubjectDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.DegreeBranchSubjectUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.DegreeBranchSubjectUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchSubjectPayload>[]
+        }
+        upsert: {
+          args: Prisma.DegreeBranchSubjectUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$DegreeBranchSubjectPayload>
+        }
+        aggregate: {
+          args: Prisma.DegreeBranchSubjectAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateDegreeBranchSubject>
+        }
+        groupBy: {
+          args: Prisma.DegreeBranchSubjectGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DegreeBranchSubjectGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.DegreeBranchSubjectCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.DegreeBranchSubjectCountAggregateOutputType> | number
         }
       }
     }
@@ -1004,6 +1155,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    Playcircle: {
+      payload: Prisma.$PlaycirclePayload<ExtArgs>
+      fields: Prisma.PlaycircleFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.PlaycircleFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlaycirclePayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.PlaycircleFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlaycirclePayload>
+        }
+        findFirst: {
+          args: Prisma.PlaycircleFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlaycirclePayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.PlaycircleFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlaycirclePayload>
+        }
+        findMany: {
+          args: Prisma.PlaycircleFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlaycirclePayload>[]
+        }
+        create: {
+          args: Prisma.PlaycircleCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlaycirclePayload>
+        }
+        createMany: {
+          args: Prisma.PlaycircleCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.PlaycircleCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlaycirclePayload>[]
+        }
+        delete: {
+          args: Prisma.PlaycircleDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlaycirclePayload>
+        }
+        update: {
+          args: Prisma.PlaycircleUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlaycirclePayload>
+        }
+        deleteMany: {
+          args: Prisma.PlaycircleDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.PlaycircleUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.PlaycircleUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlaycirclePayload>[]
+        }
+        upsert: {
+          args: Prisma.PlaycircleUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$PlaycirclePayload>
+        }
+        aggregate: {
+          args: Prisma.PlaycircleAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregatePlaycircle>
+        }
+        groupBy: {
+          args: Prisma.PlaycircleGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlaycircleGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.PlaycircleCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.PlaycircleCountAggregateOutputType> | number
+        }
+      }
+    }
     Contribution: {
       payload: Prisma.$ContributionPayload<ExtArgs>
       fields: Prisma.ContributionFieldRefs
@@ -1140,6 +1365,16 @@ export const SessionScalarFieldEnum = {
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
+export const DegreeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  semesters: 'semesters',
+  createdAt: 'createdAt'
+} as const
+
+export type DegreeScalarFieldEnum = (typeof DegreeScalarFieldEnum)[keyof typeof DegreeScalarFieldEnum]
+
+
 export const BranchScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -1149,13 +1384,14 @@ export const BranchScalarFieldEnum = {
 export type BranchScalarFieldEnum = (typeof BranchScalarFieldEnum)[keyof typeof BranchScalarFieldEnum]
 
 
-export const DegreeScalarFieldEnum = {
+export const DegreeBranchScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  degreeId: 'degreeId',
+  branchId: 'branchId',
   createdAt: 'createdAt'
 } as const
 
-export type DegreeScalarFieldEnum = (typeof DegreeScalarFieldEnum)[keyof typeof DegreeScalarFieldEnum]
+export type DegreeBranchScalarFieldEnum = (typeof DegreeBranchScalarFieldEnum)[keyof typeof DegreeBranchScalarFieldEnum]
 
 
 export const SubjectScalarFieldEnum = {
@@ -1167,19 +1403,29 @@ export const SubjectScalarFieldEnum = {
 export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeof SubjectScalarFieldEnum]
 
 
+export const DegreeBranchSubjectScalarFieldEnum = {
+  id: 'id',
+  degreeBranchId: 'degreeBranchId',
+  subjectId: 'subjectId',
+  createdAt: 'createdAt'
+} as const
+
+export type DegreeBranchSubjectScalarFieldEnum = (typeof DegreeBranchSubjectScalarFieldEnum)[keyof typeof DegreeBranchSubjectScalarFieldEnum]
+
+
 export const PYQPaperScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  degreeId: 'degreeId',
-  subjectId: 'subjectId',
-  year: 'year',
+  degreeBranchSubjectId: 'degreeBranchSubjectId',
+  examYear: 'examYear',
   semester: 'semester',
   fileUrl: 'fileUrl',
+  isSolution: 'isSolution',
+  parentId: 'parentId',
   isPublished: 'isPublished',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  branchId: 'branchId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type PYQPaperScalarFieldEnum = (typeof PYQPaperScalarFieldEnum)[keyof typeof PYQPaperScalarFieldEnum]
@@ -1189,15 +1435,12 @@ export const NoteScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  degreeId: 'degreeId',
-  subjectId: 'subjectId',
-  year: 'year',
+  degreeBranchSubjectId: 'degreeBranchSubjectId',
   semester: 'semester',
   fileUrl: 'fileUrl',
   isPublished: 'isPublished',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  branchId: 'branchId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type NoteScalarFieldEnum = (typeof NoteScalarFieldEnum)[keyof typeof NoteScalarFieldEnum]
@@ -1207,18 +1450,32 @@ export const AssignmentScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  degreeId: 'degreeId',
-  subjectId: 'subjectId',
-  year: 'year',
+  degreeBranchSubjectId: 'degreeBranchSubjectId',
   semester: 'semester',
   fileUrl: 'fileUrl',
+  isSolution: 'isSolution',
+  parentId: 'parentId',
   isPublished: 'isPublished',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  branchId: 'branchId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type AssignmentScalarFieldEnum = (typeof AssignmentScalarFieldEnum)[keyof typeof AssignmentScalarFieldEnum]
+
+
+export const PlaycircleScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  playlistUrl: 'playlistUrl',
+  degreeBranchSubjectId: 'degreeBranchSubjectId',
+  semester: 'semester',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlaycircleScalarFieldEnum = (typeof PlaycircleScalarFieldEnum)[keyof typeof PlaycircleScalarFieldEnum]
 
 
 export const ContributionScalarFieldEnum = {
@@ -1229,16 +1486,18 @@ export const ContributionScalarFieldEnum = {
   contributorEmail: 'contributorEmail',
   title: 'title',
   description: 'description',
-  degreeId: 'degreeId',
-  subjectId: 'subjectId',
-  year: 'year',
+  degreeBranchSubjectId: 'degreeBranchSubjectId',
+  examYear: 'examYear',
   semester: 'semester',
   fileUrl: 'fileUrl',
   reviewNote: 'reviewNote',
   reviewedAt: 'reviewedAt',
+  noteId: 'noteId',
+  pyqPaperId: 'pyqPaperId',
+  assignmentId: 'assignmentId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  branchId: 'branchId'
+  isSolution: 'isSolution'
 } as const
 
 export type ContributionScalarFieldEnum = (typeof ContributionScalarFieldEnum)[keyof typeof ContributionScalarFieldEnum]
@@ -1461,12 +1720,15 @@ export type PrismaClientOptions = ({
 export type GlobalOmitConfig = {
   admin?: Prisma.AdminOmit
   session?: Prisma.SessionOmit
-  branch?: Prisma.BranchOmit
   degree?: Prisma.DegreeOmit
+  branch?: Prisma.BranchOmit
+  degreeBranch?: Prisma.DegreeBranchOmit
   subject?: Prisma.SubjectOmit
+  degreeBranchSubject?: Prisma.DegreeBranchSubjectOmit
   pYQPaper?: Prisma.PYQPaperOmit
   note?: Prisma.NoteOmit
   assignment?: Prisma.AssignmentOmit
+  playcircle?: Prisma.PlaycircleOmit
   contribution?: Prisma.ContributionOmit
 }
 

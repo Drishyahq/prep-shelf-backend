@@ -53,12 +53,15 @@ export const AnyNull = runtime.AnyNull
 export const ModelName = {
   Admin: 'Admin',
   Session: 'Session',
-  Branch: 'Branch',
   Degree: 'Degree',
+  Branch: 'Branch',
+  DegreeBranch: 'DegreeBranch',
   Subject: 'Subject',
+  DegreeBranchSubject: 'DegreeBranchSubject',
   PYQPaper: 'PYQPaper',
   Note: 'Note',
   Assignment: 'Assignment',
+  Playcircle: 'Playcircle',
   Contribution: 'Contribution'
 } as const
 
@@ -101,6 +104,16 @@ export const SessionScalarFieldEnum = {
 export type SessionScalarFieldEnum = (typeof SessionScalarFieldEnum)[keyof typeof SessionScalarFieldEnum]
 
 
+export const DegreeScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  semesters: 'semesters',
+  createdAt: 'createdAt'
+} as const
+
+export type DegreeScalarFieldEnum = (typeof DegreeScalarFieldEnum)[keyof typeof DegreeScalarFieldEnum]
+
+
 export const BranchScalarFieldEnum = {
   id: 'id',
   name: 'name',
@@ -110,13 +123,14 @@ export const BranchScalarFieldEnum = {
 export type BranchScalarFieldEnum = (typeof BranchScalarFieldEnum)[keyof typeof BranchScalarFieldEnum]
 
 
-export const DegreeScalarFieldEnum = {
+export const DegreeBranchScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  degreeId: 'degreeId',
+  branchId: 'branchId',
   createdAt: 'createdAt'
 } as const
 
-export type DegreeScalarFieldEnum = (typeof DegreeScalarFieldEnum)[keyof typeof DegreeScalarFieldEnum]
+export type DegreeBranchScalarFieldEnum = (typeof DegreeBranchScalarFieldEnum)[keyof typeof DegreeBranchScalarFieldEnum]
 
 
 export const SubjectScalarFieldEnum = {
@@ -128,19 +142,29 @@ export const SubjectScalarFieldEnum = {
 export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeof SubjectScalarFieldEnum]
 
 
+export const DegreeBranchSubjectScalarFieldEnum = {
+  id: 'id',
+  degreeBranchId: 'degreeBranchId',
+  subjectId: 'subjectId',
+  createdAt: 'createdAt'
+} as const
+
+export type DegreeBranchSubjectScalarFieldEnum = (typeof DegreeBranchSubjectScalarFieldEnum)[keyof typeof DegreeBranchSubjectScalarFieldEnum]
+
+
 export const PYQPaperScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  degreeId: 'degreeId',
-  subjectId: 'subjectId',
-  year: 'year',
+  degreeBranchSubjectId: 'degreeBranchSubjectId',
+  examYear: 'examYear',
   semester: 'semester',
   fileUrl: 'fileUrl',
+  isSolution: 'isSolution',
+  parentId: 'parentId',
   isPublished: 'isPublished',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  branchId: 'branchId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type PYQPaperScalarFieldEnum = (typeof PYQPaperScalarFieldEnum)[keyof typeof PYQPaperScalarFieldEnum]
@@ -150,15 +174,12 @@ export const NoteScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  degreeId: 'degreeId',
-  subjectId: 'subjectId',
-  year: 'year',
+  degreeBranchSubjectId: 'degreeBranchSubjectId',
   semester: 'semester',
   fileUrl: 'fileUrl',
   isPublished: 'isPublished',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  branchId: 'branchId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type NoteScalarFieldEnum = (typeof NoteScalarFieldEnum)[keyof typeof NoteScalarFieldEnum]
@@ -168,18 +189,32 @@ export const AssignmentScalarFieldEnum = {
   id: 'id',
   title: 'title',
   description: 'description',
-  degreeId: 'degreeId',
-  subjectId: 'subjectId',
-  year: 'year',
+  degreeBranchSubjectId: 'degreeBranchSubjectId',
   semester: 'semester',
   fileUrl: 'fileUrl',
+  isSolution: 'isSolution',
+  parentId: 'parentId',
   isPublished: 'isPublished',
   createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  branchId: 'branchId'
+  updatedAt: 'updatedAt'
 } as const
 
 export type AssignmentScalarFieldEnum = (typeof AssignmentScalarFieldEnum)[keyof typeof AssignmentScalarFieldEnum]
+
+
+export const PlaycircleScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  playlistUrl: 'playlistUrl',
+  degreeBranchSubjectId: 'degreeBranchSubjectId',
+  semester: 'semester',
+  isPublished: 'isPublished',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type PlaycircleScalarFieldEnum = (typeof PlaycircleScalarFieldEnum)[keyof typeof PlaycircleScalarFieldEnum]
 
 
 export const ContributionScalarFieldEnum = {
@@ -190,16 +225,18 @@ export const ContributionScalarFieldEnum = {
   contributorEmail: 'contributorEmail',
   title: 'title',
   description: 'description',
-  degreeId: 'degreeId',
-  subjectId: 'subjectId',
-  year: 'year',
+  degreeBranchSubjectId: 'degreeBranchSubjectId',
+  examYear: 'examYear',
   semester: 'semester',
   fileUrl: 'fileUrl',
   reviewNote: 'reviewNote',
   reviewedAt: 'reviewedAt',
+  noteId: 'noteId',
+  pyqPaperId: 'pyqPaperId',
+  assignmentId: 'assignmentId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
-  branchId: 'branchId'
+  isSolution: 'isSolution'
 } as const
 
 export type ContributionScalarFieldEnum = (typeof ContributionScalarFieldEnum)[keyof typeof ContributionScalarFieldEnum]

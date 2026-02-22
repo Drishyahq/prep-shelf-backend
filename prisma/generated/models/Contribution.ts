@@ -28,20 +28,22 @@ export type AggregateContribution = {
 
 export type ContributionAvgAggregateOutputType = {
   id: number | null
-  degreeId: number | null
-  subjectId: number | null
-  year: number | null
+  degreeBranchSubjectId: number | null
+  examYear: number | null
   semester: number | null
-  branchId: number | null
+  noteId: number | null
+  pyqPaperId: number | null
+  assignmentId: number | null
 }
 
 export type ContributionSumAggregateOutputType = {
   id: number | null
-  degreeId: number | null
-  subjectId: number | null
-  year: number | null
+  degreeBranchSubjectId: number | null
+  examYear: number | null
   semester: number | null
-  branchId: number | null
+  noteId: number | null
+  pyqPaperId: number | null
+  assignmentId: number | null
 }
 
 export type ContributionMinAggregateOutputType = {
@@ -52,16 +54,18 @@ export type ContributionMinAggregateOutputType = {
   contributorEmail: string | null
   title: string | null
   description: string | null
-  degreeId: number | null
-  subjectId: number | null
-  year: number | null
+  degreeBranchSubjectId: number | null
+  examYear: number | null
   semester: number | null
   fileUrl: string | null
   reviewNote: string | null
   reviewedAt: Date | null
+  noteId: number | null
+  pyqPaperId: number | null
+  assignmentId: number | null
   createdAt: Date | null
   updatedAt: Date | null
-  branchId: number | null
+  isSolution: boolean | null
 }
 
 export type ContributionMaxAggregateOutputType = {
@@ -72,16 +76,18 @@ export type ContributionMaxAggregateOutputType = {
   contributorEmail: string | null
   title: string | null
   description: string | null
-  degreeId: number | null
-  subjectId: number | null
-  year: number | null
+  degreeBranchSubjectId: number | null
+  examYear: number | null
   semester: number | null
   fileUrl: string | null
   reviewNote: string | null
   reviewedAt: Date | null
+  noteId: number | null
+  pyqPaperId: number | null
+  assignmentId: number | null
   createdAt: Date | null
   updatedAt: Date | null
-  branchId: number | null
+  isSolution: boolean | null
 }
 
 export type ContributionCountAggregateOutputType = {
@@ -92,36 +98,40 @@ export type ContributionCountAggregateOutputType = {
   contributorEmail: number
   title: number
   description: number
-  degreeId: number
-  subjectId: number
-  year: number
+  degreeBranchSubjectId: number
+  examYear: number
   semester: number
   fileUrl: number
   reviewNote: number
   reviewedAt: number
+  noteId: number
+  pyqPaperId: number
+  assignmentId: number
   createdAt: number
   updatedAt: number
-  branchId: number
+  isSolution: number
   _all: number
 }
 
 
 export type ContributionAvgAggregateInputType = {
   id?: true
-  degreeId?: true
-  subjectId?: true
-  year?: true
+  degreeBranchSubjectId?: true
+  examYear?: true
   semester?: true
-  branchId?: true
+  noteId?: true
+  pyqPaperId?: true
+  assignmentId?: true
 }
 
 export type ContributionSumAggregateInputType = {
   id?: true
-  degreeId?: true
-  subjectId?: true
-  year?: true
+  degreeBranchSubjectId?: true
+  examYear?: true
   semester?: true
-  branchId?: true
+  noteId?: true
+  pyqPaperId?: true
+  assignmentId?: true
 }
 
 export type ContributionMinAggregateInputType = {
@@ -132,16 +142,18 @@ export type ContributionMinAggregateInputType = {
   contributorEmail?: true
   title?: true
   description?: true
-  degreeId?: true
-  subjectId?: true
-  year?: true
+  degreeBranchSubjectId?: true
+  examYear?: true
   semester?: true
   fileUrl?: true
   reviewNote?: true
   reviewedAt?: true
+  noteId?: true
+  pyqPaperId?: true
+  assignmentId?: true
   createdAt?: true
   updatedAt?: true
-  branchId?: true
+  isSolution?: true
 }
 
 export type ContributionMaxAggregateInputType = {
@@ -152,16 +164,18 @@ export type ContributionMaxAggregateInputType = {
   contributorEmail?: true
   title?: true
   description?: true
-  degreeId?: true
-  subjectId?: true
-  year?: true
+  degreeBranchSubjectId?: true
+  examYear?: true
   semester?: true
   fileUrl?: true
   reviewNote?: true
   reviewedAt?: true
+  noteId?: true
+  pyqPaperId?: true
+  assignmentId?: true
   createdAt?: true
   updatedAt?: true
-  branchId?: true
+  isSolution?: true
 }
 
 export type ContributionCountAggregateInputType = {
@@ -172,16 +186,18 @@ export type ContributionCountAggregateInputType = {
   contributorEmail?: true
   title?: true
   description?: true
-  degreeId?: true
-  subjectId?: true
-  year?: true
+  degreeBranchSubjectId?: true
+  examYear?: true
   semester?: true
   fileUrl?: true
   reviewNote?: true
   reviewedAt?: true
+  noteId?: true
+  pyqPaperId?: true
+  assignmentId?: true
   createdAt?: true
   updatedAt?: true
-  branchId?: true
+  isSolution?: true
   _all?: true
 }
 
@@ -279,16 +295,18 @@ export type ContributionGroupByOutputType = {
   contributorEmail: string | null
   title: string
   description: string | null
-  degreeId: number
-  subjectId: number
-  year: number
+  degreeBranchSubjectId: number
+  examYear: number | null
   semester: number
   fileUrl: string
   reviewNote: string | null
   reviewedAt: Date | null
+  noteId: number | null
+  pyqPaperId: number | null
+  assignmentId: number | null
   createdAt: Date
   updatedAt: Date
-  branchId: number
+  isSolution: boolean
   _count: ContributionCountAggregateOutputType | null
   _avg: ContributionAvgAggregateOutputType | null
   _sum: ContributionSumAggregateOutputType | null
@@ -322,19 +340,22 @@ export type ContributionWhereInput = {
   contributorEmail?: Prisma.StringNullableFilter<"Contribution"> | string | null
   title?: Prisma.StringFilter<"Contribution"> | string
   description?: Prisma.StringNullableFilter<"Contribution"> | string | null
-  degreeId?: Prisma.IntFilter<"Contribution"> | number
-  subjectId?: Prisma.IntFilter<"Contribution"> | number
-  year?: Prisma.IntFilter<"Contribution"> | number
+  degreeBranchSubjectId?: Prisma.IntFilter<"Contribution"> | number
+  examYear?: Prisma.IntNullableFilter<"Contribution"> | number | null
   semester?: Prisma.IntFilter<"Contribution"> | number
   fileUrl?: Prisma.StringFilter<"Contribution"> | string
   reviewNote?: Prisma.StringNullableFilter<"Contribution"> | string | null
   reviewedAt?: Prisma.DateTimeNullableFilter<"Contribution"> | Date | string | null
+  noteId?: Prisma.IntNullableFilter<"Contribution"> | number | null
+  pyqPaperId?: Prisma.IntNullableFilter<"Contribution"> | number | null
+  assignmentId?: Prisma.IntNullableFilter<"Contribution"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
-  branchId?: Prisma.IntFilter<"Contribution"> | number
-  branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
-  degree?: Prisma.XOR<Prisma.DegreeScalarRelationFilter, Prisma.DegreeWhereInput>
-  subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
+  isSolution?: Prisma.BoolFilter<"Contribution"> | boolean
+  assignment?: Prisma.XOR<Prisma.AssignmentNullableScalarRelationFilter, Prisma.AssignmentWhereInput> | null
+  degreeBranchSubject?: Prisma.XOR<Prisma.DegreeBranchSubjectScalarRelationFilter, Prisma.DegreeBranchSubjectWhereInput>
+  note?: Prisma.XOR<Prisma.NoteNullableScalarRelationFilter, Prisma.NoteWhereInput> | null
+  pyqPaper?: Prisma.XOR<Prisma.PYQPaperNullableScalarRelationFilter, Prisma.PYQPaperWhereInput> | null
 }
 
 export type ContributionOrderByWithRelationInput = {
@@ -345,23 +366,29 @@ export type ContributionOrderByWithRelationInput = {
   contributorEmail?: Prisma.SortOrderInput | Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
+  examYear?: Prisma.SortOrderInput | Prisma.SortOrder
   semester?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
   reviewNote?: Prisma.SortOrderInput | Prisma.SortOrder
   reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  noteId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pyqPaperId?: Prisma.SortOrderInput | Prisma.SortOrder
+  assignmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
-  branch?: Prisma.BranchOrderByWithRelationInput
-  degree?: Prisma.DegreeOrderByWithRelationInput
-  subject?: Prisma.SubjectOrderByWithRelationInput
+  isSolution?: Prisma.SortOrder
+  assignment?: Prisma.AssignmentOrderByWithRelationInput
+  degreeBranchSubject?: Prisma.DegreeBranchSubjectOrderByWithRelationInput
+  note?: Prisma.NoteOrderByWithRelationInput
+  pyqPaper?: Prisma.PYQPaperOrderByWithRelationInput
 }
 
 export type ContributionWhereUniqueInput = Prisma.AtLeast<{
   id?: number
+  noteId?: number
+  pyqPaperId?: number
+  assignmentId?: number
   AND?: Prisma.ContributionWhereInput | Prisma.ContributionWhereInput[]
   OR?: Prisma.ContributionWhereInput[]
   NOT?: Prisma.ContributionWhereInput | Prisma.ContributionWhereInput[]
@@ -371,20 +398,20 @@ export type ContributionWhereUniqueInput = Prisma.AtLeast<{
   contributorEmail?: Prisma.StringNullableFilter<"Contribution"> | string | null
   title?: Prisma.StringFilter<"Contribution"> | string
   description?: Prisma.StringNullableFilter<"Contribution"> | string | null
-  degreeId?: Prisma.IntFilter<"Contribution"> | number
-  subjectId?: Prisma.IntFilter<"Contribution"> | number
-  year?: Prisma.IntFilter<"Contribution"> | number
+  degreeBranchSubjectId?: Prisma.IntFilter<"Contribution"> | number
+  examYear?: Prisma.IntNullableFilter<"Contribution"> | number | null
   semester?: Prisma.IntFilter<"Contribution"> | number
   fileUrl?: Prisma.StringFilter<"Contribution"> | string
   reviewNote?: Prisma.StringNullableFilter<"Contribution"> | string | null
   reviewedAt?: Prisma.DateTimeNullableFilter<"Contribution"> | Date | string | null
   createdAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
-  branchId?: Prisma.IntFilter<"Contribution"> | number
-  branch?: Prisma.XOR<Prisma.BranchScalarRelationFilter, Prisma.BranchWhereInput>
-  degree?: Prisma.XOR<Prisma.DegreeScalarRelationFilter, Prisma.DegreeWhereInput>
-  subject?: Prisma.XOR<Prisma.SubjectScalarRelationFilter, Prisma.SubjectWhereInput>
-}, "id">
+  isSolution?: Prisma.BoolFilter<"Contribution"> | boolean
+  assignment?: Prisma.XOR<Prisma.AssignmentNullableScalarRelationFilter, Prisma.AssignmentWhereInput> | null
+  degreeBranchSubject?: Prisma.XOR<Prisma.DegreeBranchSubjectScalarRelationFilter, Prisma.DegreeBranchSubjectWhereInput>
+  note?: Prisma.XOR<Prisma.NoteNullableScalarRelationFilter, Prisma.NoteWhereInput> | null
+  pyqPaper?: Prisma.XOR<Prisma.PYQPaperNullableScalarRelationFilter, Prisma.PYQPaperWhereInput> | null
+}, "id" | "noteId" | "pyqPaperId" | "assignmentId">
 
 export type ContributionOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
@@ -394,16 +421,18 @@ export type ContributionOrderByWithAggregationInput = {
   contributorEmail?: Prisma.SortOrderInput | Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrderInput | Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
+  examYear?: Prisma.SortOrderInput | Prisma.SortOrder
   semester?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
   reviewNote?: Prisma.SortOrderInput | Prisma.SortOrder
   reviewedAt?: Prisma.SortOrderInput | Prisma.SortOrder
+  noteId?: Prisma.SortOrderInput | Prisma.SortOrder
+  pyqPaperId?: Prisma.SortOrderInput | Prisma.SortOrder
+  assignmentId?: Prisma.SortOrderInput | Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
+  isSolution?: Prisma.SortOrder
   _count?: Prisma.ContributionCountOrderByAggregateInput
   _avg?: Prisma.ContributionAvgOrderByAggregateInput
   _max?: Prisma.ContributionMaxOrderByAggregateInput
@@ -422,16 +451,18 @@ export type ContributionScalarWhereWithAggregatesInput = {
   contributorEmail?: Prisma.StringNullableWithAggregatesFilter<"Contribution"> | string | null
   title?: Prisma.StringWithAggregatesFilter<"Contribution"> | string
   description?: Prisma.StringNullableWithAggregatesFilter<"Contribution"> | string | null
-  degreeId?: Prisma.IntWithAggregatesFilter<"Contribution"> | number
-  subjectId?: Prisma.IntWithAggregatesFilter<"Contribution"> | number
-  year?: Prisma.IntWithAggregatesFilter<"Contribution"> | number
+  degreeBranchSubjectId?: Prisma.IntWithAggregatesFilter<"Contribution"> | number
+  examYear?: Prisma.IntNullableWithAggregatesFilter<"Contribution"> | number | null
   semester?: Prisma.IntWithAggregatesFilter<"Contribution"> | number
   fileUrl?: Prisma.StringWithAggregatesFilter<"Contribution"> | string
   reviewNote?: Prisma.StringNullableWithAggregatesFilter<"Contribution"> | string | null
   reviewedAt?: Prisma.DateTimeNullableWithAggregatesFilter<"Contribution"> | Date | string | null
+  noteId?: Prisma.IntNullableWithAggregatesFilter<"Contribution"> | number | null
+  pyqPaperId?: Prisma.IntNullableWithAggregatesFilter<"Contribution"> | number | null
+  assignmentId?: Prisma.IntNullableWithAggregatesFilter<"Contribution"> | number | null
   createdAt?: Prisma.DateTimeWithAggregatesFilter<"Contribution"> | Date | string
   updatedAt?: Prisma.DateTimeWithAggregatesFilter<"Contribution"> | Date | string
-  branchId?: Prisma.IntWithAggregatesFilter<"Contribution"> | number
+  isSolution?: Prisma.BoolWithAggregatesFilter<"Contribution"> | boolean
 }
 
 export type ContributionCreateInput = {
@@ -441,16 +472,18 @@ export type ContributionCreateInput = {
   contributorEmail?: string | null
   title: string
   description?: string | null
-  year: number
+  examYear?: number | null
   semester: number
   fileUrl: string
   reviewNote?: string | null
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  branch: Prisma.BranchCreateNestedOneWithoutContributionsInput
-  degree: Prisma.DegreeCreateNestedOneWithoutContributionsInput
-  subject: Prisma.SubjectCreateNestedOneWithoutContributionsInput
+  isSolution?: boolean
+  assignment?: Prisma.AssignmentCreateNestedOneWithoutContributionInput
+  degreeBranchSubject: Prisma.DegreeBranchSubjectCreateNestedOneWithoutContributionsInput
+  note?: Prisma.NoteCreateNestedOneWithoutContributionInput
+  pyqPaper?: Prisma.PYQPaperCreateNestedOneWithoutContributionInput
 }
 
 export type ContributionUncheckedCreateInput = {
@@ -461,16 +494,18 @@ export type ContributionUncheckedCreateInput = {
   contributorEmail?: string | null
   title: string
   description?: string | null
-  degreeId: number
-  subjectId: number
-  year: number
+  degreeBranchSubjectId: number
+  examYear?: number | null
   semester: number
   fileUrl: string
   reviewNote?: string | null
   reviewedAt?: Date | string | null
+  noteId?: number | null
+  pyqPaperId?: number | null
+  assignmentId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  branchId: number
+  isSolution?: boolean
 }
 
 export type ContributionUpdateInput = {
@@ -480,16 +515,18 @@ export type ContributionUpdateInput = {
   contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
   reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branch?: Prisma.BranchUpdateOneRequiredWithoutContributionsNestedInput
-  degree?: Prisma.DegreeUpdateOneRequiredWithoutContributionsNestedInput
-  subject?: Prisma.SubjectUpdateOneRequiredWithoutContributionsNestedInput
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  assignment?: Prisma.AssignmentUpdateOneWithoutContributionNestedInput
+  degreeBranchSubject?: Prisma.DegreeBranchSubjectUpdateOneRequiredWithoutContributionsNestedInput
+  note?: Prisma.NoteUpdateOneWithoutContributionNestedInput
+  pyqPaper?: Prisma.PYQPaperUpdateOneWithoutContributionNestedInput
 }
 
 export type ContributionUncheckedUpdateInput = {
@@ -500,16 +537,18 @@ export type ContributionUncheckedUpdateInput = {
   contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
-  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  degreeBranchSubjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
   reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  noteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pyqPaperId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  assignmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.IntFieldUpdateOperationsInput | number
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ContributionCreateManyInput = {
@@ -520,16 +559,18 @@ export type ContributionCreateManyInput = {
   contributorEmail?: string | null
   title: string
   description?: string | null
-  degreeId: number
-  subjectId: number
-  year: number
+  degreeBranchSubjectId: number
+  examYear?: number | null
   semester: number
   fileUrl: string
   reviewNote?: string | null
   reviewedAt?: Date | string | null
+  noteId?: number | null
+  pyqPaperId?: number | null
+  assignmentId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  branchId: number
+  isSolution?: boolean
 }
 
 export type ContributionUpdateManyMutationInput = {
@@ -539,13 +580,14 @@ export type ContributionUpdateManyMutationInput = {
   contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
   reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ContributionUncheckedUpdateManyInput = {
@@ -556,16 +598,18 @@ export type ContributionUncheckedUpdateManyInput = {
   contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
-  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  degreeBranchSubjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
   reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  noteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pyqPaperId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  assignmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.IntFieldUpdateOperationsInput | number
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 export type ContributionListRelationFilter = {
@@ -578,6 +622,11 @@ export type ContributionOrderByRelationAggregateInput = {
   _count?: Prisma.SortOrder
 }
 
+export type ContributionNullableScalarRelationFilter = {
+  is?: Prisma.ContributionWhereInput | null
+  isNot?: Prisma.ContributionWhereInput | null
+}
+
 export type ContributionCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   type?: Prisma.SortOrder
@@ -586,25 +635,28 @@ export type ContributionCountOrderByAggregateInput = {
   contributorEmail?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
+  examYear?: Prisma.SortOrder
   semester?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
   reviewNote?: Prisma.SortOrder
   reviewedAt?: Prisma.SortOrder
+  noteId?: Prisma.SortOrder
+  pyqPaperId?: Prisma.SortOrder
+  assignmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
+  isSolution?: Prisma.SortOrder
 }
 
 export type ContributionAvgOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
+  examYear?: Prisma.SortOrder
   semester?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
+  noteId?: Prisma.SortOrder
+  pyqPaperId?: Prisma.SortOrder
+  assignmentId?: Prisma.SortOrder
 }
 
 export type ContributionMaxOrderByAggregateInput = {
@@ -615,16 +667,18 @@ export type ContributionMaxOrderByAggregateInput = {
   contributorEmail?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
+  examYear?: Prisma.SortOrder
   semester?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
   reviewNote?: Prisma.SortOrder
   reviewedAt?: Prisma.SortOrder
+  noteId?: Prisma.SortOrder
+  pyqPaperId?: Prisma.SortOrder
+  assignmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
+  isSolution?: Prisma.SortOrder
 }
 
 export type ContributionMinOrderByAggregateInput = {
@@ -635,151 +689,166 @@ export type ContributionMinOrderByAggregateInput = {
   contributorEmail?: Prisma.SortOrder
   title?: Prisma.SortOrder
   description?: Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
+  examYear?: Prisma.SortOrder
   semester?: Prisma.SortOrder
   fileUrl?: Prisma.SortOrder
   reviewNote?: Prisma.SortOrder
   reviewedAt?: Prisma.SortOrder
+  noteId?: Prisma.SortOrder
+  pyqPaperId?: Prisma.SortOrder
+  assignmentId?: Prisma.SortOrder
   createdAt?: Prisma.SortOrder
   updatedAt?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
+  isSolution?: Prisma.SortOrder
 }
 
 export type ContributionSumOrderByAggregateInput = {
   id?: Prisma.SortOrder
-  degreeId?: Prisma.SortOrder
-  subjectId?: Prisma.SortOrder
-  year?: Prisma.SortOrder
+  degreeBranchSubjectId?: Prisma.SortOrder
+  examYear?: Prisma.SortOrder
   semester?: Prisma.SortOrder
-  branchId?: Prisma.SortOrder
+  noteId?: Prisma.SortOrder
+  pyqPaperId?: Prisma.SortOrder
+  assignmentId?: Prisma.SortOrder
 }
 
-export type ContributionCreateNestedManyWithoutBranchInput = {
-  create?: Prisma.XOR<Prisma.ContributionCreateWithoutBranchInput, Prisma.ContributionUncheckedCreateWithoutBranchInput> | Prisma.ContributionCreateWithoutBranchInput[] | Prisma.ContributionUncheckedCreateWithoutBranchInput[]
-  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutBranchInput | Prisma.ContributionCreateOrConnectWithoutBranchInput[]
-  createMany?: Prisma.ContributionCreateManyBranchInputEnvelope
+export type ContributionCreateNestedManyWithoutDegreeBranchSubjectInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutDegreeBranchSubjectInput, Prisma.ContributionUncheckedCreateWithoutDegreeBranchSubjectInput> | Prisma.ContributionCreateWithoutDegreeBranchSubjectInput[] | Prisma.ContributionUncheckedCreateWithoutDegreeBranchSubjectInput[]
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutDegreeBranchSubjectInput | Prisma.ContributionCreateOrConnectWithoutDegreeBranchSubjectInput[]
+  createMany?: Prisma.ContributionCreateManyDegreeBranchSubjectInputEnvelope
   connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
 }
 
-export type ContributionUncheckedCreateNestedManyWithoutBranchInput = {
-  create?: Prisma.XOR<Prisma.ContributionCreateWithoutBranchInput, Prisma.ContributionUncheckedCreateWithoutBranchInput> | Prisma.ContributionCreateWithoutBranchInput[] | Prisma.ContributionUncheckedCreateWithoutBranchInput[]
-  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutBranchInput | Prisma.ContributionCreateOrConnectWithoutBranchInput[]
-  createMany?: Prisma.ContributionCreateManyBranchInputEnvelope
+export type ContributionUncheckedCreateNestedManyWithoutDegreeBranchSubjectInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutDegreeBranchSubjectInput, Prisma.ContributionUncheckedCreateWithoutDegreeBranchSubjectInput> | Prisma.ContributionCreateWithoutDegreeBranchSubjectInput[] | Prisma.ContributionUncheckedCreateWithoutDegreeBranchSubjectInput[]
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutDegreeBranchSubjectInput | Prisma.ContributionCreateOrConnectWithoutDegreeBranchSubjectInput[]
+  createMany?: Prisma.ContributionCreateManyDegreeBranchSubjectInputEnvelope
   connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
 }
 
-export type ContributionUpdateManyWithoutBranchNestedInput = {
-  create?: Prisma.XOR<Prisma.ContributionCreateWithoutBranchInput, Prisma.ContributionUncheckedCreateWithoutBranchInput> | Prisma.ContributionCreateWithoutBranchInput[] | Prisma.ContributionUncheckedCreateWithoutBranchInput[]
-  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutBranchInput | Prisma.ContributionCreateOrConnectWithoutBranchInput[]
-  upsert?: Prisma.ContributionUpsertWithWhereUniqueWithoutBranchInput | Prisma.ContributionUpsertWithWhereUniqueWithoutBranchInput[]
-  createMany?: Prisma.ContributionCreateManyBranchInputEnvelope
+export type ContributionUpdateManyWithoutDegreeBranchSubjectNestedInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutDegreeBranchSubjectInput, Prisma.ContributionUncheckedCreateWithoutDegreeBranchSubjectInput> | Prisma.ContributionCreateWithoutDegreeBranchSubjectInput[] | Prisma.ContributionUncheckedCreateWithoutDegreeBranchSubjectInput[]
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutDegreeBranchSubjectInput | Prisma.ContributionCreateOrConnectWithoutDegreeBranchSubjectInput[]
+  upsert?: Prisma.ContributionUpsertWithWhereUniqueWithoutDegreeBranchSubjectInput | Prisma.ContributionUpsertWithWhereUniqueWithoutDegreeBranchSubjectInput[]
+  createMany?: Prisma.ContributionCreateManyDegreeBranchSubjectInputEnvelope
   set?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
   disconnect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
   delete?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
   connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  update?: Prisma.ContributionUpdateWithWhereUniqueWithoutBranchInput | Prisma.ContributionUpdateWithWhereUniqueWithoutBranchInput[]
-  updateMany?: Prisma.ContributionUpdateManyWithWhereWithoutBranchInput | Prisma.ContributionUpdateManyWithWhereWithoutBranchInput[]
+  update?: Prisma.ContributionUpdateWithWhereUniqueWithoutDegreeBranchSubjectInput | Prisma.ContributionUpdateWithWhereUniqueWithoutDegreeBranchSubjectInput[]
+  updateMany?: Prisma.ContributionUpdateManyWithWhereWithoutDegreeBranchSubjectInput | Prisma.ContributionUpdateManyWithWhereWithoutDegreeBranchSubjectInput[]
   deleteMany?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
 }
 
-export type ContributionUncheckedUpdateManyWithoutBranchNestedInput = {
-  create?: Prisma.XOR<Prisma.ContributionCreateWithoutBranchInput, Prisma.ContributionUncheckedCreateWithoutBranchInput> | Prisma.ContributionCreateWithoutBranchInput[] | Prisma.ContributionUncheckedCreateWithoutBranchInput[]
-  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutBranchInput | Prisma.ContributionCreateOrConnectWithoutBranchInput[]
-  upsert?: Prisma.ContributionUpsertWithWhereUniqueWithoutBranchInput | Prisma.ContributionUpsertWithWhereUniqueWithoutBranchInput[]
-  createMany?: Prisma.ContributionCreateManyBranchInputEnvelope
+export type ContributionUncheckedUpdateManyWithoutDegreeBranchSubjectNestedInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutDegreeBranchSubjectInput, Prisma.ContributionUncheckedCreateWithoutDegreeBranchSubjectInput> | Prisma.ContributionCreateWithoutDegreeBranchSubjectInput[] | Prisma.ContributionUncheckedCreateWithoutDegreeBranchSubjectInput[]
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutDegreeBranchSubjectInput | Prisma.ContributionCreateOrConnectWithoutDegreeBranchSubjectInput[]
+  upsert?: Prisma.ContributionUpsertWithWhereUniqueWithoutDegreeBranchSubjectInput | Prisma.ContributionUpsertWithWhereUniqueWithoutDegreeBranchSubjectInput[]
+  createMany?: Prisma.ContributionCreateManyDegreeBranchSubjectInputEnvelope
   set?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
   disconnect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
   delete?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
   connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  update?: Prisma.ContributionUpdateWithWhereUniqueWithoutBranchInput | Prisma.ContributionUpdateWithWhereUniqueWithoutBranchInput[]
-  updateMany?: Prisma.ContributionUpdateManyWithWhereWithoutBranchInput | Prisma.ContributionUpdateManyWithWhereWithoutBranchInput[]
+  update?: Prisma.ContributionUpdateWithWhereUniqueWithoutDegreeBranchSubjectInput | Prisma.ContributionUpdateWithWhereUniqueWithoutDegreeBranchSubjectInput[]
+  updateMany?: Prisma.ContributionUpdateManyWithWhereWithoutDegreeBranchSubjectInput | Prisma.ContributionUpdateManyWithWhereWithoutDegreeBranchSubjectInput[]
   deleteMany?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
 }
 
-export type ContributionCreateNestedManyWithoutDegreeInput = {
-  create?: Prisma.XOR<Prisma.ContributionCreateWithoutDegreeInput, Prisma.ContributionUncheckedCreateWithoutDegreeInput> | Prisma.ContributionCreateWithoutDegreeInput[] | Prisma.ContributionUncheckedCreateWithoutDegreeInput[]
-  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutDegreeInput | Prisma.ContributionCreateOrConnectWithoutDegreeInput[]
-  createMany?: Prisma.ContributionCreateManyDegreeInputEnvelope
-  connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+export type ContributionCreateNestedOneWithoutPyqPaperInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutPyqPaperInput, Prisma.ContributionUncheckedCreateWithoutPyqPaperInput>
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutPyqPaperInput
+  connect?: Prisma.ContributionWhereUniqueInput
 }
 
-export type ContributionUncheckedCreateNestedManyWithoutDegreeInput = {
-  create?: Prisma.XOR<Prisma.ContributionCreateWithoutDegreeInput, Prisma.ContributionUncheckedCreateWithoutDegreeInput> | Prisma.ContributionCreateWithoutDegreeInput[] | Prisma.ContributionUncheckedCreateWithoutDegreeInput[]
-  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutDegreeInput | Prisma.ContributionCreateOrConnectWithoutDegreeInput[]
-  createMany?: Prisma.ContributionCreateManyDegreeInputEnvelope
-  connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+export type ContributionUncheckedCreateNestedOneWithoutPyqPaperInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutPyqPaperInput, Prisma.ContributionUncheckedCreateWithoutPyqPaperInput>
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutPyqPaperInput
+  connect?: Prisma.ContributionWhereUniqueInput
 }
 
-export type ContributionUpdateManyWithoutDegreeNestedInput = {
-  create?: Prisma.XOR<Prisma.ContributionCreateWithoutDegreeInput, Prisma.ContributionUncheckedCreateWithoutDegreeInput> | Prisma.ContributionCreateWithoutDegreeInput[] | Prisma.ContributionUncheckedCreateWithoutDegreeInput[]
-  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutDegreeInput | Prisma.ContributionCreateOrConnectWithoutDegreeInput[]
-  upsert?: Prisma.ContributionUpsertWithWhereUniqueWithoutDegreeInput | Prisma.ContributionUpsertWithWhereUniqueWithoutDegreeInput[]
-  createMany?: Prisma.ContributionCreateManyDegreeInputEnvelope
-  set?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  disconnect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  delete?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  update?: Prisma.ContributionUpdateWithWhereUniqueWithoutDegreeInput | Prisma.ContributionUpdateWithWhereUniqueWithoutDegreeInput[]
-  updateMany?: Prisma.ContributionUpdateManyWithWhereWithoutDegreeInput | Prisma.ContributionUpdateManyWithWhereWithoutDegreeInput[]
-  deleteMany?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
+export type ContributionUpdateOneWithoutPyqPaperNestedInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutPyqPaperInput, Prisma.ContributionUncheckedCreateWithoutPyqPaperInput>
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutPyqPaperInput
+  upsert?: Prisma.ContributionUpsertWithoutPyqPaperInput
+  disconnect?: Prisma.ContributionWhereInput | boolean
+  delete?: Prisma.ContributionWhereInput | boolean
+  connect?: Prisma.ContributionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ContributionUpdateToOneWithWhereWithoutPyqPaperInput, Prisma.ContributionUpdateWithoutPyqPaperInput>, Prisma.ContributionUncheckedUpdateWithoutPyqPaperInput>
 }
 
-export type ContributionUncheckedUpdateManyWithoutDegreeNestedInput = {
-  create?: Prisma.XOR<Prisma.ContributionCreateWithoutDegreeInput, Prisma.ContributionUncheckedCreateWithoutDegreeInput> | Prisma.ContributionCreateWithoutDegreeInput[] | Prisma.ContributionUncheckedCreateWithoutDegreeInput[]
-  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutDegreeInput | Prisma.ContributionCreateOrConnectWithoutDegreeInput[]
-  upsert?: Prisma.ContributionUpsertWithWhereUniqueWithoutDegreeInput | Prisma.ContributionUpsertWithWhereUniqueWithoutDegreeInput[]
-  createMany?: Prisma.ContributionCreateManyDegreeInputEnvelope
-  set?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  disconnect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  delete?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  update?: Prisma.ContributionUpdateWithWhereUniqueWithoutDegreeInput | Prisma.ContributionUpdateWithWhereUniqueWithoutDegreeInput[]
-  updateMany?: Prisma.ContributionUpdateManyWithWhereWithoutDegreeInput | Prisma.ContributionUpdateManyWithWhereWithoutDegreeInput[]
-  deleteMany?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
+export type ContributionUncheckedUpdateOneWithoutPyqPaperNestedInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutPyqPaperInput, Prisma.ContributionUncheckedCreateWithoutPyqPaperInput>
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutPyqPaperInput
+  upsert?: Prisma.ContributionUpsertWithoutPyqPaperInput
+  disconnect?: Prisma.ContributionWhereInput | boolean
+  delete?: Prisma.ContributionWhereInput | boolean
+  connect?: Prisma.ContributionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ContributionUpdateToOneWithWhereWithoutPyqPaperInput, Prisma.ContributionUpdateWithoutPyqPaperInput>, Prisma.ContributionUncheckedUpdateWithoutPyqPaperInput>
 }
 
-export type ContributionCreateNestedManyWithoutSubjectInput = {
-  create?: Prisma.XOR<Prisma.ContributionCreateWithoutSubjectInput, Prisma.ContributionUncheckedCreateWithoutSubjectInput> | Prisma.ContributionCreateWithoutSubjectInput[] | Prisma.ContributionUncheckedCreateWithoutSubjectInput[]
-  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutSubjectInput | Prisma.ContributionCreateOrConnectWithoutSubjectInput[]
-  createMany?: Prisma.ContributionCreateManySubjectInputEnvelope
-  connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+export type ContributionCreateNestedOneWithoutNoteInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutNoteInput, Prisma.ContributionUncheckedCreateWithoutNoteInput>
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutNoteInput
+  connect?: Prisma.ContributionWhereUniqueInput
 }
 
-export type ContributionUncheckedCreateNestedManyWithoutSubjectInput = {
-  create?: Prisma.XOR<Prisma.ContributionCreateWithoutSubjectInput, Prisma.ContributionUncheckedCreateWithoutSubjectInput> | Prisma.ContributionCreateWithoutSubjectInput[] | Prisma.ContributionUncheckedCreateWithoutSubjectInput[]
-  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutSubjectInput | Prisma.ContributionCreateOrConnectWithoutSubjectInput[]
-  createMany?: Prisma.ContributionCreateManySubjectInputEnvelope
-  connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
+export type ContributionUncheckedCreateNestedOneWithoutNoteInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutNoteInput, Prisma.ContributionUncheckedCreateWithoutNoteInput>
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutNoteInput
+  connect?: Prisma.ContributionWhereUniqueInput
 }
 
-export type ContributionUpdateManyWithoutSubjectNestedInput = {
-  create?: Prisma.XOR<Prisma.ContributionCreateWithoutSubjectInput, Prisma.ContributionUncheckedCreateWithoutSubjectInput> | Prisma.ContributionCreateWithoutSubjectInput[] | Prisma.ContributionUncheckedCreateWithoutSubjectInput[]
-  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutSubjectInput | Prisma.ContributionCreateOrConnectWithoutSubjectInput[]
-  upsert?: Prisma.ContributionUpsertWithWhereUniqueWithoutSubjectInput | Prisma.ContributionUpsertWithWhereUniqueWithoutSubjectInput[]
-  createMany?: Prisma.ContributionCreateManySubjectInputEnvelope
-  set?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  disconnect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  delete?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  update?: Prisma.ContributionUpdateWithWhereUniqueWithoutSubjectInput | Prisma.ContributionUpdateWithWhereUniqueWithoutSubjectInput[]
-  updateMany?: Prisma.ContributionUpdateManyWithWhereWithoutSubjectInput | Prisma.ContributionUpdateManyWithWhereWithoutSubjectInput[]
-  deleteMany?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
+export type ContributionUpdateOneWithoutNoteNestedInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutNoteInput, Prisma.ContributionUncheckedCreateWithoutNoteInput>
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutNoteInput
+  upsert?: Prisma.ContributionUpsertWithoutNoteInput
+  disconnect?: Prisma.ContributionWhereInput | boolean
+  delete?: Prisma.ContributionWhereInput | boolean
+  connect?: Prisma.ContributionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ContributionUpdateToOneWithWhereWithoutNoteInput, Prisma.ContributionUpdateWithoutNoteInput>, Prisma.ContributionUncheckedUpdateWithoutNoteInput>
 }
 
-export type ContributionUncheckedUpdateManyWithoutSubjectNestedInput = {
-  create?: Prisma.XOR<Prisma.ContributionCreateWithoutSubjectInput, Prisma.ContributionUncheckedCreateWithoutSubjectInput> | Prisma.ContributionCreateWithoutSubjectInput[] | Prisma.ContributionUncheckedCreateWithoutSubjectInput[]
-  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutSubjectInput | Prisma.ContributionCreateOrConnectWithoutSubjectInput[]
-  upsert?: Prisma.ContributionUpsertWithWhereUniqueWithoutSubjectInput | Prisma.ContributionUpsertWithWhereUniqueWithoutSubjectInput[]
-  createMany?: Prisma.ContributionCreateManySubjectInputEnvelope
-  set?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  disconnect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  delete?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  connect?: Prisma.ContributionWhereUniqueInput | Prisma.ContributionWhereUniqueInput[]
-  update?: Prisma.ContributionUpdateWithWhereUniqueWithoutSubjectInput | Prisma.ContributionUpdateWithWhereUniqueWithoutSubjectInput[]
-  updateMany?: Prisma.ContributionUpdateManyWithWhereWithoutSubjectInput | Prisma.ContributionUpdateManyWithWhereWithoutSubjectInput[]
-  deleteMany?: Prisma.ContributionScalarWhereInput | Prisma.ContributionScalarWhereInput[]
+export type ContributionUncheckedUpdateOneWithoutNoteNestedInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutNoteInput, Prisma.ContributionUncheckedCreateWithoutNoteInput>
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutNoteInput
+  upsert?: Prisma.ContributionUpsertWithoutNoteInput
+  disconnect?: Prisma.ContributionWhereInput | boolean
+  delete?: Prisma.ContributionWhereInput | boolean
+  connect?: Prisma.ContributionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ContributionUpdateToOneWithWhereWithoutNoteInput, Prisma.ContributionUpdateWithoutNoteInput>, Prisma.ContributionUncheckedUpdateWithoutNoteInput>
+}
+
+export type ContributionCreateNestedOneWithoutAssignmentInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutAssignmentInput, Prisma.ContributionUncheckedCreateWithoutAssignmentInput>
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutAssignmentInput
+  connect?: Prisma.ContributionWhereUniqueInput
+}
+
+export type ContributionUncheckedCreateNestedOneWithoutAssignmentInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutAssignmentInput, Prisma.ContributionUncheckedCreateWithoutAssignmentInput>
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutAssignmentInput
+  connect?: Prisma.ContributionWhereUniqueInput
+}
+
+export type ContributionUpdateOneWithoutAssignmentNestedInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutAssignmentInput, Prisma.ContributionUncheckedCreateWithoutAssignmentInput>
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutAssignmentInput
+  upsert?: Prisma.ContributionUpsertWithoutAssignmentInput
+  disconnect?: Prisma.ContributionWhereInput | boolean
+  delete?: Prisma.ContributionWhereInput | boolean
+  connect?: Prisma.ContributionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ContributionUpdateToOneWithWhereWithoutAssignmentInput, Prisma.ContributionUpdateWithoutAssignmentInput>, Prisma.ContributionUncheckedUpdateWithoutAssignmentInput>
+}
+
+export type ContributionUncheckedUpdateOneWithoutAssignmentNestedInput = {
+  create?: Prisma.XOR<Prisma.ContributionCreateWithoutAssignmentInput, Prisma.ContributionUncheckedCreateWithoutAssignmentInput>
+  connectOrCreate?: Prisma.ContributionCreateOrConnectWithoutAssignmentInput
+  upsert?: Prisma.ContributionUpsertWithoutAssignmentInput
+  disconnect?: Prisma.ContributionWhereInput | boolean
+  delete?: Prisma.ContributionWhereInput | boolean
+  connect?: Prisma.ContributionWhereUniqueInput
+  update?: Prisma.XOR<Prisma.XOR<Prisma.ContributionUpdateToOneWithWhereWithoutAssignmentInput, Prisma.ContributionUpdateWithoutAssignmentInput>, Prisma.ContributionUncheckedUpdateWithoutAssignmentInput>
 }
 
 export type EnumContributionTypeFieldUpdateOperationsInput = {
@@ -794,25 +863,27 @@ export type NullableDateTimeFieldUpdateOperationsInput = {
   set?: Date | string | null
 }
 
-export type ContributionCreateWithoutBranchInput = {
+export type ContributionCreateWithoutDegreeBranchSubjectInput = {
   type: $Enums.ContributionType
   status?: $Enums.ContributionStatus
   contributorName?: string | null
   contributorEmail?: string | null
   title: string
   description?: string | null
-  year: number
+  examYear?: number | null
   semester: number
   fileUrl: string
   reviewNote?: string | null
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  degree: Prisma.DegreeCreateNestedOneWithoutContributionsInput
-  subject: Prisma.SubjectCreateNestedOneWithoutContributionsInput
+  isSolution?: boolean
+  assignment?: Prisma.AssignmentCreateNestedOneWithoutContributionInput
+  note?: Prisma.NoteCreateNestedOneWithoutContributionInput
+  pyqPaper?: Prisma.PYQPaperCreateNestedOneWithoutContributionInput
 }
 
-export type ContributionUncheckedCreateWithoutBranchInput = {
+export type ContributionUncheckedCreateWithoutDegreeBranchSubjectInput = {
   id?: number
   type: $Enums.ContributionType
   status?: $Enums.ContributionStatus
@@ -820,41 +891,43 @@ export type ContributionUncheckedCreateWithoutBranchInput = {
   contributorEmail?: string | null
   title: string
   description?: string | null
-  degreeId: number
-  subjectId: number
-  year: number
+  examYear?: number | null
   semester: number
   fileUrl: string
   reviewNote?: string | null
   reviewedAt?: Date | string | null
+  noteId?: number | null
+  pyqPaperId?: number | null
+  assignmentId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSolution?: boolean
 }
 
-export type ContributionCreateOrConnectWithoutBranchInput = {
+export type ContributionCreateOrConnectWithoutDegreeBranchSubjectInput = {
   where: Prisma.ContributionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ContributionCreateWithoutBranchInput, Prisma.ContributionUncheckedCreateWithoutBranchInput>
+  create: Prisma.XOR<Prisma.ContributionCreateWithoutDegreeBranchSubjectInput, Prisma.ContributionUncheckedCreateWithoutDegreeBranchSubjectInput>
 }
 
-export type ContributionCreateManyBranchInputEnvelope = {
-  data: Prisma.ContributionCreateManyBranchInput | Prisma.ContributionCreateManyBranchInput[]
+export type ContributionCreateManyDegreeBranchSubjectInputEnvelope = {
+  data: Prisma.ContributionCreateManyDegreeBranchSubjectInput | Prisma.ContributionCreateManyDegreeBranchSubjectInput[]
   skipDuplicates?: boolean
 }
 
-export type ContributionUpsertWithWhereUniqueWithoutBranchInput = {
+export type ContributionUpsertWithWhereUniqueWithoutDegreeBranchSubjectInput = {
   where: Prisma.ContributionWhereUniqueInput
-  update: Prisma.XOR<Prisma.ContributionUpdateWithoutBranchInput, Prisma.ContributionUncheckedUpdateWithoutBranchInput>
-  create: Prisma.XOR<Prisma.ContributionCreateWithoutBranchInput, Prisma.ContributionUncheckedCreateWithoutBranchInput>
+  update: Prisma.XOR<Prisma.ContributionUpdateWithoutDegreeBranchSubjectInput, Prisma.ContributionUncheckedUpdateWithoutDegreeBranchSubjectInput>
+  create: Prisma.XOR<Prisma.ContributionCreateWithoutDegreeBranchSubjectInput, Prisma.ContributionUncheckedCreateWithoutDegreeBranchSubjectInput>
 }
 
-export type ContributionUpdateWithWhereUniqueWithoutBranchInput = {
+export type ContributionUpdateWithWhereUniqueWithoutDegreeBranchSubjectInput = {
   where: Prisma.ContributionWhereUniqueInput
-  data: Prisma.XOR<Prisma.ContributionUpdateWithoutBranchInput, Prisma.ContributionUncheckedUpdateWithoutBranchInput>
+  data: Prisma.XOR<Prisma.ContributionUpdateWithoutDegreeBranchSubjectInput, Prisma.ContributionUncheckedUpdateWithoutDegreeBranchSubjectInput>
 }
 
-export type ContributionUpdateManyWithWhereWithoutBranchInput = {
+export type ContributionUpdateManyWithWhereWithoutDegreeBranchSubjectInput = {
   where: Prisma.ContributionScalarWhereInput
-  data: Prisma.XOR<Prisma.ContributionUpdateManyMutationInput, Prisma.ContributionUncheckedUpdateManyWithoutBranchInput>
+  data: Prisma.XOR<Prisma.ContributionUpdateManyMutationInput, Prisma.ContributionUncheckedUpdateManyWithoutDegreeBranchSubjectInput>
 }
 
 export type ContributionScalarWhereInput = {
@@ -868,37 +941,41 @@ export type ContributionScalarWhereInput = {
   contributorEmail?: Prisma.StringNullableFilter<"Contribution"> | string | null
   title?: Prisma.StringFilter<"Contribution"> | string
   description?: Prisma.StringNullableFilter<"Contribution"> | string | null
-  degreeId?: Prisma.IntFilter<"Contribution"> | number
-  subjectId?: Prisma.IntFilter<"Contribution"> | number
-  year?: Prisma.IntFilter<"Contribution"> | number
+  degreeBranchSubjectId?: Prisma.IntFilter<"Contribution"> | number
+  examYear?: Prisma.IntNullableFilter<"Contribution"> | number | null
   semester?: Prisma.IntFilter<"Contribution"> | number
   fileUrl?: Prisma.StringFilter<"Contribution"> | string
   reviewNote?: Prisma.StringNullableFilter<"Contribution"> | string | null
   reviewedAt?: Prisma.DateTimeNullableFilter<"Contribution"> | Date | string | null
+  noteId?: Prisma.IntNullableFilter<"Contribution"> | number | null
+  pyqPaperId?: Prisma.IntNullableFilter<"Contribution"> | number | null
+  assignmentId?: Prisma.IntNullableFilter<"Contribution"> | number | null
   createdAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
   updatedAt?: Prisma.DateTimeFilter<"Contribution"> | Date | string
-  branchId?: Prisma.IntFilter<"Contribution"> | number
+  isSolution?: Prisma.BoolFilter<"Contribution"> | boolean
 }
 
-export type ContributionCreateWithoutDegreeInput = {
+export type ContributionCreateWithoutPyqPaperInput = {
   type: $Enums.ContributionType
   status?: $Enums.ContributionStatus
   contributorName?: string | null
   contributorEmail?: string | null
   title: string
   description?: string | null
-  year: number
+  examYear?: number | null
   semester: number
   fileUrl: string
   reviewNote?: string | null
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  branch: Prisma.BranchCreateNestedOneWithoutContributionsInput
-  subject: Prisma.SubjectCreateNestedOneWithoutContributionsInput
+  isSolution?: boolean
+  assignment?: Prisma.AssignmentCreateNestedOneWithoutContributionInput
+  degreeBranchSubject: Prisma.DegreeBranchSubjectCreateNestedOneWithoutContributionsInput
+  note?: Prisma.NoteCreateNestedOneWithoutContributionInput
 }
 
-export type ContributionUncheckedCreateWithoutDegreeInput = {
+export type ContributionUncheckedCreateWithoutPyqPaperInput = {
   id?: number
   type: $Enums.ContributionType
   status?: $Enums.ContributionStatus
@@ -906,62 +983,97 @@ export type ContributionUncheckedCreateWithoutDegreeInput = {
   contributorEmail?: string | null
   title: string
   description?: string | null
-  subjectId: number
-  year: number
+  degreeBranchSubjectId: number
+  examYear?: number | null
   semester: number
   fileUrl: string
   reviewNote?: string | null
   reviewedAt?: Date | string | null
+  noteId?: number | null
+  assignmentId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  branchId: number
+  isSolution?: boolean
 }
 
-export type ContributionCreateOrConnectWithoutDegreeInput = {
+export type ContributionCreateOrConnectWithoutPyqPaperInput = {
   where: Prisma.ContributionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ContributionCreateWithoutDegreeInput, Prisma.ContributionUncheckedCreateWithoutDegreeInput>
+  create: Prisma.XOR<Prisma.ContributionCreateWithoutPyqPaperInput, Prisma.ContributionUncheckedCreateWithoutPyqPaperInput>
 }
 
-export type ContributionCreateManyDegreeInputEnvelope = {
-  data: Prisma.ContributionCreateManyDegreeInput | Prisma.ContributionCreateManyDegreeInput[]
-  skipDuplicates?: boolean
+export type ContributionUpsertWithoutPyqPaperInput = {
+  update: Prisma.XOR<Prisma.ContributionUpdateWithoutPyqPaperInput, Prisma.ContributionUncheckedUpdateWithoutPyqPaperInput>
+  create: Prisma.XOR<Prisma.ContributionCreateWithoutPyqPaperInput, Prisma.ContributionUncheckedCreateWithoutPyqPaperInput>
+  where?: Prisma.ContributionWhereInput
 }
 
-export type ContributionUpsertWithWhereUniqueWithoutDegreeInput = {
-  where: Prisma.ContributionWhereUniqueInput
-  update: Prisma.XOR<Prisma.ContributionUpdateWithoutDegreeInput, Prisma.ContributionUncheckedUpdateWithoutDegreeInput>
-  create: Prisma.XOR<Prisma.ContributionCreateWithoutDegreeInput, Prisma.ContributionUncheckedCreateWithoutDegreeInput>
+export type ContributionUpdateToOneWithWhereWithoutPyqPaperInput = {
+  where?: Prisma.ContributionWhereInput
+  data: Prisma.XOR<Prisma.ContributionUpdateWithoutPyqPaperInput, Prisma.ContributionUncheckedUpdateWithoutPyqPaperInput>
 }
 
-export type ContributionUpdateWithWhereUniqueWithoutDegreeInput = {
-  where: Prisma.ContributionWhereUniqueInput
-  data: Prisma.XOR<Prisma.ContributionUpdateWithoutDegreeInput, Prisma.ContributionUncheckedUpdateWithoutDegreeInput>
+export type ContributionUpdateWithoutPyqPaperInput = {
+  type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
+  status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
+  contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  assignment?: Prisma.AssignmentUpdateOneWithoutContributionNestedInput
+  degreeBranchSubject?: Prisma.DegreeBranchSubjectUpdateOneRequiredWithoutContributionsNestedInput
+  note?: Prisma.NoteUpdateOneWithoutContributionNestedInput
 }
 
-export type ContributionUpdateManyWithWhereWithoutDegreeInput = {
-  where: Prisma.ContributionScalarWhereInput
-  data: Prisma.XOR<Prisma.ContributionUpdateManyMutationInput, Prisma.ContributionUncheckedUpdateManyWithoutDegreeInput>
+export type ContributionUncheckedUpdateWithoutPyqPaperInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
+  status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
+  contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degreeBranchSubjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  noteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  assignmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
-export type ContributionCreateWithoutSubjectInput = {
+export type ContributionCreateWithoutNoteInput = {
   type: $Enums.ContributionType
   status?: $Enums.ContributionStatus
   contributorName?: string | null
   contributorEmail?: string | null
   title: string
   description?: string | null
-  year: number
+  examYear?: number | null
   semester: number
   fileUrl: string
   reviewNote?: string | null
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  branch: Prisma.BranchCreateNestedOneWithoutContributionsInput
-  degree: Prisma.DegreeCreateNestedOneWithoutContributionsInput
+  isSolution?: boolean
+  assignment?: Prisma.AssignmentCreateNestedOneWithoutContributionInput
+  degreeBranchSubject: Prisma.DegreeBranchSubjectCreateNestedOneWithoutContributionsInput
+  pyqPaper?: Prisma.PYQPaperCreateNestedOneWithoutContributionInput
 }
 
-export type ContributionUncheckedCreateWithoutSubjectInput = {
+export type ContributionUncheckedCreateWithoutNoteInput = {
   id?: number
   type: $Enums.ContributionType
   status?: $Enums.ContributionStatus
@@ -969,44 +1081,97 @@ export type ContributionUncheckedCreateWithoutSubjectInput = {
   contributorEmail?: string | null
   title: string
   description?: string | null
-  degreeId: number
-  year: number
+  degreeBranchSubjectId: number
+  examYear?: number | null
+  semester: number
+  fileUrl: string
+  reviewNote?: string | null
+  reviewedAt?: Date | string | null
+  pyqPaperId?: number | null
+  assignmentId?: number | null
+  createdAt?: Date | string
+  updatedAt?: Date | string
+  isSolution?: boolean
+}
+
+export type ContributionCreateOrConnectWithoutNoteInput = {
+  where: Prisma.ContributionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ContributionCreateWithoutNoteInput, Prisma.ContributionUncheckedCreateWithoutNoteInput>
+}
+
+export type ContributionUpsertWithoutNoteInput = {
+  update: Prisma.XOR<Prisma.ContributionUpdateWithoutNoteInput, Prisma.ContributionUncheckedUpdateWithoutNoteInput>
+  create: Prisma.XOR<Prisma.ContributionCreateWithoutNoteInput, Prisma.ContributionUncheckedCreateWithoutNoteInput>
+  where?: Prisma.ContributionWhereInput
+}
+
+export type ContributionUpdateToOneWithWhereWithoutNoteInput = {
+  where?: Prisma.ContributionWhereInput
+  data: Prisma.XOR<Prisma.ContributionUpdateWithoutNoteInput, Prisma.ContributionUncheckedUpdateWithoutNoteInput>
+}
+
+export type ContributionUpdateWithoutNoteInput = {
+  type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
+  status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
+  contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  assignment?: Prisma.AssignmentUpdateOneWithoutContributionNestedInput
+  degreeBranchSubject?: Prisma.DegreeBranchSubjectUpdateOneRequiredWithoutContributionsNestedInput
+  pyqPaper?: Prisma.PYQPaperUpdateOneWithoutContributionNestedInput
+}
+
+export type ContributionUncheckedUpdateWithoutNoteInput = {
+  id?: Prisma.IntFieldUpdateOperationsInput | number
+  type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
+  status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
+  contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  title?: Prisma.StringFieldUpdateOperationsInput | string
+  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  degreeBranchSubjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  semester?: Prisma.IntFieldUpdateOperationsInput | number
+  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
+  reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
+  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  pyqPaperId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  assignmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+}
+
+export type ContributionCreateWithoutAssignmentInput = {
+  type: $Enums.ContributionType
+  status?: $Enums.ContributionStatus
+  contributorName?: string | null
+  contributorEmail?: string | null
+  title: string
+  description?: string | null
+  examYear?: number | null
   semester: number
   fileUrl: string
   reviewNote?: string | null
   reviewedAt?: Date | string | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  branchId: number
+  isSolution?: boolean
+  degreeBranchSubject: Prisma.DegreeBranchSubjectCreateNestedOneWithoutContributionsInput
+  note?: Prisma.NoteCreateNestedOneWithoutContributionInput
+  pyqPaper?: Prisma.PYQPaperCreateNestedOneWithoutContributionInput
 }
 
-export type ContributionCreateOrConnectWithoutSubjectInput = {
-  where: Prisma.ContributionWhereUniqueInput
-  create: Prisma.XOR<Prisma.ContributionCreateWithoutSubjectInput, Prisma.ContributionUncheckedCreateWithoutSubjectInput>
-}
-
-export type ContributionCreateManySubjectInputEnvelope = {
-  data: Prisma.ContributionCreateManySubjectInput | Prisma.ContributionCreateManySubjectInput[]
-  skipDuplicates?: boolean
-}
-
-export type ContributionUpsertWithWhereUniqueWithoutSubjectInput = {
-  where: Prisma.ContributionWhereUniqueInput
-  update: Prisma.XOR<Prisma.ContributionUpdateWithoutSubjectInput, Prisma.ContributionUncheckedUpdateWithoutSubjectInput>
-  create: Prisma.XOR<Prisma.ContributionCreateWithoutSubjectInput, Prisma.ContributionUncheckedCreateWithoutSubjectInput>
-}
-
-export type ContributionUpdateWithWhereUniqueWithoutSubjectInput = {
-  where: Prisma.ContributionWhereUniqueInput
-  data: Prisma.XOR<Prisma.ContributionUpdateWithoutSubjectInput, Prisma.ContributionUncheckedUpdateWithoutSubjectInput>
-}
-
-export type ContributionUpdateManyWithWhereWithoutSubjectInput = {
-  where: Prisma.ContributionScalarWhereInput
-  data: Prisma.XOR<Prisma.ContributionUpdateManyMutationInput, Prisma.ContributionUncheckedUpdateManyWithoutSubjectInput>
-}
-
-export type ContributionCreateManyBranchInput = {
+export type ContributionUncheckedCreateWithoutAssignmentInput = {
   id?: number
   type: $Enums.ContributionType
   status?: $Enums.ContributionStatus
@@ -1014,36 +1179,56 @@ export type ContributionCreateManyBranchInput = {
   contributorEmail?: string | null
   title: string
   description?: string | null
-  degreeId: number
-  subjectId: number
-  year: number
+  degreeBranchSubjectId: number
+  examYear?: number | null
   semester: number
   fileUrl: string
   reviewNote?: string | null
   reviewedAt?: Date | string | null
+  noteId?: number | null
+  pyqPaperId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
+  isSolution?: boolean
 }
 
-export type ContributionUpdateWithoutBranchInput = {
+export type ContributionCreateOrConnectWithoutAssignmentInput = {
+  where: Prisma.ContributionWhereUniqueInput
+  create: Prisma.XOR<Prisma.ContributionCreateWithoutAssignmentInput, Prisma.ContributionUncheckedCreateWithoutAssignmentInput>
+}
+
+export type ContributionUpsertWithoutAssignmentInput = {
+  update: Prisma.XOR<Prisma.ContributionUpdateWithoutAssignmentInput, Prisma.ContributionUncheckedUpdateWithoutAssignmentInput>
+  create: Prisma.XOR<Prisma.ContributionCreateWithoutAssignmentInput, Prisma.ContributionUncheckedCreateWithoutAssignmentInput>
+  where?: Prisma.ContributionWhereInput
+}
+
+export type ContributionUpdateToOneWithWhereWithoutAssignmentInput = {
+  where?: Prisma.ContributionWhereInput
+  data: Prisma.XOR<Prisma.ContributionUpdateWithoutAssignmentInput, Prisma.ContributionUncheckedUpdateWithoutAssignmentInput>
+}
+
+export type ContributionUpdateWithoutAssignmentInput = {
   type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
   status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
   contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
   reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  degree?: Prisma.DegreeUpdateOneRequiredWithoutContributionsNestedInput
-  subject?: Prisma.SubjectUpdateOneRequiredWithoutContributionsNestedInput
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  degreeBranchSubject?: Prisma.DegreeBranchSubjectUpdateOneRequiredWithoutContributionsNestedInput
+  note?: Prisma.NoteUpdateOneWithoutContributionNestedInput
+  pyqPaper?: Prisma.PYQPaperUpdateOneWithoutContributionNestedInput
 }
 
-export type ContributionUncheckedUpdateWithoutBranchInput = {
+export type ContributionUncheckedUpdateWithoutAssignmentInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
   status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
@@ -1051,37 +1236,20 @@ export type ContributionUncheckedUpdateWithoutBranchInput = {
   contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
-  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  degreeBranchSubjectId?: Prisma.IntFieldUpdateOperationsInput | number
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
   reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  noteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pyqPaperId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
-export type ContributionUncheckedUpdateManyWithoutBranchInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
-  status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
-  contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
-  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
-  semester?: Prisma.IntFieldUpdateOperationsInput | number
-  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-}
-
-export type ContributionCreateManyDegreeInput = {
+export type ContributionCreateManyDegreeBranchSubjectInput = {
   id?: number
   type: $Enums.ContributionType
   status?: $Enums.ContributionStatus
@@ -1089,36 +1257,40 @@ export type ContributionCreateManyDegreeInput = {
   contributorEmail?: string | null
   title: string
   description?: string | null
-  subjectId: number
-  year: number
+  examYear?: number | null
   semester: number
   fileUrl: string
   reviewNote?: string | null
   reviewedAt?: Date | string | null
+  noteId?: number | null
+  pyqPaperId?: number | null
+  assignmentId?: number | null
   createdAt?: Date | string
   updatedAt?: Date | string
-  branchId: number
+  isSolution?: boolean
 }
 
-export type ContributionUpdateWithoutDegreeInput = {
+export type ContributionUpdateWithoutDegreeBranchSubjectInput = {
   type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
   status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
   contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
   reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branch?: Prisma.BranchUpdateOneRequiredWithoutContributionsNestedInput
-  subject?: Prisma.SubjectUpdateOneRequiredWithoutContributionsNestedInput
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
+  assignment?: Prisma.AssignmentUpdateOneWithoutContributionNestedInput
+  note?: Prisma.NoteUpdateOneWithoutContributionNestedInput
+  pyqPaper?: Prisma.PYQPaperUpdateOneWithoutContributionNestedInput
 }
 
-export type ContributionUncheckedUpdateWithoutDegreeInput = {
+export type ContributionUncheckedUpdateWithoutDegreeBranchSubjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
   status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
@@ -1126,18 +1298,20 @@ export type ContributionUncheckedUpdateWithoutDegreeInput = {
   contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
   reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  noteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pyqPaperId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  assignmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.IntFieldUpdateOperationsInput | number
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
-export type ContributionUncheckedUpdateManyWithoutDegreeInput = {
+export type ContributionUncheckedUpdateManyWithoutDegreeBranchSubjectInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
   status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
@@ -1145,90 +1319,17 @@ export type ContributionUncheckedUpdateManyWithoutDegreeInput = {
   contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   title?: Prisma.StringFieldUpdateOperationsInput | string
   description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  subjectId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
+  examYear?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   semester?: Prisma.IntFieldUpdateOperationsInput | number
   fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
   reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
   reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  noteId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  pyqPaperId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
+  assignmentId?: Prisma.NullableIntFieldUpdateOperationsInput | number | null
   createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
   updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.IntFieldUpdateOperationsInput | number
-}
-
-export type ContributionCreateManySubjectInput = {
-  id?: number
-  type: $Enums.ContributionType
-  status?: $Enums.ContributionStatus
-  contributorName?: string | null
-  contributorEmail?: string | null
-  title: string
-  description?: string | null
-  degreeId: number
-  year: number
-  semester: number
-  fileUrl: string
-  reviewNote?: string | null
-  reviewedAt?: Date | string | null
-  createdAt?: Date | string
-  updatedAt?: Date | string
-  branchId: number
-}
-
-export type ContributionUpdateWithoutSubjectInput = {
-  type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
-  status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
-  contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  year?: Prisma.IntFieldUpdateOperationsInput | number
-  semester?: Prisma.IntFieldUpdateOperationsInput | number
-  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branch?: Prisma.BranchUpdateOneRequiredWithoutContributionsNestedInput
-  degree?: Prisma.DegreeUpdateOneRequiredWithoutContributionsNestedInput
-}
-
-export type ContributionUncheckedUpdateWithoutSubjectInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
-  status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
-  contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
-  semester?: Prisma.IntFieldUpdateOperationsInput | number
-  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.IntFieldUpdateOperationsInput | number
-}
-
-export type ContributionUncheckedUpdateManyWithoutSubjectInput = {
-  id?: Prisma.IntFieldUpdateOperationsInput | number
-  type?: Prisma.EnumContributionTypeFieldUpdateOperationsInput | $Enums.ContributionType
-  status?: Prisma.EnumContributionStatusFieldUpdateOperationsInput | $Enums.ContributionStatus
-  contributorName?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  contributorEmail?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  title?: Prisma.StringFieldUpdateOperationsInput | string
-  description?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  degreeId?: Prisma.IntFieldUpdateOperationsInput | number
-  year?: Prisma.IntFieldUpdateOperationsInput | number
-  semester?: Prisma.IntFieldUpdateOperationsInput | number
-  fileUrl?: Prisma.StringFieldUpdateOperationsInput | string
-  reviewNote?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
-  reviewedAt?: Prisma.NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-  createdAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  updatedAt?: Prisma.DateTimeFieldUpdateOperationsInput | Date | string
-  branchId?: Prisma.IntFieldUpdateOperationsInput | number
+  isSolution?: Prisma.BoolFieldUpdateOperationsInput | boolean
 }
 
 
@@ -1241,19 +1342,22 @@ export type ContributionSelect<ExtArgs extends runtime.Types.Extensions.Internal
   contributorEmail?: boolean
   title?: boolean
   description?: boolean
-  degreeId?: boolean
-  subjectId?: boolean
-  year?: boolean
+  degreeBranchSubjectId?: boolean
+  examYear?: boolean
   semester?: boolean
   fileUrl?: boolean
   reviewNote?: boolean
   reviewedAt?: boolean
+  noteId?: boolean
+  pyqPaperId?: boolean
+  assignmentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  branchId?: boolean
-  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
-  degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
-  subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  isSolution?: boolean
+  assignment?: boolean | Prisma.Contribution$assignmentArgs<ExtArgs>
+  degreeBranchSubject?: boolean | Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>
+  note?: boolean | Prisma.Contribution$noteArgs<ExtArgs>
+  pyqPaper?: boolean | Prisma.Contribution$pyqPaperArgs<ExtArgs>
 }, ExtArgs["result"]["contribution"]>
 
 export type ContributionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1264,19 +1368,22 @@ export type ContributionSelectCreateManyAndReturn<ExtArgs extends runtime.Types.
   contributorEmail?: boolean
   title?: boolean
   description?: boolean
-  degreeId?: boolean
-  subjectId?: boolean
-  year?: boolean
+  degreeBranchSubjectId?: boolean
+  examYear?: boolean
   semester?: boolean
   fileUrl?: boolean
   reviewNote?: boolean
   reviewedAt?: boolean
+  noteId?: boolean
+  pyqPaperId?: boolean
+  assignmentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  branchId?: boolean
-  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
-  degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
-  subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  isSolution?: boolean
+  assignment?: boolean | Prisma.Contribution$assignmentArgs<ExtArgs>
+  degreeBranchSubject?: boolean | Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>
+  note?: boolean | Prisma.Contribution$noteArgs<ExtArgs>
+  pyqPaper?: boolean | Prisma.Contribution$pyqPaperArgs<ExtArgs>
 }, ExtArgs["result"]["contribution"]>
 
 export type ContributionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
@@ -1287,19 +1394,22 @@ export type ContributionSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.
   contributorEmail?: boolean
   title?: boolean
   description?: boolean
-  degreeId?: boolean
-  subjectId?: boolean
-  year?: boolean
+  degreeBranchSubjectId?: boolean
+  examYear?: boolean
   semester?: boolean
   fileUrl?: boolean
   reviewNote?: boolean
   reviewedAt?: boolean
+  noteId?: boolean
+  pyqPaperId?: boolean
+  assignmentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  branchId?: boolean
-  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
-  degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
-  subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  isSolution?: boolean
+  assignment?: boolean | Prisma.Contribution$assignmentArgs<ExtArgs>
+  degreeBranchSubject?: boolean | Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>
+  note?: boolean | Prisma.Contribution$noteArgs<ExtArgs>
+  pyqPaper?: boolean | Prisma.Contribution$pyqPaperArgs<ExtArgs>
 }, ExtArgs["result"]["contribution"]>
 
 export type ContributionSelectScalar = {
@@ -1310,41 +1420,47 @@ export type ContributionSelectScalar = {
   contributorEmail?: boolean
   title?: boolean
   description?: boolean
-  degreeId?: boolean
-  subjectId?: boolean
-  year?: boolean
+  degreeBranchSubjectId?: boolean
+  examYear?: boolean
   semester?: boolean
   fileUrl?: boolean
   reviewNote?: boolean
   reviewedAt?: boolean
+  noteId?: boolean
+  pyqPaperId?: boolean
+  assignmentId?: boolean
   createdAt?: boolean
   updatedAt?: boolean
-  branchId?: boolean
+  isSolution?: boolean
 }
 
-export type ContributionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "status" | "contributorName" | "contributorEmail" | "title" | "description" | "degreeId" | "subjectId" | "year" | "semester" | "fileUrl" | "reviewNote" | "reviewedAt" | "createdAt" | "updatedAt" | "branchId", ExtArgs["result"]["contribution"]>
+export type ContributionOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "type" | "status" | "contributorName" | "contributorEmail" | "title" | "description" | "degreeBranchSubjectId" | "examYear" | "semester" | "fileUrl" | "reviewNote" | "reviewedAt" | "noteId" | "pyqPaperId" | "assignmentId" | "createdAt" | "updatedAt" | "isSolution", ExtArgs["result"]["contribution"]>
 export type ContributionInclude<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
-  degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
-  subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  assignment?: boolean | Prisma.Contribution$assignmentArgs<ExtArgs>
+  degreeBranchSubject?: boolean | Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>
+  note?: boolean | Prisma.Contribution$noteArgs<ExtArgs>
+  pyqPaper?: boolean | Prisma.Contribution$pyqPaperArgs<ExtArgs>
 }
 export type ContributionIncludeCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
-  degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
-  subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  assignment?: boolean | Prisma.Contribution$assignmentArgs<ExtArgs>
+  degreeBranchSubject?: boolean | Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>
+  note?: boolean | Prisma.Contribution$noteArgs<ExtArgs>
+  pyqPaper?: boolean | Prisma.Contribution$pyqPaperArgs<ExtArgs>
 }
 export type ContributionIncludeUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
-  branch?: boolean | Prisma.BranchDefaultArgs<ExtArgs>
-  degree?: boolean | Prisma.DegreeDefaultArgs<ExtArgs>
-  subject?: boolean | Prisma.SubjectDefaultArgs<ExtArgs>
+  assignment?: boolean | Prisma.Contribution$assignmentArgs<ExtArgs>
+  degreeBranchSubject?: boolean | Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>
+  note?: boolean | Prisma.Contribution$noteArgs<ExtArgs>
+  pyqPaper?: boolean | Prisma.Contribution$pyqPaperArgs<ExtArgs>
 }
 
 export type $ContributionPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Contribution"
   objects: {
-    branch: Prisma.$BranchPayload<ExtArgs>
-    degree: Prisma.$DegreePayload<ExtArgs>
-    subject: Prisma.$SubjectPayload<ExtArgs>
+    assignment: Prisma.$AssignmentPayload<ExtArgs> | null
+    degreeBranchSubject: Prisma.$DegreeBranchSubjectPayload<ExtArgs>
+    note: Prisma.$NotePayload<ExtArgs> | null
+    pyqPaper: Prisma.$PYQPaperPayload<ExtArgs> | null
   }
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
@@ -1354,16 +1470,18 @@ export type $ContributionPayload<ExtArgs extends runtime.Types.Extensions.Intern
     contributorEmail: string | null
     title: string
     description: string | null
-    degreeId: number
-    subjectId: number
-    year: number
+    degreeBranchSubjectId: number
+    examYear: number | null
     semester: number
     fileUrl: string
     reviewNote: string | null
     reviewedAt: Date | null
+    noteId: number | null
+    pyqPaperId: number | null
+    assignmentId: number | null
     createdAt: Date
     updatedAt: Date
-    branchId: number
+    isSolution: boolean
   }, ExtArgs["result"]["contribution"]>
   composites: {}
 }
@@ -1758,9 +1876,10 @@ readonly fields: ContributionFieldRefs;
  */
 export interface Prisma__ContributionClient<T, Null = never, ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
   readonly [Symbol.toStringTag]: "PrismaPromise"
-  branch<T extends Prisma.BranchDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.BranchDefaultArgs<ExtArgs>>): Prisma.Prisma__BranchClient<runtime.Types.Result.GetResult<Prisma.$BranchPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  degree<T extends Prisma.DegreeDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DegreeDefaultArgs<ExtArgs>>): Prisma.Prisma__DegreeClient<runtime.Types.Result.GetResult<Prisma.$DegreePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-  subject<T extends Prisma.SubjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.SubjectDefaultArgs<ExtArgs>>): Prisma.Prisma__SubjectClient<runtime.Types.Result.GetResult<Prisma.$SubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  assignment<T extends Prisma.Contribution$assignmentArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contribution$assignmentArgs<ExtArgs>>): Prisma.Prisma__AssignmentClient<runtime.Types.Result.GetResult<Prisma.$AssignmentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  degreeBranchSubject<T extends Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.DegreeBranchSubjectDefaultArgs<ExtArgs>>): Prisma.Prisma__DegreeBranchSubjectClient<runtime.Types.Result.GetResult<Prisma.$DegreeBranchSubjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+  note<T extends Prisma.Contribution$noteArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contribution$noteArgs<ExtArgs>>): Prisma.Prisma__NoteClient<runtime.Types.Result.GetResult<Prisma.$NotePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+  pyqPaper<T extends Prisma.Contribution$pyqPaperArgs<ExtArgs> = {}>(args?: Prisma.Subset<T, Prisma.Contribution$pyqPaperArgs<ExtArgs>>): Prisma.Prisma__PYQPaperClient<runtime.Types.Result.GetResult<Prisma.$PYQPaperPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
   /**
    * Attaches callbacks for the resolution and/or rejection of the Promise.
    * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1797,16 +1916,18 @@ export interface ContributionFieldRefs {
   readonly contributorEmail: Prisma.FieldRef<"Contribution", 'String'>
   readonly title: Prisma.FieldRef<"Contribution", 'String'>
   readonly description: Prisma.FieldRef<"Contribution", 'String'>
-  readonly degreeId: Prisma.FieldRef<"Contribution", 'Int'>
-  readonly subjectId: Prisma.FieldRef<"Contribution", 'Int'>
-  readonly year: Prisma.FieldRef<"Contribution", 'Int'>
+  readonly degreeBranchSubjectId: Prisma.FieldRef<"Contribution", 'Int'>
+  readonly examYear: Prisma.FieldRef<"Contribution", 'Int'>
   readonly semester: Prisma.FieldRef<"Contribution", 'Int'>
   readonly fileUrl: Prisma.FieldRef<"Contribution", 'String'>
   readonly reviewNote: Prisma.FieldRef<"Contribution", 'String'>
   readonly reviewedAt: Prisma.FieldRef<"Contribution", 'DateTime'>
+  readonly noteId: Prisma.FieldRef<"Contribution", 'Int'>
+  readonly pyqPaperId: Prisma.FieldRef<"Contribution", 'Int'>
+  readonly assignmentId: Prisma.FieldRef<"Contribution", 'Int'>
   readonly createdAt: Prisma.FieldRef<"Contribution", 'DateTime'>
   readonly updatedAt: Prisma.FieldRef<"Contribution", 'DateTime'>
-  readonly branchId: Prisma.FieldRef<"Contribution", 'Int'>
+  readonly isSolution: Prisma.FieldRef<"Contribution", 'Boolean'>
 }
     
 
@@ -2200,6 +2321,63 @@ export type ContributionDeleteManyArgs<ExtArgs extends runtime.Types.Extensions.
    * Limit how many Contributions to delete.
    */
   limit?: number
+}
+
+/**
+ * Contribution.assignment
+ */
+export type Contribution$assignmentArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Assignment
+   */
+  select?: Prisma.AssignmentSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Assignment
+   */
+  omit?: Prisma.AssignmentOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.AssignmentInclude<ExtArgs> | null
+  where?: Prisma.AssignmentWhereInput
+}
+
+/**
+ * Contribution.note
+ */
+export type Contribution$noteArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the Note
+   */
+  select?: Prisma.NoteSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the Note
+   */
+  omit?: Prisma.NoteOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.NoteInclude<ExtArgs> | null
+  where?: Prisma.NoteWhereInput
+}
+
+/**
+ * Contribution.pyqPaper
+ */
+export type Contribution$pyqPaperArgs<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
+  /**
+   * Select specific fields to fetch from the PYQPaper
+   */
+  select?: Prisma.PYQPaperSelect<ExtArgs> | null
+  /**
+   * Omit specific fields from the PYQPaper
+   */
+  omit?: Prisma.PYQPaperOmit<ExtArgs> | null
+  /**
+   * Choose, which related nodes to fetch as well
+   */
+  include?: Prisma.PYQPaperInclude<ExtArgs> | null
+  where?: Prisma.PYQPaperWhereInput
 }
 
 /**
