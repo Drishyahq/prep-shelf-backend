@@ -1,0 +1,19 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+```
+
+Then also make sure your `.env` file at the project root has your database URL:
+```
+DATABASE_URL=postgresql://username:password@localhost:5432/yourdbname
+```
+
+Then run:
+```
+npx prisma generate
