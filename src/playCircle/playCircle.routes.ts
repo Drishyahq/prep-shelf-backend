@@ -1,7 +1,59 @@
 import { Router } from "express";
-import { getPlaylists, getPlaylistById } from "./playCircle.controller.js";
+import {
+  getPlaylists, getPlaylistById,
+  createPlaylist, updatePlaylist, togglePlaylistPublish, deletePlaylist,
+} from "./playCircle.controller.js";
+import { authenticate } from "../middleware/auth.js";
 
 const playCircleRouter = Router();
+
+/**
+ * @swagger
+ * /playcircle:
+ *   post:
+ *     summary: Create a playlist (Admin)
+ *     tags: [PlayCircle]
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [title, playlistUrl, degreeBranchSubjectId, semester]
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               playlistUrl:
+ *                 type: string
+ *                 example: https://youtube.com/playlist?list=...
+ *               degreeBranchSubjectId:
+ *                 type: integer
+ *               semester:
+ *                 type: integer
+ *     responses:
+ *       201:
+ *         description: Playlist created (unpublished)
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   $ref: '#/components/schemas/Playcircle'
+ *       400:
+ *         description: Missing required fields
+ *       401:
+ *         description: Unauthorized
+ *       500:
+ *         description: Internal server error
+ */
+playCircleRouter.post("/", authenticate, createPlaylist);
 
 /**
  * @swagger
@@ -44,7 +96,6 @@ const playCircleRouter = Router();
  *                   example: true
  *                 message:
  *                   type: string
- *                   example: Successfully fetched playlists
  *                 playcircles:
  *                   type: array
  *                   items:
@@ -80,10 +131,8 @@ playCircleRouter.get("/:degreeId/:branchId/:semester", getPlaylists);
  *               properties:
  *                 success:
  *                   type: boolean
- *                   example: true
  *                 message:
  *                   type: string
- *                   example: Successfully fetched playlist
  *                 playcircle:
  *                   $ref: '#/components/schemas/Playcircle'
  *       400:
@@ -92,7 +141,118 @@ playCircleRouter.get("/:degreeId/:branchId/:semester", getPlaylists);
  *         description: Playlist not found
  *       500:
  *         description: Internal server error
+ *   patch:
+ *     summary: Update playlist metadata (Admin)
+ *     tags: [PlayCircle]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               playlistUrl:
+ *                 type: string
+ *               semester:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Updated playlist
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   $ref: '#/components/schemas/Playcircle'
+ *       400:
+ *         description: No fields provided
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Playlist not found
+ *   delete:
+ *     summary: Delete a playlist (Admin)
+ *     tags: [PlayCircle]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: Playlist deleted
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Playlist not found
+ *       500:
+ *         description: Internal server error
  */
 playCircleRouter.get("/:id", getPlaylistById);
+playCircleRouter.patch("/:id", authenticate, updatePlaylist);
+playCircleRouter.delete("/:id", authenticate, deletePlaylist);
+
+/**
+ * @swagger
+ * /playcircle/{id}/publish:
+ *   patch:
+ *     summary: Toggle playlist publish status (Admin)
+ *     tags: [PlayCircle]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required: [isPublished]
+ *             properties:
+ *               isPublished:
+ *                 type: boolean
+ *     responses:
+ *       200:
+ *         description: Updated playlist
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   $ref: '#/components/schemas/Playcircle'
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Playlist not found
+ *       500:
+ *         description: Internal server error
+ */
+playCircleRouter.patch("/:id/publish", authenticate, togglePlaylistPublish);
 
 export default playCircleRouter;

@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { getNotes, getNoteById, uploadNote, toggleNotePublish, deleteNote } from "./note.controller.js";
-import { uploadNote as uploadNoteFile } from "../config/cloudinary.js";
+import { getNotes, getNoteById, uploadNote, toggleNotePublish, deleteNote, updateNote } from "./note.controller.js";
+import { upload } from "../config/cloudinary.js";
+import { authenticate } from "../middleware/auth.js";
 
 const router = Router();
 
@@ -124,14 +125,66 @@ router.get("/:id", getNoteById);
  *       500:
  *         description: Internal server error
  */
-router.post("/upload", uploadNoteFile.single("file"), uploadNote);
+router.post("/upload", upload.single("file"), uploadNote);
+
+/**
+ * @swagger
+ * /notes/{id}:
+ *   patch:
+ *     summary: Update note metadata (Admin)
+ *     tags: [Notes]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               semester:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Updated note
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   $ref: '#/components/schemas/Note'
+ *       400:
+ *         description: No fields provided
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: Note not found
+ *       500:
+ *         description: Internal server error
+ */
+router.patch("/:id", authenticate, updateNote);
 
 /**
  * @swagger
  * /notes/{id}/publish:
  *   patch:
- *     summary: Toggle note publish status
+ *     summary: Toggle note publish status (Admin)
  *     tags: [Notes]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -158,21 +211,24 @@ router.post("/upload", uploadNoteFile.single("file"), uploadNote);
  *               properties:
  *                 success:
  *                   type: boolean
- *                   example: true
  *                 data:
  *                   $ref: '#/components/schemas/Note'
+ *       401:
+ *         description: Unauthorized
  *       500:
  *         description: Internal server error
  */
-router.patch("/:id/publish", toggleNotePublish);
+router.patch("/:id/publish", authenticate, toggleNotePublish);
 
 /**
  * @swagger
  * /notes/{id}:
  *   delete:
- *     summary: Delete a note
+ *     summary: Delete a note (Admin)
  *     description: Deletes the note and removes the associated file from Cloudinary.
  *     tags: [Notes]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -186,11 +242,13 @@ router.patch("/:id/publish", toggleNotePublish);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/MessageResponse'
+ *       401:
+ *         description: Unauthorized
  *       404:
  *         description: Note not found
  *       500:
  *         description: Internal server error
  */
-router.delete("/:id", deleteNote);
+router.delete("/:id", authenticate, deleteNote);
 
 export default router;

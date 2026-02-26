@@ -100,6 +100,88 @@ export const getPlaylists = async (
   }
 };
 
+// POST /playcircle
+export const createPlaylist = async (req: Request, res: Response) => {
+  try {
+    const { title, description, playlistUrl, degreeBranchSubjectId, semester } = req.body;
+    if (!title || !playlistUrl || !degreeBranchSubjectId || !semester) {
+      return res.status(400).json({ message: "title, playlistUrl, degreeBranchSubjectId, and semester are required" });
+    }
+
+    const playcircle = await prisma.playcircle.create({
+      data: {
+        title,
+        description: description || null,
+        playlistUrl,
+        degreeBranchSubjectId: parseInt(degreeBranchSubjectId),
+        semester: parseInt(semester),
+        isPublished: false,
+      },
+    });
+
+    return res.status(201).json({ success: true, data: playcircle });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// PATCH /playcircle/:id
+export const updatePlaylist = async (req: Request, res: Response) => {
+  try {
+    const { title, description, playlistUrl, semester } = req.body;
+    if (!title && description === undefined && !playlistUrl && !semester) {
+      return res.status(400).json({ message: "Provide at least one field to update" });
+    }
+
+    const playcircle = await prisma.playcircle.update({
+      where: { id: Number(req.params.id) },
+      data: {
+        ...(title && { title }),
+        ...(description !== undefined && { description: description || null }),
+        ...(playlistUrl && { playlistUrl }),
+        ...(semester && { semester: parseInt(semester) }),
+      },
+    });
+
+    return res.status(200).json({ success: true, data: playcircle });
+  } catch (error: any) {
+    if (error.code === "P2025") return res.status(404).json({ message: "Playlist not found" });
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// PATCH /playcircle/:id/publish
+export const togglePlaylistPublish = async (req: Request, res: Response) => {
+  try {
+    const { isPublished } = req.body;
+
+    const playcircle = await prisma.playcircle.update({
+      where: { id: Number(req.params.id) },
+      data: { isPublished },
+    });
+
+    return res.status(200).json({ success: true, data: playcircle });
+  } catch (error: any) {
+    if (error.code === "P2025") return res.status(404).json({ message: "Playlist not found" });
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// DELETE /playcircle/:id
+export const deletePlaylist = async (req: Request, res: Response) => {
+  try {
+    await prisma.playcircle.delete({ where: { id: Number(req.params.id) } });
+    return res.status(200).json({ success: true, message: "Playlist deleted" });
+  } catch (error: any) {
+    if (error.code === "P2025") return res.status(404).json({ message: "Playlist not found" });
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 // GET /playcircle/:id
 export const getPlaylistById = async (req: Request<GetPlaylistByIdParams>, res: Response) => {
   try {

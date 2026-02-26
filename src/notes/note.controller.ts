@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 import prisma from "../config/db.js";
-import { cloudinary } from "../config/cloudinary.js";
+import { cloudinary, uploadToCloudinary } from "../config/cloudinary.js";
 
 export const getNotes = async (req: Request, res: Response) => {
   try {
@@ -73,11 +73,13 @@ export const uploadNote = async (req: Request, res: Response) => {
       return res.status(400).json({ success: false, message: "No file uploaded" });
     }
 
+    const fileUrl = await uploadToCloudinary(req.file.buffer, "notes");
+
     const note = await prisma.note.create({
       data: {
         title,
         description: description || null,
-        fileUrl: req.file.path,
+        fileUrl,
         semester: parseInt(semester),
         degreeBranchSubjectId: parseInt(degreeBranchSubjectId),
         isPublished: false,
@@ -121,6 +123,29 @@ export const deleteNote = async (req: Request, res: Response) => {
 
     res.json({ success: true, message: "Deleted successfully" });
   } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+export const updateNote = async (req: Request, res: Response) => {
+  try {
+    const { title, description, semester } = req.body;
+    if (!title && description === undefined && !semester) {
+      return res.status(400).json({ success: false, message: "Provide at least one field to update" });
+    }
+
+    const note = await prisma.note.update({
+      where: { id: parseInt(req.params.id as string) },
+      data: {
+        ...(title && { title }),
+        ...(description !== undefined && { description: description || null }),
+        ...(semester && { semester: parseInt(semester) }),
+      },
+    });
+
+    res.json({ success: true, data: note });
+  } catch (err: any) {
+    if (err.code === "P2025") return res.status(404).json({ success: false, message: "Note not found" });
     res.status(500).json({ success: false, message: err.message });
   }
 };

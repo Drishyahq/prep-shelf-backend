@@ -1,6 +1,7 @@
 import { Router } from "express";
-import { getPYQs, getPYQById, uploadPYQPaper, togglePublish, deletePYQ } from "./pyq.controller.js";
-import { uploadPYQ } from "../config/cloudinary.js";
+import { getPYQs, getPYQById, uploadPYQPaper, togglePublish, deletePYQ, updatePYQ } from "./pyq.controller.js";
+import { upload } from "../config/cloudinary.js";
+import { authenticate } from "../middleware/auth.js";
 
 const router = Router();
 
@@ -132,14 +133,68 @@ router.get("/:id", getPYQById);
  *       500:
  *         description: Internal server error
  */
-router.post("/upload", uploadPYQ.single("file"), uploadPYQPaper);
+router.post("/upload", upload.single("file"), uploadPYQPaper);
+
+/**
+ * @swagger
+ * /pyqs/{id}:
+ *   patch:
+ *     summary: Update PYQ metadata (Admin)
+ *     tags: [PYQs]
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               title:
+ *                 type: string
+ *               description:
+ *                 type: string
+ *               examYear:
+ *                 type: integer
+ *               semester:
+ *                 type: integer
+ *     responses:
+ *       200:
+ *         description: Updated PYQ paper
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                 data:
+ *                   $ref: '#/components/schemas/PYQPaper'
+ *       400:
+ *         description: No fields provided
+ *       401:
+ *         description: Unauthorized
+ *       404:
+ *         description: PYQ paper not found
+ *       500:
+ *         description: Internal server error
+ */
+router.patch("/:id", authenticate, updatePYQ);
 
 /**
  * @swagger
  * /pyqs/{id}/publish:
  *   patch:
- *     summary: Toggle PYQ publish status
+ *     summary: Toggle PYQ publish status (Admin)
  *     tags: [PYQs]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -166,21 +221,24 @@ router.post("/upload", uploadPYQ.single("file"), uploadPYQPaper);
  *               properties:
  *                 success:
  *                   type: boolean
- *                   example: true
  *                 data:
  *                   $ref: '#/components/schemas/PYQPaper'
+ *       401:
+ *         description: Unauthorized
  *       500:
  *         description: Internal server error
  */
-router.patch("/:id/publish", togglePublish);
+router.patch("/:id/publish", authenticate, togglePublish);
 
 /**
  * @swagger
  * /pyqs/{id}:
  *   delete:
- *     summary: Delete a PYQ paper
+ *     summary: Delete a PYQ paper (Admin)
  *     description: Deletes the PYQ paper and removes the associated file from Cloudinary.
  *     tags: [PYQs]
+ *     security:
+ *       - BearerAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -194,11 +252,13 @@ router.patch("/:id/publish", togglePublish);
  *           application/json:
  *             schema:
  *               $ref: '#/components/schemas/MessageResponse'
+ *       401:
+ *         description: Unauthorized
  *       404:
  *         description: PYQ paper not found
  *       500:
  *         description: Internal server error
  */
-router.delete("/:id", deletePYQ);
+router.delete("/:id", authenticate, deletePYQ);
 
 export default router;

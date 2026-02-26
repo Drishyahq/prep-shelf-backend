@@ -1,7 +1,6 @@
-import type { GetPYQsQuery, GetPYQByIdParams, UploadPYQBody, TogglePublishBody, DeletePYQParams } from "./pyq.types.js";
 import type { Request, Response } from "express";
 import prisma from "../config/db.js";
-import { cloudinary } from "../config/cloudinary.js";
+import { cloudinary, uploadToCloudinary } from "../config/cloudinary.js";
 
 export const getPYQs = async (req: Request, res: Response) => {
   try {
@@ -81,11 +80,13 @@ export const uploadPYQPaper = async (req: Request, res: Response) => {
       return res.status(400).json({ success: false, message: "No file uploaded" });
     }
 
+    const fileUrl = await uploadToCloudinary(req.file.buffer, "pyqs");
+
     const pyq = await prisma.pYQPaper.create({
       data: {
         title,
         description: description || null,
-        fileUrl: req.file.path,
+        fileUrl,
         examYear: parseInt(examYear),
         semester: parseInt(semester),
         degreeBranchSubjectId: parseInt(degreeBranchSubjectId),
@@ -130,6 +131,30 @@ export const deletePYQ = async (req: Request, res: Response) => {
 
     res.json({ success: true, message: "Deleted successfully" });
   } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+export const updatePYQ = async (req: Request, res: Response) => {
+  try {
+    const { title, description, examYear, semester } = req.body;
+    if (!title && description === undefined && !examYear && !semester) {
+      return res.status(400).json({ success: false, message: "Provide at least one field to update" });
+    }
+
+    const pyq = await prisma.pYQPaper.update({
+      where: { id: parseInt(req.params.id as string) },
+      data: {
+        ...(title && { title }),
+        ...(description !== undefined && { description: description || null }),
+        ...(examYear && { examYear: parseInt(examYear) }),
+        ...(semester && { semester: parseInt(semester) }),
+      },
+    });
+
+    res.json({ success: true, data: pyq });
+  } catch (err: any) {
+    if (err.code === "P2025") return res.status(404).json({ success: false, message: "PYQ paper not found" });
     res.status(500).json({ success: false, message: err.message });
   }
 };
