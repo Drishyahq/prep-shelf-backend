@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getPYQs, getPYQById, uploadPYQPaper, togglePublish, deletePYQ, updatePYQ } from "./pyq.controller.js";
+import { getPYQs, getPYQById, uploadPYQPaper, uploadPYQSolution, togglePublish, deletePYQ, updatePYQ } from "./pyq.controller.js";
 import { upload } from "../config/cloudinary.js";
 import { authenticate } from "../middleware/auth.js";
 
@@ -260,5 +260,57 @@ router.patch("/:id/publish", authenticate, togglePublish);
  *         description: Internal server error
  */
 router.delete("/:id", authenticate, deletePYQ);
+
+/**
+ * @swagger
+ * /pyqs/{id}/solution:
+ *   post:
+ *     summary: Upload a solution for a PYQ paper
+ *     description: Uploads a PDF solution for the given PYQ paper. Created with isPublished set to false. Title defaults to "Solution - <parent title>" if not provided.
+ *     tags: [PYQs]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the PYQ paper this solution belongs to
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required: [file]
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 description: Optional. Defaults to "Solution - <parent title>"
+ *               description:
+ *                 type: string
+ *               file:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       201:
+ *         description: Solution uploaded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   $ref: '#/components/schemas/PYQPaper'
+ *       400:
+ *         description: No file uploaded or target is already a solution
+ *       404:
+ *         description: PYQ paper not found
+ *       500:
+ *         description: Internal server error
+ */
+router.post("/:id/solution", upload.single("file"), uploadPYQSolution);
 
 export default router;

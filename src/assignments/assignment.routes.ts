@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  getAssignments, getAssignmentById, uploadAssignment,
+  getAssignments, getAssignmentById, uploadAssignment, uploadAssignmentSolution,
   toggleAssignmentPublish, deleteAssignment, updateAssignment,
 } from "./assignment.controller.js";
 import { upload } from "../config/cloudinary.js";
@@ -253,5 +253,57 @@ router.patch("/:id/publish", authenticate, toggleAssignmentPublish);
  *         description: Internal server error
  */
 router.delete("/:id", authenticate, deleteAssignment);
+
+/**
+ * @swagger
+ * /assignments/{id}/solution:
+ *   post:
+ *     summary: Upload a solution for an assignment
+ *     description: Uploads a PDF solution for the given assignment. Created with isPublished set to false. Title defaults to "Solution - <parent title>" if not provided.
+ *     tags: [Assignments]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *         description: ID of the assignment this solution belongs to
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         multipart/form-data:
+ *           schema:
+ *             type: object
+ *             required: [file]
+ *             properties:
+ *               title:
+ *                 type: string
+ *                 description: Optional. Defaults to "Solution - <parent title>"
+ *               description:
+ *                 type: string
+ *               file:
+ *                 type: string
+ *                 format: binary
+ *     responses:
+ *       201:
+ *         description: Solution uploaded successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 success:
+ *                   type: boolean
+ *                   example: true
+ *                 data:
+ *                   $ref: '#/components/schemas/Assignment'
+ *       400:
+ *         description: No file uploaded or target is already a solution
+ *       404:
+ *         description: Assignment not found
+ *       500:
+ *         description: Internal server error
+ */
+router.post("/:id/solution", upload.single("file"), uploadAssignmentSolution);
 
 export default router;

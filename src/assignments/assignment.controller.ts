@@ -130,6 +130,40 @@ export const deleteAssignment = async (req: Request, res: Response) => {
   }
 };
 
+export const uploadAssignmentSolution = async (req: Request, res: Response) => {
+  try {
+    const parentId = parseInt(req.params.id as string);
+    const { title, description } = req.body;
+
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: "No file uploaded" });
+    }
+
+    const parent = await prisma.assignment.findUnique({ where: { id: parentId } });
+    if (!parent) return res.status(404).json({ success: false, message: "Assignment not found" });
+    if (parent.isSolution) return res.status(400).json({ success: false, message: "Cannot add a solution to a solution" });
+
+    const fileUrl = await uploadToCloudinary(req.file.buffer, "assignments");
+
+    const solution = await prisma.assignment.create({
+      data: {
+        title: title || `Solution - ${parent.title}`,
+        description: description || null,
+        fileUrl,
+        semester: parent.semester,
+        degreeBranchSubjectId: parent.degreeBranchSubjectId,
+        isSolution: true,
+        parentId,
+        isPublished: false,
+      },
+    });
+
+    res.status(201).json({ success: true, data: solution });
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
 export const updateAssignment = async (req: Request, res: Response) => {
   try {
     const { title, description, semester } = req.body;

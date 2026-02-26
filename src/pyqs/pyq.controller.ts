@@ -135,6 +135,41 @@ export const deletePYQ = async (req: Request, res: Response) => {
   }
 };
 
+export const uploadPYQSolution = async (req: Request, res: Response) => {
+  try {
+    const parentId = parseInt(req.params.id as string);
+    const { title, description } = req.body;
+
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: "No file uploaded" });
+    }
+
+    const parent = await prisma.pYQPaper.findUnique({ where: { id: parentId } });
+    if (!parent) return res.status(404).json({ success: false, message: "PYQ paper not found" });
+    if (parent.isSolution) return res.status(400).json({ success: false, message: "Cannot add a solution to a solution" });
+
+    const fileUrl = await uploadToCloudinary(req.file.buffer, "pyqs");
+
+    const solution = await prisma.pYQPaper.create({
+      data: {
+        title: title || `Solution - ${parent.title}`,
+        description: description || null,
+        fileUrl,
+        examYear: parent.examYear,
+        semester: parent.semester,
+        degreeBranchSubjectId: parent.degreeBranchSubjectId,
+        isSolution: true,
+        parentId,
+        isPublished: false,
+      },
+    });
+
+    res.status(201).json({ success: true, data: solution });
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
 export const updatePYQ = async (req: Request, res: Response) => {
   try {
     const { title, description, examYear, semester } = req.body;
