@@ -8,7 +8,7 @@ export async function uploadToCloudinary(buffer: Buffer, folder: string): Promis
 
   const result = await cloudinary.uploader.upload(dataUri, {
     folder,
-    resource_type: "auto",
+    resource_type: "raw",
   });
 
   return result.secure_url;
