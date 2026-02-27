@@ -4,16 +4,14 @@ import multer from "multer";
 export const upload = multer({ storage: multer.memoryStorage() });
 
 export async function uploadToCloudinary(buffer: Buffer, folder: string): Promise<string> {
-  return new Promise((resolve, reject) => {
-    const stream = cloudinary.uploader.upload_stream(
-      { folder, resource_type: "raw" },
-      (error, result) => {
-        if (error || !result) return reject(error ?? new Error("Upload failed"));
-        resolve(result.secure_url);
-      }
-    );
-    stream.end(buffer);
+  const dataUri = `data:application/octet-stream;base64,${buffer.toString("base64")}`;
+
+  const result = await cloudinary.uploader.upload(dataUri, {
+    folder,
+    resource_type: "auto",
   });
+
+  return result.secure_url;
 }
 
 export { cloudinary };
