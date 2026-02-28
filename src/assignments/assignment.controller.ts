@@ -76,7 +76,7 @@ export const uploadAssignment = async (req: Request, res: Response) => {
       return res.status(400).json({ success: false, message: "No file uploaded" });
     }
 
-    const fileUrl = await uploadToCloudinary(req.file.buffer, "assignments");
+    const fileUrl = await uploadToCloudinary(req.file.buffer, "assignments", req.file.originalname);
 
     const assignment = await prisma.assignment.create({
       data: {
@@ -143,7 +143,7 @@ export const uploadAssignmentSolution = async (req: Request, res: Response) => {
     if (!parent) return res.status(404).json({ success: false, message: "Assignment not found" });
     if (parent.isSolution) return res.status(400).json({ success: false, message: "Cannot add a solution to a solution" });
 
-    const fileUrl = await uploadToCloudinary(req.file.buffer, "assignments");
+    const fileUrl = await uploadToCloudinary(req.file.buffer, "assignments", req.file.originalname);
 
     const solution = await prisma.assignment.create({
       data: {

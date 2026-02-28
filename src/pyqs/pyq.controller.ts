@@ -80,7 +80,7 @@ export const uploadPYQPaper = async (req: Request, res: Response) => {
       return res.status(400).json({ success: false, message: "No file uploaded" });
     }
 
-    const fileUrl = await uploadToCloudinary(req.file.buffer, "pyqs");
+    const fileUrl = await uploadToCloudinary(req.file.buffer, "pyqs", req.file.originalname);
 
     const pyq = await prisma.pYQPaper.create({
       data: {
@@ -148,7 +148,7 @@ export const uploadPYQSolution = async (req: Request, res: Response) => {
     if (!parent) return res.status(404).json({ success: false, message: "PYQ paper not found" });
     if (parent.isSolution) return res.status(400).json({ success: false, message: "Cannot add a solution to a solution" });
 
-    const fileUrl = await uploadToCloudinary(req.file.buffer, "pyqs");
+    const fileUrl = await uploadToCloudinary(req.file.buffer, "pyqs", req.file.originalname);
 
     const solution = await prisma.pYQPaper.create({
       data: {

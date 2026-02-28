@@ -73,7 +73,7 @@ export const uploadNote = async (req: Request, res: Response) => {
       return res.status(400).json({ success: false, message: "No file uploaded" });
     }
 
-    const fileUrl = await uploadToCloudinary(req.file.buffer, "notes");
+    const fileUrl = await uploadToCloudinary(req.file.buffer, "notes", req.file.originalname);
 
     const note = await prisma.note.create({
       data: {
