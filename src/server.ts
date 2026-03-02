@@ -4,11 +4,9 @@ import swaggerUi from "swagger-ui-express";
 import { env } from "./config/env.js";
 import { swaggerSpec } from "./config/swagger.js";
 import { registerRoutes } from "./routes.js";
-import cors from "cors";
 
 const app: express.Express = express();
 
-app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
