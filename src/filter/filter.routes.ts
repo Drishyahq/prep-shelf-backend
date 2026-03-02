@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getBranches, getDegrees, getSubjects, getDegreeBranchSubjectId } from "./filter.controller.js";
+import { getBranches, getDegrees, getSubjects, getDegreeBranches, getDegreeBranchSubjectId } from "./filter.controller.js";
 
 const router = Router();
 
@@ -142,6 +142,7 @@ router.get("/subjects", getSubjects);
  *       500:
  *         description: Internal server error
  */
+router.get("/degree-branches", getDegreeBranches);
 router.get("/degreeBranchSubjectId", getDegreeBranchSubjectId);
 
 export default router;

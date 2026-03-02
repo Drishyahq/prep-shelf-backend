@@ -40,10 +40,31 @@ export const getSubjects = async (req: Request, res: Response) => {
           }
         } : {})
       },
+      include: {
+        programs: {
+          include: {
+            degreeBranch: {
+              include: { degree: true, branch: true },
+            },
+          },
+        },
+      },
       orderBy: { name: "asc" },
     });
 
     res.json({ success: true, data: subjects });
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+export const getDegreeBranches = async (_req: Request, res: Response) => {
+  try {
+    const degreeBranches = await prisma.degreeBranch.findMany({
+      include: { degree: true, branch: true },
+      orderBy: [{ degree: { name: "asc" } }, { branch: { name: "asc" } }],
+    });
+    res.json({ success: true, data: degreeBranches });
   } catch (err: any) {
     res.status(500).json({ success: false, message: err.message });
   }

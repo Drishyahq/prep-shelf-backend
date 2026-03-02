@@ -88,3 +88,135 @@ export async function logout(
 
   res.status(200).json({ message: "Logged out successfully" });
 }
+
+// ─── Dashboard stats (single query per table, counts only) ─────────────────
+
+export async function getDashboardStats(
+  _req: AuthenticatedRequest,
+  res: Response,
+): Promise<void> {
+  try {
+    const [branches, degrees, subjects, pyqs, notes, assignments, playcircle] =
+      await Promise.all([
+        prisma.branch.count(),
+        prisma.degree.count(),
+        prisma.subject.count(),
+        prisma.pYQPaper.count(),
+        prisma.note.count(),
+        prisma.assignment.count(),
+        prisma.playcircle.count(),
+      ]);
+
+    res.json({
+      success: true,
+      data: { branches, degrees, subjects, pyqs, notes, assignments, playcircle },
+    });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Internal server error";
+    res.status(500).json({ success: false, message });
+  }
+}
+
+// ─── Admin-only resource endpoints (returns ALL items, including unpublished) ─
+
+export async function getAllPYQs(
+  _req: AuthenticatedRequest,
+  res: Response,
+): Promise<void> {
+  try {
+    const pyqs = await prisma.pYQPaper.findMany({
+      include: {
+        degreeBranchSubject: {
+          include: {
+            subject: true,
+            degreeBranch: {
+              include: { degree: true, branch: true },
+            },
+          },
+        },
+        solutions: true,
+      },
+      orderBy: { createdAt: "desc" },
+    });
+    res.json({ success: true, data: pyqs });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Internal server error";
+    res.status(500).json({ success: false, message });
+  }
+}
+
+export async function getAllNotes(
+  _req: AuthenticatedRequest,
+  res: Response,
+): Promise<void> {
+  try {
+    const notes = await prisma.note.findMany({
+      include: {
+        degreeBranchSubject: {
+          include: {
+            subject: true,
+            degreeBranch: {
+              include: { degree: true, branch: true },
+            },
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+    res.json({ success: true, data: notes });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Internal server error";
+    res.status(500).json({ success: false, message });
+  }
+}
+
+export async function getAllAssignments(
+  _req: AuthenticatedRequest,
+  res: Response,
+): Promise<void> {
+  try {
+    const assignments = await prisma.assignment.findMany({
+      include: {
+        degreeBranchSubject: {
+          include: {
+            subject: true,
+            degreeBranch: {
+              include: { degree: true, branch: true },
+            },
+          },
+        },
+        solutions: true,
+      },
+      orderBy: { createdAt: "desc" },
+    });
+    res.json({ success: true, data: assignments });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Internal server error";
+    res.status(500).json({ success: false, message });
+  }
+}
+
+export async function getAllPlaycircle(
+  _req: AuthenticatedRequest,
+  res: Response,
+): Promise<void> {
+  try {
+    const playcircles = await prisma.playcircle.findMany({
+      include: {
+        degreeBranchSubject: {
+          include: {
+            subject: true,
+            degreeBranch: {
+              include: { degree: true, branch: true },
+            },
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+    res.json({ success: true, data: playcircles });
+  } catch (err: unknown) {
+    const message = err instanceof Error ? err.message : "Internal server error";
+    res.status(500).json({ success: false, message });
+  }
+}

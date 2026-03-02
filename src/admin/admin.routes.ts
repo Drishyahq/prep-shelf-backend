@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { login, logout } from "./admin.controller.js";
+import { login, logout, getDashboardStats, getAllPYQs, getAllNotes, getAllAssignments, getAllPlaycircle } from "./admin.controller.js";
 import { authenticate } from "../middleware/auth.js";
 
 const adminRouter = Router();
@@ -69,5 +69,14 @@ adminRouter.post("/login", login);
  *               $ref: '#/components/schemas/ApiError'
  */
 adminRouter.post("/logout", authenticate, logout);
+
+// ─── Dashboard stats ────────────────────────────────────────────────────────
+adminRouter.get("/stats", authenticate, getDashboardStats);
+
+// ─── Admin-only resource listing (all items, including unpublished) ──────────
+adminRouter.get("/pyqs", authenticate, getAllPYQs);
+adminRouter.get("/notes", authenticate, getAllNotes);
+adminRouter.get("/assignments", authenticate, getAllAssignments);
+adminRouter.get("/playcircle", authenticate, getAllPlaycircle);
 
 export default adminRouter;
