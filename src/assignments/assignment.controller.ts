@@ -4,12 +4,12 @@ import { cloudinary, uploadToCloudinary } from "../config/cloudinary.js";
 
 export const getAssignments = async (req: Request, res: Response) => {
   try {
-    const { degreeId, branchId, subjectId, semester } = req.query;
+    const { degreeId, branchId, subjectId, semester, isSolution } = req.query;
 
     const assignments = await prisma.assignment.findMany({
       where: {
         isPublished: true,
-        isSolution: false,
+        ...(isSolution !== undefined && { isSolution: isSolution === "true" }),
         ...(semester && { semester: parseInt(semester as string) }),
         ...(degreeId || branchId || subjectId ? {
           degreeBranchSubject: {
