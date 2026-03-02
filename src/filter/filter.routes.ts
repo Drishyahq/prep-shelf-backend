@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getBranches, getDegrees, getSubjects, getDegreeBranches, getDegreeBranchSubjectId } from "./filter.controller.js";
+import { getBranches, getDegrees, getSubjects, getDegreeBranches, getDegreeBranchSubjectId, getAvailableSubjects, getAvailableYears } from "./filter.controller.js";
 
 const router = Router();
 
@@ -144,5 +144,7 @@ router.get("/subjects", getSubjects);
  */
 router.get("/degree-branches", getDegreeBranches);
 router.get("/degreeBranchSubjectId", getDegreeBranchSubjectId);
+router.get("/available-subjects", getAvailableSubjects);
+router.get("/available-years", getAvailableYears);
 
 export default router;

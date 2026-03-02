@@ -100,6 +100,51 @@ export const getPlaylists = async (
   }
 };
 
+// GET /playcircle?degreeId=&branchId=&semester=&subjectId=  (query-param based, semester optional)
+export const getPlaylistsByQuery = async (req: Request, res: Response) => {
+  try {
+    const { degreeId, branchId, semester, subjectId } = req.query;
+
+    if (!degreeId || !branchId) {
+      return res.status(400).json({ message: "degreeId and branchId are required" });
+    }
+
+    const degreeIdNum = Number(degreeId);
+    const branchIdNum = Number(branchId);
+    const semesterNum = semester ? Number(semester) : undefined;
+    const subjectIdNum = subjectId ? Number(subjectId) : undefined;
+
+    if (Number.isNaN(degreeIdNum) || Number.isNaN(branchIdNum)) {
+      return res.status(400).json({ message: "degreeId and branchId must be valid numbers" });
+    }
+
+    const playcircles = await prisma.playcircle.findMany({
+      where: {
+        isPublished: true,
+        ...(semesterNum && { semester: semesterNum }),
+        ...(subjectIdNum
+          ? { degreeBranchSubject: { subjectId: subjectIdNum, degreeBranch: { degreeId: degreeIdNum, branchId: branchIdNum } } }
+          : { degreeBranchSubject: { degreeBranch: { degreeId: degreeIdNum, branchId: branchIdNum } } }
+        ),
+      },
+      include: {
+        degreeBranchSubject: {
+          include: {
+            subject: true,
+            degreeBranch: { include: { degree: true, branch: true } },
+          },
+        },
+      },
+      orderBy: { createdAt: "desc" },
+    });
+
+    return res.status(200).json({ success: true, data: playcircles });
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ message: "Internal server error" });
+  }
+};
+
 // POST /playcircle
 export const createPlaylist = async (req: Request, res: Response) => {
   try {

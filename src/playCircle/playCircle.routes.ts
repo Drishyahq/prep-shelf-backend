@@ -1,6 +1,6 @@
 import { Router } from "express";
 import {
-  getPlaylists, getPlaylistById,
+  getPlaylists, getPlaylistsByQuery, getPlaylistById,
   createPlaylist, updatePlaylist, togglePlaylistPublish, deletePlaylist,
 } from "./playCircle.controller.js";
 import { authenticate } from "../middleware/auth.js";
@@ -54,6 +54,9 @@ const playCircleRouter = Router();
  *         description: Internal server error
  */
 playCircleRouter.post("/", authenticate, createPlaylist);
+
+// Query-param-based GET (must be before /:degreeId/:branchId/:semester)
+playCircleRouter.get("/", getPlaylistsByQuery);
 
 /**
  * @swagger

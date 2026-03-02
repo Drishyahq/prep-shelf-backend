@@ -109,3 +109,107 @@ export const getDegreeBranchSubjectId = async (req: Request, res: Response) => {
     res.status(500).json({ success: false, message: err.message });
   }
 };
+
+/**
+ * GET /filters/available-subjects?resourceType=pyqs&degreeId=1&branchId=2&semester=3
+ * Returns only subjects that have at least one published resource of the given type
+ * for the selected degree + branch (and optionally semester).
+ */
+export const getAvailableSubjects = async (req: Request, res: Response) => {
+  try {
+    const { resourceType, degreeId, branchId, semester } = req.query;
+
+    if (!resourceType || !degreeId || !branchId) {
+      return res.status(400).json({
+        success: false,
+        message: "resourceType, degreeId, and branchId are required",
+      });
+    }
+
+    // Build the "has at least one published resource" filter based on resourceType
+    const semesterFilter = semester ? { semester: parseInt(semester as string) } : {};
+    const publishedFilter = { isPublished: true, ...semesterFilter };
+
+    let resourceRelation: Record<string, any>;
+    switch (resourceType) {
+      case "pyqs":
+        resourceRelation = { pyqPapers: { some: { isPublished: true, isSolution: false } } };
+        break;
+      case "notes":
+        resourceRelation = { notes: { some: publishedFilter } };
+        break;
+      case "assignments":
+        resourceRelation = { assignments: { some: { ...publishedFilter, isSolution: false } } };
+        break;
+      case "playcircle":
+        resourceRelation = { playcircles: { some: publishedFilter } };
+        break;
+      default:
+        return res.status(400).json({ success: false, message: "Invalid resourceType" });
+    }
+
+    const subjects = await prisma.subject.findMany({
+      where: {
+        programs: {
+          some: {
+            degreeBranch: {
+              degreeId: parseInt(degreeId as string),
+              branchId: parseInt(branchId as string),
+            },
+            ...resourceRelation,
+          },
+        },
+      },
+      orderBy: { name: "asc" },
+    });
+
+    res.json({ success: true, data: subjects });
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+/**
+ * GET /filters/available-years?degreeId=1&branchId=2&subjectId=3
+ * Returns distinct exam years (descending) from published PYQ papers
+ * for the selected degree + branch (and optionally subject).
+ */
+export const getAvailableYears = async (req: Request, res: Response) => {
+  try {
+    const { degreeId, branchId, subjectId } = req.query;
+
+    if (!degreeId || !branchId) {
+      return res.status(400).json({
+        success: false,
+        message: "degreeId and branchId are required",
+      });
+    }
+
+    const pyqs = await prisma.pYQPaper.findMany({
+      where: {
+        isPublished: true,
+        isSolution: false,
+        ...(subjectId && {
+          degreeBranchSubject: {
+            subjectId: parseInt(subjectId as string),
+          },
+        }),
+        degreeBranchSubject: {
+          ...(subjectId && { subjectId: parseInt(subjectId as string) }),
+          degreeBranch: {
+            degreeId: parseInt(degreeId as string),
+            branchId: parseInt(branchId as string),
+          },
+        },
+      },
+      select: { examYear: true },
+      distinct: ["examYear"],
+      orderBy: { examYear: "desc" },
+    });
+
+    const years = pyqs.map((p) => p.examYear);
+    res.json({ success: true, data: years });
+  } catch (err: any) {
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
