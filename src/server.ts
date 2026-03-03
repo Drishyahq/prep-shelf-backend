@@ -7,8 +7,18 @@ import { registerRoutes } from "./routes.js";
 
 const app: express.Express = express();
 
-app.use(cors());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use(express.static("public"));
+
+app.use(cors({
+  origin: ["http://localhost:5173"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+}));
+
 
 app.get("/health", (_, res: express.Response) => {
   res.json({ status: "ok" });
