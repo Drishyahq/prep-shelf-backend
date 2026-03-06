@@ -5,7 +5,9 @@
   "scripts": {
     "lint": "tsc",
     "dev": "bun --watch src/server.ts",
-    "start": "bun src/server.ts"
+    "start": "bun src/server.ts",
+    "build": "prisma generate",
+    "postinstall": "prisma generate"
   },
   "private": true,
   "devDependencies": {
